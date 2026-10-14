@@ -2,20 +2,20 @@
 /**
  * Bookings PDF (A4 landscape) built on the bundled tFPDF library.
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Includes
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Includes
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Includes;
+namespace YatraVanta\Includes;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 if ( ! class_exists( 'tFPDF' ) ) {
-	require_once TREKPILOT_PATH . 'includes/vendor/tfpdf/tfpdf.php';
-	require_once TREKPILOT_PATH . 'includes/vendor/tfpdf/font/unifont/ttfonts.php';
+	require_once YATRAVANTA_PATH . 'includes/vendor/tfpdf/tfpdf.php';
+	require_once YATRAVANTA_PATH . 'includes/vendor/tfpdf/font/unifont/ttfonts.php';
 }
 
 /**

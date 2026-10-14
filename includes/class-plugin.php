@@ -2,12 +2,12 @@
 /**
  * Core plugin class definition
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Includes
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Includes
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Includes;
+namespace YatraVanta\Includes;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -23,7 +23,7 @@ class Plugin {
 	 *
 	 * @var string
 	 */
-	protected $plugin_name = 'trekpilot';
+	protected $plugin_name = 'yatravanta-trek-booking-manager';
 
 	/**
 	 * Current version of the plugin.
@@ -97,15 +97,15 @@ class Plugin {
 
 		// Front end: derive Primary/Secondary from the theme's own button/link colors when its variables are unknown.
 		add_action( 'wp_footer', array( __CLASS__, 'print_theme_color_detector' ), 99 );
-		add_action( 'wp_ajax_trekpilot_save_detected_colors', array( __CLASS__, 'ajax_save_detected_colors' ) );
+		add_action( 'wp_ajax_yatravanta_save_detected_colors', array( __CLASS__, 'ajax_save_detected_colors' ) );
 
 		// Multisite: create the tables for each newly added sub-site.
 		add_action( 'wp_initialize_site', array( Database::class, 'create_tables_for_new_site' ), 20 );
 
 		// Self-healing database table check.
-		if ( is_admin() && get_option( 'trekpilot_db_version' ) !== $this->version ) {
+		if ( is_admin() && get_option( 'yatravanta_db_version' ) !== $this->version ) {
 			Database::create_tables();
-			update_option( 'trekpilot_db_version', $this->version );
+			update_option( 'yatravanta_db_version', $this->version );
 		}
 		if ( is_admin() ) {
 			Database::upgrade_schema();
@@ -113,23 +113,23 @@ class Plugin {
 
 		// Handle Admin hooks.
 		if ( is_admin() ) {
-			new \TrekPilot\Admin\Controllers\AdminController();
-			new \TrekPilot\Admin\Controllers\TrekMetaBoxController();
-			new \TrekPilot\Admin\Controllers\TrekDepartureCitiesController();
-			new \TrekPilot\Admin\Controllers\TrekDepartureDatesController();
-			new \TrekPilot\Admin\Controllers\TrekItineraryController();
-			new \TrekPilot\Admin\Controllers\TrekPickupPointsController();
-			new \TrekPilot\Admin\Controllers\TrekPricingController();
-			new \TrekPilot\Admin\Controllers\TrekBookingsController();
-			new \TrekPilot\Admin\Controllers\TrekImportExportController();
-			new \TrekPilot\Admin\Controllers\TrekListController();
+			new \YatraVanta\Admin\Controllers\AdminController();
+			new \YatraVanta\Admin\Controllers\TrekMetaBoxController();
+			new \YatraVanta\Admin\Controllers\TrekDepartureCitiesController();
+			new \YatraVanta\Admin\Controllers\TrekDepartureDatesController();
+			new \YatraVanta\Admin\Controllers\TrekItineraryController();
+			new \YatraVanta\Admin\Controllers\TrekPickupPointsController();
+			new \YatraVanta\Admin\Controllers\TrekPricingController();
+			new \YatraVanta\Admin\Controllers\TrekBookingsController();
+			new \YatraVanta\Admin\Controllers\TrekImportExportController();
+			new \YatraVanta\Admin\Controllers\TrekListController();
 		}
 
 		// Handle frontend/global hooks.
-		new \TrekPilot\Frontend\Controllers\TrekBookingController();
-		new \TrekPilot\Frontend\Controllers\TrekShortcodesController();
-		new \TrekPilot\Includes\Elementor();
-		new \TrekPilot\Includes\RestApi();
+		new \YatraVanta\Frontend\Controllers\TrekBookingController();
+		new \YatraVanta\Frontend\Controllers\TrekShortcodesController();
+		new \YatraVanta\Includes\Elementor();
+		new \YatraVanta\Includes\RestApi();
 	}
 
 	/**
@@ -139,7 +139,7 @@ class Plugin {
 	 * @return string
 	 */
 	public static function get_site_logo_url() {
-		if ( ! get_option( 'trekpilot_use_site_logo', true ) ) {
+		if ( ! get_option( 'yatravanta_use_site_logo', true ) ) {
 			return '';
 		}
 
@@ -154,7 +154,7 @@ class Plugin {
 		 *
 		 * @param string $url Logo URL, or an empty string for none.
 		 */
-		return (string) apply_filters( 'trekpilot_site_logo_url', $url ? $url : '' );
+		return (string) apply_filters( 'yatravanta_site_logo_url', $url ? $url : '' );
 	}
 
 	/**
@@ -165,9 +165,9 @@ class Plugin {
 	 * @return string
 	 */
 	public static function asset_version( $relative_path ) {
-		$file  = TREKPILOT_PATH . ltrim( $relative_path, '/' );
+		$file  = YATRAVANTA_PATH . ltrim( $relative_path, '/' );
 		$mtime = file_exists( $file ) ? filemtime( $file ) : false;
-		return $mtime ? TREKPILOT_VERSION . '.' . $mtime : TREKPILOT_VERSION;
+		return $mtime ? YATRAVANTA_VERSION . '.' . $mtime : YATRAVANTA_VERSION;
 	}
 
 	/**
@@ -196,13 +196,13 @@ class Plugin {
 	private static function theme_color_map() {
 		return array(
 			'primary'   => array(
-				'css'       => array( '--ast-global-color-0', '--wp--preset--color--primary', '--e-global-color-primary', '--wp--preset--color--accent-1' ),
-				'palette'   => array( 'astra-primary', 'primary', 'accent-1', 'accent', 'brand' ),
+				'css'       => array( '--ast-global-color-0', '--wp--preset--color--primary', '--e-global-color-primary' ),
+				'palette'   => array( 'astra-primary', 'primary', 'accent', 'brand' ),
 				'elementor' => array( 'primary' ),
 			),
 			'secondary' => array(
-				'css'       => array( '--ast-global-color-1', '--wp--preset--color--secondary', '--e-global-color-secondary', '--wp--preset--color--accent-2' ),
-				'palette'   => array( 'astra-secondary', 'secondary', 'accent-2', 'contrast' ),
+				'css'       => array( '--ast-global-color-1', '--wp--preset--color--secondary', '--e-global-color-secondary' ),
+				'palette'   => array( 'astra-secondary', 'secondary' ),
 				'elementor' => array( 'secondary' ),
 			),
 		);
@@ -299,7 +299,7 @@ class Plugin {
 	 * @return string Hex value or ''.
 	 */
 	public static function get_brand_color( $role ) {
-		$saved = sanitize_hex_color( (string) get_option( 'trekpilot_' . $role . '_color', '' ) );
+		$saved = sanitize_hex_color( (string) get_option( 'yatravanta_' . $role . '_color', '' ) );
 		if ( $saved ) {
 			return $saved;
 		}
@@ -310,7 +310,7 @@ class Plugin {
 		}
 
 		// Colors read from the theme's rendered buttons/links by an admin visit (see below).
-		$cache = get_option( 'trekpilot_detected_colors', array() );
+		$cache = get_option( 'yatravanta_detected_colors', array() );
 		$key   = get_stylesheet();
 		if ( is_array( $cache ) && isset( $cache[ $key ][ $role ] ) ) {
 			$hex = sanitize_hex_color( $cache[ $key ][ $role ] );
@@ -329,7 +329,7 @@ class Plugin {
 	 * @return void
 	 */
 	public static function ajax_save_detected_colors() {
-		check_ajax_referer( 'trekpilot_detected_colors', 'nonce' );
+		check_ajax_referer( 'yatravanta_detected_colors', 'nonce' );
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( null, 403 );
 		}
@@ -340,13 +340,13 @@ class Plugin {
 			wp_send_json_error( null, 400 );
 		}
 
-		$cache                      = get_option( 'trekpilot_detected_colors', array() );
+		$cache                      = get_option( 'yatravanta_detected_colors', array() );
 		$cache                      = is_array( $cache ) ? $cache : array();
 		$cache[ get_stylesheet() ] = array(
 			'primary'   => $primary,
 			'secondary' => $secondary,
 		);
-		update_option( 'trekpilot_detected_colors', $cache, false );
+		update_option( 'yatravanta_detected_colors', $cache, false );
 
 		wp_send_json_success();
 	}
@@ -367,7 +367,7 @@ class Plugin {
 		foreach ( array( 'primary', 'secondary' ) as $role ) {
 			$value = self::get_brand_color( $role );
 
-			if ( ! sanitize_hex_color( (string) get_option( 'trekpilot_' . $role . '_color', '' ) ) && ! is_admin() ) {
+			if ( ! sanitize_hex_color( (string) get_option( 'yatravanta_' . $role . '_color', '' ) ) && ! is_admin() ) {
 				$inner = $value;
 				foreach ( array_reverse( $map[ $role ]['css'] ) as $variable ) {
 					$inner = 'var(' . $variable . ( '' !== $inner ? ', ' . $inner : '' ) . ')';
@@ -376,7 +376,7 @@ class Plugin {
 			}
 
 			if ( '' !== $value ) {
-				$rules .= '--trekpilot-' . $role . '-color:' . $value . ';';
+				$rules .= '--yatravanta-' . $role . '-color:' . $value . ';';
 			}
 		}
 
@@ -388,12 +388,12 @@ class Plugin {
 	 *
 	 * When Settings > Color is empty and none of the known theme variables resolved, read the
 	 * theme's own button background / link color from the browser and use that as Primary
-	 * (Secondary is a darker shade of it). Runs only on pages that load a TrekPilot stylesheet.
+	 * (Secondary is a darker shade of it). Runs only on pages that load a YatraVanta Trek Booking Manager stylesheet.
 	 *
 	 * @return void
 	 */
 	public static function print_theme_color_detector() {
-		$handles = array( 'trekpilot-public-details-css', 'trekpilot-public-archive-css', 'trekpilot-public-booking-css', 'trekpilot-blocks-details-css', 'trekpilot-blocks-booking-css', 'trekpilot-blocks-archive-css' );
+		$handles = array( 'yatravanta-public-details-css', 'yatravanta-public-archive-css', 'yatravanta-public-booking-css', 'yatravanta-blocks-details-css', 'yatravanta-blocks-booking-css', 'yatravanta-blocks-archive-css' );
 		$loaded  = false;
 		foreach ( $handles as $handle ) {
 			if ( wp_style_is( $handle, 'enqueued' ) || wp_style_is( $handle, 'done' ) ) {
@@ -405,8 +405,8 @@ class Plugin {
 			return;
 		}
 
-		$need_primary   = ! sanitize_hex_color( (string) get_option( 'trekpilot_primary_color', '' ) );
-		$need_secondary = ! sanitize_hex_color( (string) get_option( 'trekpilot_secondary_color', '' ) );
+		$need_primary   = ! sanitize_hex_color( (string) get_option( 'yatravanta_primary_color', '' ) );
+		$need_secondary = ! sanitize_hex_color( (string) get_option( 'yatravanta_secondary_color', '' ) );
 		if ( ! $need_primary && ! $need_secondary ) {
 			return;
 		}
@@ -415,7 +415,7 @@ class Plugin {
 			? wp_json_encode(
 				array(
 					'url'   => admin_url( 'admin-ajax.php' ),
-					'nonce' => wp_create_nonce( 'trekpilot_detected_colors' ),
+					'nonce' => wp_create_nonce( 'yatravanta_detected_colors' ),
 				)
 			)
 			: 'null';
@@ -428,12 +428,12 @@ class Plugin {
 			"var bg=rgb(getComputedStyle(b).backgroundColor),ln=rgb(getComputedStyle(a).color);document.body.removeChild(b);document.body.removeChild(a);" .
 			"if(bg&&!(bg[0]===239&&bg[1]===239&&bg[2]===239)){return bg;}return ln;}" .
 			"function css(c){return 'rgb('+c[0]+','+c[1]+','+c[2]+')';}" .
-			"var needP=!has('--trekpilot-primary-color'),needS=!has('--trekpilot-secondary-color');if(!needP&&!needS){return;}" .
+			"var needP=!has('--yatravanta-primary-color'),needS=!has('--yatravanta-secondary-color');if(!needP&&!needS){return;}" .
 			"var p=pick();if(!p){return;}" .
-			"if(needP){r.style.setProperty('--trekpilot-primary-color',css(p));}" .
-			"if(needS){r.style.setProperty('--trekpilot-secondary-color',css(p.map(function(v){return Math.round(v*0.8);})));}" .
+			"if(needP){r.style.setProperty('--yatravanta-primary-color',css(p));}" .
+			"if(needS){r.style.setProperty('--yatravanta-secondary-color',css(p.map(function(v){return Math.round(v*0.8);})));}" .
 			"if(rep&&needP&&needS){function hx(c){return '#'+c.map(function(v){return ('0'+v.toString(16)).slice(-2);}).join('');}" .
-			"var q=new URLSearchParams({action:'trekpilot_save_detected_colors',nonce:rep.nonce,primary:hx(p),secondary:hx(p.map(function(v){return Math.round(v*0.8);}))});" .
+			"var q=new URLSearchParams({action:'yatravanta_save_detected_colors',nonce:rep.nonce,primary:hx(p),secondary:hx(p.map(function(v){return Math.round(v*0.8);}))});" .
 			"fetch(rep.url,{method:'POST',credentials:'same-origin',body:q});}" .
 			"})();";
 
@@ -496,7 +496,7 @@ class Plugin {
 		if ( $cta_html ) {
 			$html .= '<tr><td style="padding:0 25px;"><table role="presentation" width="100%">' . $cta_html . '</table></td></tr>';
 		}
-		$html .= '<tr><td style="padding:20px 25px 30px 25px;"><p style="margin:0; font-size:12px; font-weight:700; color:#000000;">' . esc_html__( 'If you have any questions, simply reply to this email and our team will be happy to assist you.', 'trekpilot' ) . '</p></td></tr>';
+		$html .= '<tr><td style="padding:20px 25px 30px 25px;"><p style="margin:0; font-size:12px; font-weight:700; color:#000000;">' . esc_html__( 'If you have any questions, simply reply to this email and our team will be happy to assist you.', 'yatravanta-trek-booking-manager' ) . '</p></td></tr>';
 		$html .= '<tr><td style="background:' . esc_attr( $secondary ) . '; padding:15px 20px; text-align:center;"><span style="color:#ffffff; font-size:11px;">&copy; ' . esc_html( $year ) . ' ' . esc_html( $site_name ) . '</span></td></tr>';
 		$html .= '</table>';
 		$html .= '</div>';

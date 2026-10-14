@@ -2,12 +2,12 @@
 /**
  * REST API Endpoints registration and controller.
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Includes
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Includes
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Includes;
+namespace YatraVanta\Includes;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -29,7 +29,7 @@ class RestApi {
 	 * Register REST API routes.
 	 */
 	public function register_routes() {
-		$namespace = 'trekpilot/v1';
+		$namespace = 'yatravanta-trek-booking-manager/v1';
 
 		// Route: List all treks.
 		register_rest_route(
@@ -104,7 +104,7 @@ class RestApi {
 	 * @return bool
 	 */
 	private function is_public_trek( $post_id ) {
-		return 'trekpilot_trek' === get_post_type( $post_id )
+		return 'yatravanta_trek' === get_post_type( $post_id )
 			&& 'publish' === get_post_status( $post_id )
 			&& ! post_password_required( $post_id );
 	}
@@ -119,13 +119,13 @@ class RestApi {
 
 		$posts = get_posts(
 			array(
-				'post_type'      => 'trekpilot_trek',
+				'post_type'      => 'yatravanta_trek',
 				'posts_per_page' => -1,
 				'post_status'    => 'publish',
 			)
 		);
 
-		$table_name    = $wpdb->prefix . 'trekpilot_treks';
+		$table_name    = $wpdb->prefix . 'yatravanta_treks';
 		$response_data = array();
 
 		// Fetch every trek's details in one query instead of one per trek.
@@ -173,11 +173,11 @@ class RestApi {
 		$post_id = intval( $request['id'] );
 
 		if ( ! $this->is_public_trek( $post_id ) ) {
-			return new \WP_Error( 'rest_invalid_trek', esc_html__( 'Invalid trek ID', 'trekpilot' ), array( 'status' => 404 ) );
+			return new \WP_Error( 'rest_invalid_trek', esc_html__( 'Invalid trek ID', 'yatravanta-trek-booking-manager' ), array( 'status' => 404 ) );
 		}
 
 		global $wpdb;
-		$table_treks = $wpdb->prefix . 'trekpilot_treks';
+		$table_treks = $wpdb->prefix . 'yatravanta_treks';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$specs = $wpdb->get_row(
@@ -187,7 +187,7 @@ class RestApi {
 		);
 
 		if ( ! $specs ) {
-			return new \WP_Error( 'rest_no_specs', esc_html__( 'Specifications not configured for this trek', 'trekpilot' ), array( 'status' => 404 ) );
+			return new \WP_Error( 'rest_no_specs', esc_html__( 'Specifications not configured for this trek', 'yatravanta-trek-booking-manager' ), array( 'status' => 404 ) );
 		}
 
 		$post = get_post( $post_id );
@@ -239,11 +239,11 @@ class RestApi {
 		$post_id = intval( $request['id'] );
 
 		if ( ! $this->is_public_trek( $post_id ) ) {
-			return new \WP_Error( 'rest_invalid_trek', esc_html__( 'Invalid trek ID', 'trekpilot' ), array( 'status' => 404 ) );
+			return new \WP_Error( 'rest_invalid_trek', esc_html__( 'Invalid trek ID', 'yatravanta-trek-booking-manager' ), array( 'status' => 404 ) );
 		}
 
 		global $wpdb;
-		$table_cities = $wpdb->prefix . 'trekpilot_departure_cities';
+		$table_cities = $wpdb->prefix . 'yatravanta_departure_cities';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$cities = $wpdb->get_results(
@@ -265,17 +265,17 @@ class RestApi {
 		$city_id = intval( $request['city_id'] );
 
 		global $wpdb;
-		$table_cities = $wpdb->prefix . 'trekpilot_departure_cities';
+		$table_cities = $wpdb->prefix . 'yatravanta_departure_cities';
 
 		// Verify city exists.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$city_trek_id = $wpdb->get_var( $wpdb->prepare( "SELECT trek_id FROM $table_cities WHERE id = %d AND status = 'active'", $city_id ) );
 		if ( ! $city_trek_id || ! $this->is_public_trek( (int) $city_trek_id ) ) {
-			return new \WP_Error( 'rest_invalid_city', esc_html__( 'Invalid city ID', 'trekpilot' ), array( 'status' => 404 ) );
+			return new \WP_Error( 'rest_invalid_city', esc_html__( 'Invalid city ID', 'yatravanta-trek-booking-manager' ), array( 'status' => 404 ) );
 		}
 
-		$table_dates = $wpdb->prefix . 'trekpilot_departure_dates';
-		$table_avail = $wpdb->prefix . 'trekpilot_availability';
+		$table_dates = $wpdb->prefix . 'yatravanta_departure_dates';
+		$table_avail = $wpdb->prefix . 'yatravanta_availability';
 
 		// phpcs:disable WordPress.DB.PreparedSQL
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, PluginCheck.Security.DirectDB.UnescapedDBParameter

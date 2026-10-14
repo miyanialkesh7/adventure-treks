@@ -2,12 +2,12 @@
 /**
  * Controller for managing Trek CPT Meta Box UI and saving custom DB records.
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Admin/Controllers
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Admin/Controllers
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Admin\Controllers;
+namespace YatraVanta\Admin\Controllers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -23,7 +23,7 @@ class TrekMetaBoxController {
 	 */
 	public function __construct() {
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_box' ) );
-		add_action( 'save_post_trekpilot_trek', array( $this, 'save_trek_details' ) );
+		add_action( 'save_post_yatravanta_trek', array( $this, 'save_trek_details' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 		add_action( 'admin_notices', array( $this, 'render_age_notice' ) );
 	}
@@ -82,15 +82,15 @@ class TrekMetaBoxController {
 		$adult_age = trim( (string) $adult_age );
 		if ( '' !== $adult_age ) {
 			if ( ! preg_match( '/^(\d{1,2})\+?$/', $adult_age, $m ) ) {
-				$errors['adult'] = __( 'Adults age must be a number, optionally followed by +, e.g. 12+.', 'trekpilot' );
+				$errors['adult'] = __( 'Adults age must be a number, optionally followed by +, e.g. 12+.', 'yatravanta-trek-booking-manager' );
 			} else {
 				$adult = (int) $m[1];
 				if ( null !== $limit['min'] && $adult < $limit['min'] ) {
 					/* translators: 1: entered adults age, 2: trek minimum age. */
-					$errors['adult'] = sprintf( __( 'Adults age (%1$d) cannot be below the trek minimum age (%2$d).', 'trekpilot' ), $adult, $limit['min'] );
+					$errors['adult'] = sprintf( __( 'Adults age (%1$d) cannot be below the trek minimum age (%2$d).', 'yatravanta-trek-booking-manager' ), $adult, $limit['min'] );
 				} elseif ( null !== $limit['max'] && $adult > $limit['max'] ) {
 					/* translators: 1: entered adults age, 2: trek maximum age. */
-					$errors['adult'] = sprintf( __( 'Adults age (%1$d) cannot be above the trek maximum age (%2$d).', 'trekpilot' ), $adult, $limit['max'] );
+					$errors['adult'] = sprintf( __( 'Adults age (%1$d) cannot be above the trek maximum age (%2$d).', 'yatravanta-trek-booking-manager' ), $adult, $limit['max'] );
 				}
 			}
 		}
@@ -98,18 +98,18 @@ class TrekMetaBoxController {
 		$child_age = trim( (string) $child_age );
 		if ( '' !== $child_age ) {
 			if ( ! preg_match( '/^(\d{1,2})\s*-\s*(\d{1,2})$/', $child_age, $m ) ) {
-				$errors['child'] = __( 'Children age must be a range, e.g. 10-11.', 'trekpilot' );
+				$errors['child'] = __( 'Children age must be a range, e.g. 10-11.', 'yatravanta-trek-booking-manager' );
 			} else {
 				$from = (int) $m[1];
 				$to   = (int) $m[2];
 				if ( $from > $to ) {
-					$errors['child'] = __( 'Children age range must go from the lower age to the higher age, e.g. 10-11.', 'trekpilot' );
+					$errors['child'] = __( 'Children age range must go from the lower age to the higher age, e.g. 10-11.', 'yatravanta-trek-booking-manager' );
 				} elseif ( null !== $limit['min'] && $from < $limit['min'] ) {
 					/* translators: 1: children range start, 2: trek minimum age. */
-					$errors['child'] = sprintf( __( 'Children age cannot start at %1$d, the trek minimum age is %2$d.', 'trekpilot' ), $from, $limit['min'] );
+					$errors['child'] = sprintf( __( 'Children age cannot start at %1$d, the trek minimum age is %2$d.', 'yatravanta-trek-booking-manager' ), $from, $limit['min'] );
 				} elseif ( null !== $adult && $to >= $adult ) {
 					/* translators: %d: adults age. */
-					$errors['child'] = sprintf( __( 'Children age range must end before the adults age (%d).', 'trekpilot' ), $adult );
+					$errors['child'] = sprintf( __( 'Children age range must end before the adults age (%d).', 'yatravanta-trek-booking-manager' ), $adult );
 				}
 			}
 		}
@@ -141,7 +141,7 @@ class TrekMetaBoxController {
 	 * @return void
 	 */
 	public function render_age_notice() {
-		$key     = 'trekpilot_age_notice_' . get_current_user_id();
+		$key     = 'yatravanta_age_notice_' . get_current_user_id();
 		$message = get_transient( $key );
 		if ( ! $message ) {
 			return;
@@ -157,10 +157,10 @@ class TrekMetaBoxController {
 	 */
 	public function register_meta_box() {
 		add_meta_box(
-			'trekpilot_trek_details_meta_box',
-			__( 'Trek Settings & Detailed Specifications', 'trekpilot' ),
+			'yatravanta_trek_details_meta_box',
+			__( 'Trek Settings & Detailed Specifications', 'yatravanta-trek-booking-manager' ),
 			array( $this, 'render_meta_box' ),
-			'trekpilot_trek',
+			'yatravanta_trek',
 			'normal',
 			'high'
 		);
@@ -174,7 +174,7 @@ class TrekMetaBoxController {
 	public function enqueue_assets() {
 		global $post_type;
 
-		if ( 'trekpilot_trek' !== $post_type ) {
+		if ( 'yatravanta_trek' !== $post_type ) {
 			return;
 		}
 
@@ -183,17 +183,17 @@ class TrekMetaBoxController {
 
 		// Enqueue custom CSS and JS.
 		wp_enqueue_style(
-			'trekpilot-admin-meta-box-css',
-			TREKPILOT_URL . 'assets/admin/css/admin-meta-box.css',
+			'yatravanta-admin-meta-box-css',
+			YATRAVANTA_URL . 'assets/admin/css/admin-meta-box.css',
 			array(),
-			\TrekPilot\Includes\Plugin::asset_version( 'assets/admin/css/admin-meta-box.css' )
+			\YatraVanta\Includes\Plugin::asset_version( 'assets/admin/css/admin-meta-box.css' )
 		);
 
 		wp_enqueue_script(
-			'trekpilot-admin-meta-box-js',
-			TREKPILOT_URL . 'assets/admin/js/admin-meta-box.js',
+			'yatravanta-admin-meta-box-js',
+			YATRAVANTA_URL . 'assets/admin/js/admin-meta-box.js',
 			array(),
-			TREKPILOT_VERSION . '.' . filemtime( TREKPILOT_PATH . 'assets/admin/js/admin-meta-box.js' ),
+			YATRAVANTA_VERSION . '.' . filemtime( YATRAVANTA_PATH . 'assets/admin/js/admin-meta-box.js' ),
 			true
 		);
 	}
@@ -208,10 +208,10 @@ class TrekMetaBoxController {
 		global $wpdb;
 
 		// Add security nonce.
-		wp_nonce_field( 'save_trekpilot_trek_details', 'trekpilot_trek_details_nonce' );
+		wp_nonce_field( 'save_yatravanta_trek_details', 'yatravanta_trek_details_nonce' );
 
 		// Query custom DB record.
-		$table_name = $wpdb->prefix . 'trekpilot_treks';
+		$table_name = $wpdb->prefix . 'yatravanta_treks';
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$trek = $wpdb->get_row(
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
@@ -281,7 +281,7 @@ class TrekMetaBoxController {
 		}
 
 		// Check nonce.
-		if ( ! isset( $_POST['trekpilot_trek_details_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['trekpilot_trek_details_nonce'] ) ), 'save_trekpilot_trek_details' ) ) {
+		if ( ! isset( $_POST['yatravanta_trek_details_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['yatravanta_trek_details_nonce'] ) ), 'save_yatravanta_trek_details' ) ) {
 			return $post_id;
 		}
 
@@ -291,24 +291,24 @@ class TrekMetaBoxController {
 		}
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'trekpilot_treks';
+		$table_name = $wpdb->prefix . 'yatravanta_treks';
 
 		// Sanitize standard text inputs.
 		// Short spec fields are plain labels (e.g. "5 Days / 4 Nights"): letters, numbers, spaces and / - , . only
 		// (plus "+" for the age limit, as in "10+ years"). Anything else, such as !@#$%^&*()=, is stripped.
-		$difficulty    = isset( $_POST['trekpilot_difficulty'] ) ? sanitize_text_field( wp_unslash( $_POST['trekpilot_difficulty'] ) ) : '';
-		$duration      = self::plain_text_field( 'trekpilot_duration' );
-		$altitude      = self::plain_text_field( 'trekpilot_altitude' );
-		$region        = self::plain_text_field( 'trekpilot_region' );
-		$season        = self::plain_text_field( 'trekpilot_season' );
-		$distance      = self::plain_text_field( 'trekpilot_distance' );
-		$fitness_level = isset( $_POST['trekpilot_fitness_level'] ) ? sanitize_text_field( wp_unslash( $_POST['trekpilot_fitness_level'] ) ) : '';
-		$age_limit     = self::plain_text_field( 'trekpilot_age_limit', true );
-		$group_size    = self::plain_text_field( 'trekpilot_group_size' );
+		$difficulty    = isset( $_POST['yatravanta_difficulty'] ) ? sanitize_text_field( wp_unslash( $_POST['yatravanta_difficulty'] ) ) : '';
+		$duration      = self::plain_text_field( 'yatravanta_duration' );
+		$altitude      = self::plain_text_field( 'yatravanta_altitude' );
+		$region        = self::plain_text_field( 'yatravanta_region' );
+		$season        = self::plain_text_field( 'yatravanta_season' );
+		$distance      = self::plain_text_field( 'yatravanta_distance' );
+		$fitness_level = isset( $_POST['yatravanta_fitness_level'] ) ? sanitize_text_field( wp_unslash( $_POST['yatravanta_fitness_level'] ) ) : '';
+		$age_limit     = self::plain_text_field( 'yatravanta_age_limit', true );
+		$group_size    = self::plain_text_field( 'yatravanta_group_size' );
 
 		// Age labels shown next to Adults / Children in the booking widget (blank = built-in defaults).
-		$adult_age   = self::plain_text_field( 'trekpilot_adult_age', true );
-		$child_age   = self::plain_text_field( 'trekpilot_child_age', true );
+		$adult_age   = self::plain_text_field( 'yatravanta_adult_age', true );
+		$child_age   = self::plain_text_field( 'yatravanta_child_age', true );
 		$age_errors  = self::validate_ages( $age_limit, $adult_age, $child_age );
 		$age_message = array();
 		if ( '' !== $age_errors['adult'] ) {
@@ -320,20 +320,20 @@ class TrekMetaBoxController {
 			$age_message[] = $age_errors['child'];
 		}
 		if ( ! empty( $age_message ) ) {
-			set_transient( 'trekpilot_age_notice_' . get_current_user_id(), __( 'Some age settings were not saved:', 'trekpilot' ) . ' ' . implode( ' ', $age_message ), 60 );
+			set_transient( 'yatravanta_age_notice_' . get_current_user_id(), __( 'Some age settings were not saved:', 'yatravanta-trek-booking-manager' ) . ' ' . implode( ' ', $age_message ), 60 );
 		}
-		update_post_meta( $post_id, '_trekpilot_adult_age', $adult_age );
-		update_post_meta( $post_id, '_trekpilot_child_age', $child_age );
+		update_post_meta( $post_id, '_yatravanta_adult_age', $adult_age );
+		update_post_meta( $post_id, '_yatravanta_child_age', $child_age );
 
 		// Highlights, exclusions and carry list (saved as newline separated in form, serialized/processed cleanly).
-		$highlights      = isset( $_POST['trekpilot_highlights'] ) ? sanitize_textarea_field( wp_unslash( $_POST['trekpilot_highlights'] ) ) : '';
-		$exclusions      = isset( $_POST['trekpilot_exclusions'] ) ? sanitize_textarea_field( wp_unslash( $_POST['trekpilot_exclusions'] ) ) : '';
-		$things_to_carry = isset( $_POST['trekpilot_things_to_carry'] ) ? sanitize_textarea_field( wp_unslash( $_POST['trekpilot_things_to_carry'] ) ) : '';
-		$gallery         = isset( $_POST['trekpilot_gallery'] ) ? sanitize_text_field( wp_unslash( $_POST['trekpilot_gallery'] ) ) : '';
+		$highlights      = isset( $_POST['yatravanta_highlights'] ) ? sanitize_textarea_field( wp_unslash( $_POST['yatravanta_highlights'] ) ) : '';
+		$exclusions      = isset( $_POST['yatravanta_exclusions'] ) ? sanitize_textarea_field( wp_unslash( $_POST['yatravanta_exclusions'] ) ) : '';
+		$things_to_carry = isset( $_POST['yatravanta_things_to_carry'] ) ? sanitize_textarea_field( wp_unslash( $_POST['yatravanta_things_to_carry'] ) ) : '';
+		$gallery         = isset( $_POST['yatravanta_gallery'] ) ? sanitize_text_field( wp_unslash( $_POST['yatravanta_gallery'] ) ) : '';
 
 		// Sanitize FAQ array.
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$faq_input = isset( $_POST['trekpilot_faq'] ) ? wp_unslash( $_POST['trekpilot_faq'] ) : array();
+		$faq_input = isset( $_POST['yatravanta_faq'] ) ? wp_unslash( $_POST['yatravanta_faq'] ) : array();
 		$faq_data  = array();
 		if ( is_array( $faq_input ) ) {
 			foreach ( $faq_input as $item ) {
@@ -357,7 +357,7 @@ class TrekMetaBoxController {
 		// Sanitize Policies.
 		$policies_data = array();
 		foreach ( self::get_policy_types() as $policy_key => $policy_type ) {
-			$field                        = 'trekpilot_policy_' . $policy_key;
+			$field                        = 'yatravanta_policy_' . $policy_key;
 			$policies_data[ $policy_key ] = isset( $_POST[ $field ] ) ? wp_kses_post( wp_unslash( $_POST[ $field ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce verified by the caller.
 		}
 		$policies = wp_json_encode( $policies_data );
@@ -414,19 +414,19 @@ class TrekMetaBoxController {
 	public static function get_policy_types() {
 		return array(
 			'cancellation' => array(
-				'label' => __( 'Cancellation Policy', 'trekpilot' ),
+				'label' => __( 'Cancellation Policy', 'yatravanta-trek-booking-manager' ),
 				'icon'  => 'dashicons-warning',
 			),
 			'refund'       => array(
-				'label' => __( 'Refund Policy', 'trekpilot' ),
+				'label' => __( 'Refund Policy', 'yatravanta-trek-booking-manager' ),
 				'icon'  => 'dashicons-money-alt',
 			),
 			'medical'      => array(
-				'label' => __( 'Medical Disclaimer', 'trekpilot' ),
+				'label' => __( 'Medical Disclaimer', 'yatravanta-trek-booking-manager' ),
 				'icon'  => 'dashicons-heart',
 			),
 			'terms'        => array(
-				'label' => __( 'Terms & Conditions', 'trekpilot' ),
+				'label' => __( 'Terms & Conditions', 'yatravanta-trek-booking-manager' ),
 				'icon'  => 'dashicons-media-text',
 			),
 		);

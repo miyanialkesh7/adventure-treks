@@ -2,7 +2,7 @@
  * Settings page styles.
  */
 
-.trekpilot-settings-form-card {
+.yatravanta-settings-form-card {
 	background: #fff;
 	padding: 20px;
 	border-radius: 5px;
@@ -10,7 +10,7 @@
 	margin-top: 20px;
 }
 
-.trekpilot-qr-code-preview-img {
+.yatravanta-qr-code-preview-img {
 	display: block;
 	max-width: 150px;
 	max-height: 150px;
@@ -21,7 +21,7 @@
 	margin-bottom: 10px;
 }
 
-.trekpilot-logo-preview-img {
+.yatravanta-logo-preview-img {
 	display: block;
 	max-width: 220px;
 	max-height: 100px;

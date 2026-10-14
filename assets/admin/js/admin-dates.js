@@ -5,30 +5,30 @@
 document.addEventListener('DOMContentLoaded', function() {
 
 	// Make sure the departures table and root exist
-	const tbodyCities = document.getElementById('trekpilot_cities_tbody');
-	const root = document.getElementById('trekpilot_departures_module_root');
+	const tbodyCities = document.getElementById('yatravanta_cities_tbody');
+	const root = document.getElementById('yatravanta_departures_module_root');
 	if (!tbodyCities || !root) return;
 
 	const trekId = root.getAttribute('data-trek-id');
-	const ajaxUrl = trekpilot_dates_obj.ajax_url;
-	const nonce = trekpilot_dates_obj.nonce;
+	const ajaxUrl = yatravanta_dates_obj.ajax_url;
+	const nonce = yatravanta_dates_obj.nonce;
 
 	// Dates modal elements
-	const datesModal = document.getElementById('trekpilot_dates_modal');
-	const datesCityTitle = document.getElementById('trekpilot_dates_modal_city_title');
-	const datesTbody = document.getElementById('trekpilot_dates_tbody');
-	const datesLoading = document.getElementById('trekpilot_dates_loading');
-	const datesModalCloseBtn = document.getElementById('trekpilot_dates_modal_close_btn');
-	const datesModalBackBtn = document.getElementById('trekpilot_dates_modal_back_btn');
+	const datesModal = document.getElementById('yatravanta_dates_modal');
+	const datesCityTitle = document.getElementById('yatravanta_dates_modal_city_title');
+	const datesTbody = document.getElementById('yatravanta_dates_tbody');
+	const datesLoading = document.getElementById('yatravanta_dates_loading');
+	const datesModalCloseBtn = document.getElementById('yatravanta_dates_modal_close_btn');
+	const datesModalBackBtn = document.getElementById('yatravanta_dates_modal_back_btn');
 
 	// Date form modal elements
-	const dateFormModal = document.getElementById('trekpilot_date_form_modal');
-	const dateFormTitle = document.getElementById('trekpilot_date_form_title');
-	const dateForm = document.getElementById('trekpilot_date_form');
-	const addDateBtn = document.getElementById('trekpilot_add_date_btn');
-	const saveDateBtn = document.getElementById('trekpilot_date_form_save_btn');
-	const cancelDateBtn = document.getElementById('trekpilot_date_form_cancel_btn');
-	const closeDateBtn = document.getElementById('trekpilot_date_form_close_btn');
+	const dateFormModal = document.getElementById('yatravanta_date_form_modal');
+	const dateFormTitle = document.getElementById('yatravanta_date_form_title');
+	const dateForm = document.getElementById('yatravanta_date_form');
+	const addDateBtn = document.getElementById('yatravanta_add_date_btn');
+	const saveDateBtn = document.getElementById('yatravanta_date_form_save_btn');
+	const cancelDateBtn = document.getElementById('yatravanta_date_form_cancel_btn');
+	const closeDateBtn = document.getElementById('yatravanta_date_form_close_btn');
 
 	let activeCityId = null;
 	let datesList = [];
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		datesLoading.style.display = 'block';
 		datesTbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:15px; color:#666;">Loading dates...</td></tr>';
 
-		const url = `${ajaxUrl}?action=trekpilot_get_departure_dates&city_id=${activeCityId}&nonce=${nonce}`;
+		const url = `${ajaxUrl}?action=yatravanta_get_departure_dates&city_id=${activeCityId}&nonce=${nonce}`;
 
 		fetch(url)
 			.then(res => res.json())
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			tr.innerHTML = `
 				<td style="font-weight:600; vertical-align:middle;">${formattedDate}</td>
 				<td style="vertical-align:middle;">
-					<span class="trekpilot-status-badge ${getStatusClass(date.status)}">
+					<span class="yatravanta-status-badge ${getStatusClass(date.status)}">
 						${date.status.replace('_', ' ')}
 					</span>
 				</td>
@@ -131,8 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				<td style="font-size:11px; vertical-align:middle;">${priceOverridesText}</td>
 				<td style="font-style:italic; font-size:11px; vertical-align:middle;">${date.notes || '-'}</td>
 				<td style="text-align:right; vertical-align:middle;">
-					<a href="#" class="trekpilot-action-link edit-date" data-id="${date.id}">Edit</a>
-					<a href="#" class="trekpilot-action-link delete-date" data-id="${date.id}">Delete</a>
+					<a href="#" class="yatravanta-action-link edit-date" data-id="${date.id}">Edit</a>
+					<a href="#" class="yatravanta-action-link delete-date" data-id="${date.id}">Delete</a>
 				</td>
 			`;
 
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// 3. Date Add / Edit Form Actions
 	// ==========================================
 	function clearDateForm() {
-		const f = document.getElementById('trekpilot_date_form');
+		const f = document.getElementById('yatravanta_date_form');
 		if (!f) return;
 		const inputs = f.querySelectorAll('input, select');
 		inputs.forEach(i => {
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Disable past days in the picker. When editing, an already-saved past date stays valid.
 	function setMinDate(isNew, currentValue) {
-		const fld = document.getElementById('trekpilot_form_departure_date');
+		const fld = document.getElementById('yatravanta_form_departure_date');
 		const d = new Date();
 		const today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 		fld.min = (!isNew && currentValue && currentValue < today) ? currentValue : today;
@@ -181,8 +181,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		e.preventDefault();
 		dateFormTitle.textContent = 'Add Departure Date';
 		clearDateForm();
-		document.getElementById('trekpilot_form_date_id').value = '';
-		document.getElementById('trekpilot_form_date_city_id').value = activeCityId;
+		document.getElementById('yatravanta_form_date_id').value = '';
+		document.getElementById('yatravanta_form_date_city_id').value = activeCityId;
 		setMinDate(true);
 		dateFormModal.style.display = 'flex';
 	});
@@ -197,25 +197,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	saveDateBtn.addEventListener('click', function(e) {
 		e.preventDefault();
-		const f = document.getElementById('trekpilot_date_form');
+		const f = document.getElementById('yatravanta_date_form');
 		if (!f) return;
 
 		// Manual Validation
-		const dateFld = document.getElementById('trekpilot_form_departure_date');
+		const dateFld = document.getElementById('yatravanta_form_departure_date');
 		if (!dateFld.value.trim()) {
-			trekpilot_admin_toast('Departure Date is required');
+			yatravanta_admin_toast('Departure Date is required');
 			dateFld.focus();
 			return;
 		}
 		// Past dates are blocked for new/changed dates (an existing date may keep its value).
 		if (dateFld.min && dateFld.value < dateFld.min) {
-			trekpilot_admin_toast('Departure Date cannot be in the past');
+			yatravanta_admin_toast('Departure Date cannot be in the past');
 			dateFld.focus();
 			return;
 		}
 
 		const formData = new FormData();
-		formData.append('action', 'trekpilot_save_departure_date');
+		formData.append('action', 'yatravanta_save_departure_date');
 		formData.append('trek_id', trekId);
 		formData.append('city_id', activeCityId);
 		formData.append('nonce', nonce);
@@ -244,13 +244,13 @@ document.addEventListener('DOMContentLoaded', function() {
 				if (data.success) {
 					fetchDates();
 				} else {
-					trekpilot_admin_toast('Error: ' + data.data.message);
+					yatravanta_admin_toast('Error: ' + data.data.message);
 					datesLoading.style.display = 'none';
 					dateFormModal.style.display = 'flex';
 				}
 			})
 			.catch(err => {
-				trekpilot_admin_toast('Network error while saving date.');
+				yatravanta_admin_toast('Network error while saving date.');
 				datesLoading.style.display = 'none';
 				dateFormModal.style.display = 'flex';
 			});
@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Delegate Date Row Actions (Edit / Delete)
 	datesTbody.addEventListener('click', function(e) {
-		if (!e.target.classList.contains('trekpilot-action-link')) return;
+		if (!e.target.classList.contains('yatravanta-action-link')) return;
 		e.preventDefault();
 
 		const actionId = parseInt(e.target.getAttribute('data-id'));
@@ -268,27 +268,27 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (!dateObj) return;
 
 			dateFormTitle.textContent = 'Edit Departure Date';
-			document.getElementById('trekpilot_form_date_id').value = dateObj.id;
-			document.getElementById('trekpilot_form_date_city_id').value = dateObj.city_id;
-			document.getElementById('trekpilot_form_departure_date').value = dateObj.departure_date;
+			document.getElementById('yatravanta_form_date_id').value = dateObj.id;
+			document.getElementById('yatravanta_form_date_city_id').value = dateObj.city_id;
+			document.getElementById('yatravanta_form_departure_date').value = dateObj.departure_date;
 			setMinDate(false, dateObj.departure_date);
-			document.getElementById('trekpilot_form_date_total_seats').value = dateObj.total_seats;
-			document.getElementById('trekpilot_form_date_booked_seats').value = dateObj.booked_seats;
-			document.getElementById('trekpilot_form_date_status').value = dateObj.status;
-			document.getElementById('trekpilot_form_date_notes').value = dateObj.notes;
+			document.getElementById('yatravanta_form_date_total_seats').value = dateObj.total_seats;
+			document.getElementById('yatravanta_form_date_booked_seats').value = dateObj.booked_seats;
+			document.getElementById('yatravanta_form_date_status').value = dateObj.status;
+			document.getElementById('yatravanta_form_date_notes').value = dateObj.notes;
 
 			// Pricing
-			document.getElementById('trekpilot_form_date_adult_price').value = parseInt(dateObj.adult_price || 0);
-			document.getElementById('trekpilot_form_date_child_price').value = parseInt(dateObj.child_price || 0);
-			document.getElementById('trekpilot_form_date_offer_price').value = parseInt(dateObj.offer_price || 0);
+			document.getElementById('yatravanta_form_date_adult_price').value = parseInt(dateObj.adult_price || 0);
+			document.getElementById('yatravanta_form_date_child_price').value = parseInt(dateObj.child_price || 0);
+			document.getElementById('yatravanta_form_date_offer_price').value = parseInt(dateObj.offer_price || 0);
 
 			dateFormModal.style.display = 'flex';
 		} else if (e.target.classList.contains('delete-date')) {
-			trekpilot_admin_confirm('Are you sure you want to delete this scheduled date? This action cannot be undone.', function() {
+			yatravanta_admin_confirm('Are you sure you want to delete this scheduled date? This action cannot be undone.', function() {
 				datesLoading.style.display = 'block';
 
 				const fd = new FormData();
-				fd.append('action', 'trekpilot_delete_departure_date');
+				fd.append('action', 'yatravanta_delete_departure_date');
 				fd.append('id', actionId);
 				fd.append('nonce', nonce);
 
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
 						if (data.success) {
 							fetchDates();
 						} else {
-							trekpilot_admin_toast('Deletion failed: ' + data.data.message);
+							yatravanta_admin_toast('Deletion failed: ' + data.data.message);
 							datesLoading.style.display = 'none';
 						}
 					});

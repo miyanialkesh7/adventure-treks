@@ -21,3 +21,4 @@ LICENSE
 tests
 *.zip
 /vendor
+sample-data

@@ -62,11 +62,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build a release-like copy (without development files)
         run: |
-          mkdir -p build/trekpilot
-          rsync -a --exclude-from=.distignore --exclude='.git' ./ build/trekpilot/
+          mkdir -p build/yatravanta-trek-booking-manager
+          rsync -a --exclude-from=.distignore --exclude='.git' ./ build/yatravanta-trek-booking-manager/
       - uses: WordPress/plugin-check-action@v1
         with:
-          build-dir: build/trekpilot
+          build-dir: build/yatravanta-trek-booking-manager
           exclude-directories: includes/vendor
           categories: |
             general
@@ -83,10 +83,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Create zip
         run: |
-          mkdir -p dist/trekpilot
-          rsync -a --exclude-from=.distignore --exclude='.git' ./ dist/trekpilot/
-          cd dist && zip -qr trekpilot.zip trekpilot
+          mkdir -p dist/yatravanta-trek-booking-manager
+          rsync -a --exclude-from=.distignore --exclude='.git' ./ dist/yatravanta-trek-booking-manager/
+          cd dist && zip -qr yatravanta-trek-booking-manager.zip yatravanta-trek-booking-manager
       - uses: actions/upload-artifact@v4
         with:
-          name: trekpilot
-          path: dist/trekpilot.zip
+          name: yatravanta-trek-booking-manager
+          path: dist/yatravanta-trek-booking-manager.zip

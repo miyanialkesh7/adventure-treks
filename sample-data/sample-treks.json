@@ -1,0 +1,876 @@
+{
+    "plugin": "yatravanta-trek-booking-manager",
+    "format": 1,
+    "exported_at": "2026-10-14T11:10:36+00:00",
+    "source": "sample-data",
+    "treks": [
+        {
+            "title": "Kedarkantha Winter Trek",
+            "slug": "kedarkantha-winter-trek",
+            "status": "publish",
+            "content": "<p>Kedarkantha is the classic first winter trek in the Himalayas. Walk through pine and oak forests, camp beside frozen lakes and finish with a sunrise summit at 12,500 ft, with 360-degree views of Swargarohini, Bandarpoonch and Black Peak.</p><p>The trail is gentle and well graded, which makes it ideal for beginners, while the snow-covered meadows and starlit camps make it a favourite with experienced trekkers too.</p>",
+            "excerpt": "A beginner-friendly 6-day winter trek in Uttarakhand with snow trails, lakeside camps and a sunrise summit at 12,500 ft.",
+            "date": "2026-10-01 10:00:00",
+            "featured_image": "https://picsum.photos/seed/kedar-hero/1600/1000.jpg",
+            "adult_age": "12 to 60 Years",
+            "child_age": "8 to 11 Years",
+            "details": {
+                "difficulty": "Easy",
+                "duration": "6 Days / 5 Nights",
+                "altitude": "12,500 ft",
+                "region": "Uttarakhand",
+                "season": "December - April",
+                "distance": "20 km",
+                "fitness_level": "Good",
+                "age_limit": "12 to 60 Years",
+                "group_size": "15 Trekkers",
+                "highlights": "Sunrise summit at 12,500 ft\nSnow camping at Juda Ka Talab\nPine and oak forest trails\n360-degree Himalayan panorama\nExperienced certified trek leaders",
+                "exclusions": "Personal expenses\nTravel insurance\nAnything not mentioned in inclusions\nMeals during transit to the base camp\nCosts arising from weather or emergencies",
+                "things_to_carry": "Waterproof trekking shoes\nThermal inner wear (2 sets)\nDown jacket and fleece\nWaterproof gloves and woollen cap\nSunglasses, sunscreen and lip balm\n20 L day pack and 1 L water bottle\nPersonal medicines and ID proof",
+                "faq": "[{\"q\":\"Is Kedarkantha suitable for beginners?\",\"a\":\"Yes. It is an easy to moderate trek with gradual ascents. Reasonable fitness and some cardio practice before the trek is enough.\"},{\"q\":\"Will there be snow?\",\"a\":\"From mid December to March you can expect snow on most of the trail. In April the upper meadows still hold patches of snow.\"},{\"q\":\"Are mobile networks available?\",\"a\":\"Network is available at Sankri only. Please inform family before the trek begins.\"},{\"q\":\"What is the temperature at camp?\",\"a\":\"Night temperatures drop to -8 to -12 degrees Celsius in peak winter, so warm layers are essential.\"}]",
+                "policies": "{\"cancellation\":\"<ul><li>30+ days before departure: 90% refund</li><li>15-29 days: 50% refund</li><li>Less than 15 days: no refund</li></ul>\",\"refund\":\"<p>Eligible refunds are processed to the original payment method within 7-10 working days.</p>\",\"medical\":\"<p>Kedarkantha involves physical exertion at altitude. Trekkers must be medically fit and disclose any pre-existing conditions before booking.</p>\",\"terms\":\"<p>The trek leader's decisions on safety, route and weather are final. Itineraries may change due to weather or local conditions.</p>\"}",
+                "gallery": [
+                    "https://picsum.photos/seed/kedar-1/1600/1000.jpg",
+                    "https://picsum.photos/seed/kedar-2/1600/1000.jpg",
+                    "https://picsum.photos/seed/kedar-3/1600/1000.jpg",
+                    "https://picsum.photos/seed/kedar-4/1600/1000.jpg"
+                ]
+            },
+            "cities": [
+                {
+                    "city_name": "Dehradun",
+                    "base_price": 7999,
+                    "offer_price": 6999,
+                    "transport_type": "Shared Tempo Traveller",
+                    "reporting_time": "06:00 AM",
+                    "google_map_link": "https://maps.google.com/?q=Dehradun+Railway+Station",
+                    "booking_deadline": 2,
+                    "status": "active",
+                    "menu_order": 1,
+                    "itineraries": [
+                        {
+                            "day_number": 1,
+                            "title": "Dehradun to Sankri",
+                            "description": "Drive 190 km through the Yamuna valley to the village of Sankri, the base of the trek.",
+                            "menu_order": 1,
+                            "items": [
+                                {
+                                    "item_time": "06:00 AM",
+                                    "title": "Reporting at Dehradun",
+                                    "description": "Meet the trek leader at the railway station and board the tempo traveller.",
+                                    "icon": "dashicons-clock",
+                                    "image_url": "https://picsum.photos/seed/kedar-d1a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "01:30 PM",
+                                    "title": "Lunch halt at Purola",
+                                    "description": "Simple vegetarian lunch at a roadside dhaba.",
+                                    "icon": "dashicons-food",
+                                    "image_url": "https://picsum.photos/seed/kedar-d1b/1600/1000.jpg",
+                                    "menu_order": 2
+                                },
+                                {
+                                    "item_time": "06:00 PM",
+                                    "title": "Arrive at Sankri",
+                                    "description": "Check in to the homestay, briefing and dinner.",
+                                    "icon": "dashicons-admin-home",
+                                    "image_url": "https://picsum.photos/seed/kedar-d1c/1600/1000.jpg",
+                                    "menu_order": 3
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 2,
+                            "title": "Sankri to Juda Ka Talab",
+                            "description": "Trek 4 km through oak and pine forest to the frozen lake campsite.",
+                            "menu_order": 2,
+                            "items": [
+                                {
+                                    "item_time": "08:00 AM",
+                                    "title": "Breakfast and drive to trailhead",
+                                    "description": "Short drive to Sankri trailhead.",
+                                    "icon": "dashicons-car",
+                                    "image_url": "https://picsum.photos/seed/kedar-d2a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "10:00 AM",
+                                    "title": "Forest trail",
+                                    "description": "Gentle ascent through dense forest with first snow views.",
+                                    "icon": "dashicons-palmtree",
+                                    "image_url": "https://picsum.photos/seed/kedar-d2b/1600/1000.jpg",
+                                    "menu_order": 2
+                                },
+                                {
+                                    "item_time": "03:00 PM",
+                                    "title": "Camp at Juda Ka Talab",
+                                    "description": "Pitch tents beside the lake, hot soup and dinner.",
+                                    "icon": "dashicons-admin-home",
+                                    "image_url": "https://picsum.photos/seed/kedar-d2c/1600/1000.jpg",
+                                    "menu_order": 3
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 3,
+                            "title": "Juda Ka Talab to Kedarkantha Base",
+                            "description": "Climb to the base camp with open meadows and big views.",
+                            "menu_order": 3,
+                            "items": [
+                                {
+                                    "item_time": "08:00 AM",
+                                    "title": "Trek to Kedarkantha Base",
+                                    "description": "Steady ascent over snow-covered meadows.",
+                                    "icon": "dashicons-palmtree",
+                                    "image_url": "https://picsum.photos/seed/kedar-d3a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "01:00 PM",
+                                    "title": "Lunch at base camp",
+                                    "description": "Packed lunch with sunset views over the peaks.",
+                                    "icon": "dashicons-food",
+                                    "image_url": "https://picsum.photos/seed/kedar-d3b/1600/1000.jpg",
+                                    "menu_order": 2
+                                },
+                                {
+                                    "item_time": "06:00 PM",
+                                    "title": "Sunset and early dinner",
+                                    "description": "Early night for the summit push.",
+                                    "icon": "dashicons-location",
+                                    "image_url": "https://picsum.photos/seed/kedar-d3c/1600/1000.jpg",
+                                    "menu_order": 3
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 4,
+                            "title": "Summit Day and Descent to Hargaon",
+                            "description": "Pre-dawn push to the summit at 12,500 ft, then descend.",
+                            "menu_order": 4,
+                            "items": [
+                                {
+                                    "item_time": "03:00 AM",
+                                    "title": "Start summit climb",
+                                    "description": "Head-torch ascent in the dark, about 3 hours.",
+                                    "icon": "dashicons-palmtree",
+                                    "image_url": "https://picsum.photos/seed/kedar-d4a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "06:30 AM",
+                                    "title": "Summit sunrise",
+                                    "description": "Sunrise from the 12,500 ft summit with panoramic views.",
+                                    "icon": "dashicons-marker",
+                                    "image_url": "https://picsum.photos/seed/kedar-d4b/1600/1000.jpg",
+                                    "menu_order": 2
+                                },
+                                {
+                                    "item_time": "01:00 PM",
+                                    "title": "Descend to Hargaon camp",
+                                    "description": "Lunch and overnight camp.",
+                                    "icon": "dashicons-admin-home",
+                                    "image_url": "https://picsum.photos/seed/kedar-d4c/1600/1000.jpg",
+                                    "menu_order": 3
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 5,
+                            "title": "Hargaon to Sankri",
+                            "description": "Trek down to Sankri and relax at the homestay.",
+                            "menu_order": 5,
+                            "items": [
+                                {
+                                    "item_time": "08:00 AM",
+                                    "title": "Trek down",
+                                    "description": "Easy descent through the forest.",
+                                    "icon": "dashicons-palmtree",
+                                    "image_url": "https://picsum.photos/seed/kedar-d5a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "02:00 PM",
+                                    "title": "Lunch at Sankri",
+                                    "description": "Celebration lunch and a hot water shower.",
+                                    "icon": "dashicons-food",
+                                    "image_url": "https://picsum.photos/seed/kedar-d5b/1600/1000.jpg",
+                                    "menu_order": 2
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 6,
+                            "title": "Sankri to Dehradun",
+                            "description": "Drive back to Dehradun, expected arrival 7 PM.",
+                            "menu_order": 6,
+                            "items": [
+                                {
+                                    "item_time": "07:00 AM",
+                                    "title": "Departure from Sankri",
+                                    "description": "Breakfast and drive back.",
+                                    "icon": "dashicons-car",
+                                    "image_url": "https://picsum.photos/seed/kedar-d6a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "07:00 PM",
+                                    "title": "Arrive at Dehradun",
+                                    "description": "Drop at the railway station.",
+                                    "icon": "dashicons-location",
+                                    "image_url": "https://picsum.photos/seed/kedar-d6b/1600/1000.jpg",
+                                    "menu_order": 2
+                                }
+                            ]
+                        }
+                    ],
+                    "pickup_points": [
+                        {
+                            "location_name": "Dehradun Railway Station",
+                            "pickup_time": "06:00 AM",
+                            "google_maps_url": "https://maps.google.com/?q=Dehradun+Railway+Station",
+                            "instructions": "Meet the trek leader at the main gate.",
+                            "menu_order": 1
+                        },
+                        {
+                            "location_name": "ISBT Dehradun",
+                            "pickup_time": "06:30 AM",
+                            "google_maps_url": "https://maps.google.com/?q=ISBT+Dehradun",
+                            "instructions": "Near the platform 4 exit, look for the trek banner.",
+                            "menu_order": 2
+                        }
+                    ],
+                    "dates": [
+                        {
+                            "id": 101,
+                            "departure_date": "2026-12-12",
+                            "status": "open",
+                            "notes": "",
+                            "seats": {
+                                "total_seats": 15,
+                                "booked_seats": 6,
+                                "available_seats": 9
+                            }
+                        },
+                        {
+                            "id": 102,
+                            "departure_date": "2026-12-26",
+                            "status": "open",
+                            "notes": "New Year special batch",
+                            "seats": {
+                                "total_seats": 15,
+                                "booked_seats": 11,
+                                "available_seats": 4
+                            }
+                        },
+                        {
+                            "id": 103,
+                            "departure_date": "2027-01-09",
+                            "status": "open",
+                            "notes": "",
+                            "seats": {
+                                "total_seats": 15,
+                                "booked_seats": 3,
+                                "available_seats": 12
+                            }
+                        },
+                        {
+                            "id": 104,
+                            "departure_date": "2027-02-06",
+                            "status": "full",
+                            "notes": "Sold out",
+                            "seats": {
+                                "total_seats": 15,
+                                "booked_seats": 15,
+                                "available_seats": 0
+                            }
+                        }
+                    ],
+                    "pricing": [
+                        {
+                            "date_id": 0,
+                            "adult_price": 7999,
+                            "child_price": 6499,
+                            "offer_price": 6999,
+                            "group_discount": "[{\"min_seats\":5,\"type\":\"percent\",\"value\":10},{\"min_seats\":10,\"type\":\"percent\",\"value\":15}]",
+                            "extra_charges": "[{\"name\":\"Forest permit & camping fee\",\"price\":350,\"type\":\"person\"},{\"name\":\"Trek leader tip fund\",\"price\":100,\"type\":\"flat\"}]",
+                            "optional_addons": "[{\"name\":\"Rental trekking pole\",\"price\":300,\"type\":\"person\",\"desc\":\"Adjustable aluminium pole for the whole trek\"},{\"name\":\"Rental microspikes\",\"price\":450,\"type\":\"person\",\"desc\":\"Recommended for icy trails\"},{\"name\":\"Porter for backpack\",\"price\":1800,\"type\":\"person\",\"desc\":\"Offload your bag, max 10 kg\"}]",
+                            "transport_options": "[{\"name\":\"Shared Tempo Traveller\",\"price\":0},{\"name\":\"Private SUV (up to 4)\",\"price\":2500}]"
+                        },
+                        {
+                            "date_id": 102,
+                            "adult_price": 9499,
+                            "child_price": 7499,
+                            "offer_price": 8499,
+                            "group_discount": "[{\"min_seats\":5,\"type\":\"percent\",\"value\":10},{\"min_seats\":10,\"type\":\"percent\",\"value\":15}]",
+                            "extra_charges": "[{\"name\":\"Forest permit & camping fee\",\"price\":350,\"type\":\"person\"},{\"name\":\"Trek leader tip fund\",\"price\":100,\"type\":\"flat\"}]",
+                            "optional_addons": "[{\"name\":\"Rental trekking pole\",\"price\":300,\"type\":\"person\",\"desc\":\"Adjustable aluminium pole for the whole trek\"},{\"name\":\"Rental microspikes\",\"price\":450,\"type\":\"person\",\"desc\":\"Recommended for icy trails\"},{\"name\":\"Porter for backpack\",\"price\":1800,\"type\":\"person\",\"desc\":\"Offload your bag, max 10 kg\"}]",
+                            "transport_options": "[{\"name\":\"Shared Tempo Traveller\",\"price\":0},{\"name\":\"Private SUV (up to 4)\",\"price\":2500}]"
+                        }
+                    ]
+                },
+                {
+                    "city_name": "Delhi",
+                    "base_price": 9499,
+                    "offer_price": 8499,
+                    "transport_type": "Overnight Volvo Bus",
+                    "reporting_time": "07:30 PM",
+                    "google_map_link": "https://maps.google.com/?q=Kashmere+Gate+ISBT+Delhi",
+                    "booking_deadline": 3,
+                    "status": "active",
+                    "menu_order": 2,
+                    "itineraries": [
+                        {
+                            "day_number": 1,
+                            "title": "Dehradun to Sankri",
+                            "description": "Drive 190 km through the Yamuna valley to the village of Sankri, the base of the trek.",
+                            "menu_order": 1,
+                            "items": [
+                                {
+                                    "item_time": "06:00 AM",
+                                    "title": "Reporting at Dehradun",
+                                    "description": "Meet the trek leader at the railway station and board the tempo traveller.",
+                                    "icon": "dashicons-clock",
+                                    "image_url": "https://picsum.photos/seed/kedar-d1a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "01:30 PM",
+                                    "title": "Lunch halt at Purola",
+                                    "description": "Simple vegetarian lunch at a roadside dhaba.",
+                                    "icon": "dashicons-food",
+                                    "image_url": "https://picsum.photos/seed/kedar-d1b/1600/1000.jpg",
+                                    "menu_order": 2
+                                },
+                                {
+                                    "item_time": "06:00 PM",
+                                    "title": "Arrive at Sankri",
+                                    "description": "Check in to the homestay, briefing and dinner.",
+                                    "icon": "dashicons-admin-home",
+                                    "image_url": "https://picsum.photos/seed/kedar-d1c/1600/1000.jpg",
+                                    "menu_order": 3
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 2,
+                            "title": "Sankri to Juda Ka Talab",
+                            "description": "Trek 4 km through oak and pine forest to the frozen lake campsite.",
+                            "menu_order": 2,
+                            "items": [
+                                {
+                                    "item_time": "08:00 AM",
+                                    "title": "Breakfast and drive to trailhead",
+                                    "description": "Short drive to Sankri trailhead.",
+                                    "icon": "dashicons-car",
+                                    "image_url": "https://picsum.photos/seed/kedar-d2a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "10:00 AM",
+                                    "title": "Forest trail",
+                                    "description": "Gentle ascent through dense forest with first snow views.",
+                                    "icon": "dashicons-palmtree",
+                                    "image_url": "https://picsum.photos/seed/kedar-d2b/1600/1000.jpg",
+                                    "menu_order": 2
+                                },
+                                {
+                                    "item_time": "03:00 PM",
+                                    "title": "Camp at Juda Ka Talab",
+                                    "description": "Pitch tents beside the lake, hot soup and dinner.",
+                                    "icon": "dashicons-admin-home",
+                                    "image_url": "https://picsum.photos/seed/kedar-d2c/1600/1000.jpg",
+                                    "menu_order": 3
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 3,
+                            "title": "Juda Ka Talab to Kedarkantha Base",
+                            "description": "Climb to the base camp with open meadows and big views.",
+                            "menu_order": 3,
+                            "items": [
+                                {
+                                    "item_time": "08:00 AM",
+                                    "title": "Trek to Kedarkantha Base",
+                                    "description": "Steady ascent over snow-covered meadows.",
+                                    "icon": "dashicons-palmtree",
+                                    "image_url": "https://picsum.photos/seed/kedar-d3a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "01:00 PM",
+                                    "title": "Lunch at base camp",
+                                    "description": "Packed lunch with sunset views over the peaks.",
+                                    "icon": "dashicons-food",
+                                    "image_url": "https://picsum.photos/seed/kedar-d3b/1600/1000.jpg",
+                                    "menu_order": 2
+                                },
+                                {
+                                    "item_time": "06:00 PM",
+                                    "title": "Sunset and early dinner",
+                                    "description": "Early night for the summit push.",
+                                    "icon": "dashicons-location",
+                                    "image_url": "https://picsum.photos/seed/kedar-d3c/1600/1000.jpg",
+                                    "menu_order": 3
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 4,
+                            "title": "Summit Day and Descent to Hargaon",
+                            "description": "Pre-dawn push to the summit at 12,500 ft, then descend.",
+                            "menu_order": 4,
+                            "items": [
+                                {
+                                    "item_time": "03:00 AM",
+                                    "title": "Start summit climb",
+                                    "description": "Head-torch ascent in the dark, about 3 hours.",
+                                    "icon": "dashicons-palmtree",
+                                    "image_url": "https://picsum.photos/seed/kedar-d4a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "06:30 AM",
+                                    "title": "Summit sunrise",
+                                    "description": "Sunrise from the 12,500 ft summit with panoramic views.",
+                                    "icon": "dashicons-marker",
+                                    "image_url": "https://picsum.photos/seed/kedar-d4b/1600/1000.jpg",
+                                    "menu_order": 2
+                                },
+                                {
+                                    "item_time": "01:00 PM",
+                                    "title": "Descend to Hargaon camp",
+                                    "description": "Lunch and overnight camp.",
+                                    "icon": "dashicons-admin-home",
+                                    "image_url": "https://picsum.photos/seed/kedar-d4c/1600/1000.jpg",
+                                    "menu_order": 3
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 5,
+                            "title": "Hargaon to Sankri",
+                            "description": "Trek down to Sankri and relax at the homestay.",
+                            "menu_order": 5,
+                            "items": [
+                                {
+                                    "item_time": "08:00 AM",
+                                    "title": "Trek down",
+                                    "description": "Easy descent through the forest.",
+                                    "icon": "dashicons-palmtree",
+                                    "image_url": "https://picsum.photos/seed/kedar-d5a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "02:00 PM",
+                                    "title": "Lunch at Sankri",
+                                    "description": "Celebration lunch and a hot water shower.",
+                                    "icon": "dashicons-food",
+                                    "image_url": "https://picsum.photos/seed/kedar-d5b/1600/1000.jpg",
+                                    "menu_order": 2
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 6,
+                            "title": "Sankri to Dehradun",
+                            "description": "Drive back to Dehradun, expected arrival 7 PM.",
+                            "menu_order": 6,
+                            "items": [
+                                {
+                                    "item_time": "07:00 AM",
+                                    "title": "Departure from Sankri",
+                                    "description": "Breakfast and drive back.",
+                                    "icon": "dashicons-car",
+                                    "image_url": "https://picsum.photos/seed/kedar-d6a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "07:00 PM",
+                                    "title": "Arrive at Dehradun",
+                                    "description": "Drop at the railway station.",
+                                    "icon": "dashicons-location",
+                                    "image_url": "https://picsum.photos/seed/kedar-d6b/1600/1000.jpg",
+                                    "menu_order": 2
+                                }
+                            ]
+                        }
+                    ],
+                    "pickup_points": [
+                        {
+                            "location_name": "Kashmere Gate ISBT",
+                            "pickup_time": "07:30 PM",
+                            "google_maps_url": "https://maps.google.com/?q=Kashmere+Gate+ISBT",
+                            "instructions": "Gate 2, near the Uttarakhand Roadways counter.",
+                            "menu_order": 1
+                        },
+                        {
+                            "location_name": "Anand Vihar ISBT",
+                            "pickup_time": "08:15 PM",
+                            "google_maps_url": "https://maps.google.com/?q=Anand+Vihar+ISBT",
+                            "instructions": "Opposite the main entrance.",
+                            "menu_order": 2
+                        }
+                    ],
+                    "dates": [
+                        {
+                            "id": 201,
+                            "departure_date": "2026-12-11",
+                            "status": "open",
+                            "notes": "",
+                            "seats": {
+                                "total_seats": 15,
+                                "booked_seats": 4,
+                                "available_seats": 11
+                            }
+                        },
+                        {
+                            "id": 202,
+                            "departure_date": "2026-12-25",
+                            "status": "open",
+                            "notes": "",
+                            "seats": {
+                                "total_seats": 15,
+                                "booked_seats": 9,
+                                "available_seats": 6
+                            }
+                        },
+                        {
+                            "id": 203,
+                            "departure_date": "2027-01-08",
+                            "status": "open",
+                            "notes": "",
+                            "seats": {
+                                "total_seats": 15,
+                                "booked_seats": 2,
+                                "available_seats": 13
+                            }
+                        }
+                    ],
+                    "pricing": [
+                        {
+                            "date_id": 0,
+                            "adult_price": 9499,
+                            "child_price": 7999,
+                            "offer_price": 8499,
+                            "group_discount": "[{\"min_seats\":5,\"type\":\"percent\",\"value\":10},{\"min_seats\":10,\"type\":\"percent\",\"value\":15}]",
+                            "extra_charges": "[{\"name\":\"Forest permit & camping fee\",\"price\":350,\"type\":\"person\"},{\"name\":\"Trek leader tip fund\",\"price\":100,\"type\":\"flat\"}]",
+                            "optional_addons": "[{\"name\":\"Rental trekking pole\",\"price\":300,\"type\":\"person\",\"desc\":\"Adjustable aluminium pole for the whole trek\"},{\"name\":\"Rental microspikes\",\"price\":450,\"type\":\"person\",\"desc\":\"Recommended for icy trails\"},{\"name\":\"Porter for backpack\",\"price\":1800,\"type\":\"person\",\"desc\":\"Offload your bag, max 10 kg\"}]",
+                            "transport_options": "[{\"name\":\"Shared Tempo Traveller\",\"price\":0},{\"name\":\"Private SUV (up to 4)\",\"price\":2500}]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Triund and Indrahar Pass Trek",
+            "slug": "triund-indrahar-pass-trek",
+            "status": "publish",
+            "content": "<p>Rise above McLeod Ganj to the Triund ridge and push on to the snow line of Indrahar Pass at 14,245 ft. Pitch camp under the Dhauladhar range, with the Kangra valley glowing below you at night.</p><p>This moderate 4-day trek mixes rhododendron forests, grassy ridges and a final snow-covered climb, with views you will not forget.</p>",
+            "excerpt": "A moderate 4-day Dhauladhar trek from McLeod Ganj with ridge camping and a climb to the 14,245 ft Indrahar Pass.",
+            "date": "2026-10-02 10:00:00",
+            "featured_image": "https://picsum.photos/seed/triund-hero/1600/1000.jpg",
+            "adult_age": "14 to 55 Years",
+            "child_age": "10 to 13 Years",
+            "details": {
+                "difficulty": "Moderate",
+                "duration": "4 Days / 3 Nights",
+                "altitude": "14,245 ft",
+                "region": "Himachal Pradesh",
+                "season": "March - June, September - November",
+                "distance": "32 km",
+                "fitness_level": "Moderate to Good",
+                "age_limit": "14 to 55 Years",
+                "group_size": "12 Trekkers",
+                "highlights": "Camp on the Triund ridge\nSnow climb to Indrahar Pass\nRhododendron forest trails\nDhauladhar range panorama\nSunrise over the Kangra valley",
+                "exclusions": "Meals in McLeod Ganj before reporting\nPersonal gear rental\nTravel insurance\nPorter or mule charges\nAny emergency evacuation cost",
+                "things_to_carry": "Trekking shoes with good grip\nRain jacket or poncho\nFleece and down jacket\nGloves, cap and neck gaiter\nHead torch with spare batteries\nTrekking pole\nWater bottle (2 L total)\nPersonal first aid kit",
+                "faq": "[{\"q\":\"How difficult is Indrahar Pass?\",\"a\":\"The final climb is steep and over snow, so good fitness is needed. Triund alone is much easier.\"},{\"q\":\"Is camping allowed at Triund?\",\"a\":\"Yes, in designated spots. We carry all camping gear and food.\"},{\"q\":\"Is there drinking water on the trail?\",\"a\":\"Streams near Lahesh Cave and Triund. Carry purification tablets.\"},{\"q\":\"Can I leave luggage?\",\"a\":\"Yes, at our McLeod Ganj base. Carry only what you need on the trek.\"}]",
+                "policies": "{\"cancellation\":\"<ul><li>30+ days before departure: 90% refund</li><li>15-29 days: 50% refund</li><li>Less than 15 days: no refund</li></ul>\",\"refund\":\"<p>Eligible refunds are processed to the original payment method within 7-10 working days.</p>\",\"medical\":\"<p>Triund and Indrahar Pass involves physical exertion at altitude. Trekkers must be medically fit and disclose any pre-existing conditions before booking.</p>\",\"terms\":\"<p>The trek leader's decisions on safety, route and weather are final. Itineraries may change due to weather or local conditions.</p>\"}",
+                "gallery": [
+                    "https://picsum.photos/seed/triund-1/1600/1000.jpg",
+                    "https://picsum.photos/seed/triund-2/1600/1000.jpg",
+                    "https://picsum.photos/seed/triund-3/1600/1000.jpg",
+                    "https://picsum.photos/seed/triund-4/1600/1000.jpg"
+                ]
+            },
+            "cities": [
+                {
+                    "city_name": "McLeod Ganj",
+                    "base_price": 6499,
+                    "offer_price": 5799,
+                    "transport_type": "Own transport to base",
+                    "reporting_time": "07:00 AM",
+                    "google_map_link": "https://maps.google.com/?q=McLeod+Ganj+Bus+Stand",
+                    "booking_deadline": 1,
+                    "status": "active",
+                    "menu_order": 1,
+                    "itineraries": [
+                        {
+                            "day_number": 1,
+                            "title": "McLeod Ganj to Triund",
+                            "description": "Trek 9 km via Galu Devi temple to the Triund ridge.",
+                            "menu_order": 1,
+                            "items": [
+                                {
+                                    "item_time": "07:00 AM",
+                                    "title": "Reporting at Galu Devi",
+                                    "description": "Briefing, gear check and start of the trek.",
+                                    "icon": "dashicons-clock",
+                                    "image_url": "https://picsum.photos/seed/triund-d1a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "11:30 AM",
+                                    "title": "Magic View cafe stop",
+                                    "description": "Tea break with the first ridge views.",
+                                    "icon": "dashicons-food",
+                                    "image_url": "https://picsum.photos/seed/triund-d1b/1600/1000.jpg",
+                                    "menu_order": 2
+                                },
+                                {
+                                    "item_time": "03:00 PM",
+                                    "title": "Arrive at Triund",
+                                    "description": "Camp setup, hot snacks and sunset point.",
+                                    "icon": "dashicons-admin-home",
+                                    "image_url": "https://picsum.photos/seed/triund-d1c/1600/1000.jpg",
+                                    "menu_order": 3
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 2,
+                            "title": "Triund to Lahesh Cave",
+                            "description": "Ridge walk to Snowline cafe and onward to Lahesh Cave at 11,000 ft.",
+                            "menu_order": 2,
+                            "items": [
+                                {
+                                    "item_time": "08:00 AM",
+                                    "title": "Trek to Snowline",
+                                    "description": "Open ridge walk with big Dhauladhar views.",
+                                    "icon": "dashicons-palmtree",
+                                    "image_url": "https://picsum.photos/seed/triund-d2a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "02:00 PM",
+                                    "title": "Reach Lahesh Cave",
+                                    "description": "Overnight camp next to the cave.",
+                                    "icon": "dashicons-admin-home",
+                                    "image_url": "https://picsum.photos/seed/triund-d2b/1600/1000.jpg",
+                                    "menu_order": 2
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 3,
+                            "title": "Lahesh Cave to Indrahar Pass and back",
+                            "description": "Summit push to 14,245 ft and return to Triund.",
+                            "menu_order": 3,
+                            "items": [
+                                {
+                                    "item_time": "04:30 AM",
+                                    "title": "Start for the pass",
+                                    "description": "Early start to climb on firm snow.",
+                                    "icon": "dashicons-palmtree",
+                                    "image_url": "https://picsum.photos/seed/triund-d3a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "09:30 AM",
+                                    "title": "Indrahar Pass summit",
+                                    "description": "Photo stop at the top, panoramic view of Chamba.",
+                                    "icon": "dashicons-marker",
+                                    "image_url": "https://picsum.photos/seed/triund-d3b/1600/1000.jpg",
+                                    "menu_order": 2
+                                },
+                                {
+                                    "item_time": "04:00 PM",
+                                    "title": "Back at Triund camp",
+                                    "description": "Dinner and rest.",
+                                    "icon": "dashicons-admin-home",
+                                    "image_url": "https://picsum.photos/seed/triund-d3c/1600/1000.jpg",
+                                    "menu_order": 3
+                                }
+                            ]
+                        },
+                        {
+                            "day_number": 4,
+                            "title": "Triund to McLeod Ganj",
+                            "description": "Easy descent and farewell lunch.",
+                            "menu_order": 4,
+                            "items": [
+                                {
+                                    "item_time": "08:00 AM",
+                                    "title": "Descend to Galu Devi",
+                                    "description": "Steady downhill walk.",
+                                    "icon": "dashicons-palmtree",
+                                    "image_url": "https://picsum.photos/seed/triund-d4a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "12:30 PM",
+                                    "title": "Farewell lunch",
+                                    "description": "Trek ends at McLeod Ganj.",
+                                    "icon": "dashicons-food",
+                                    "image_url": "https://picsum.photos/seed/triund-d4b/1600/1000.jpg",
+                                    "menu_order": 2
+                                }
+                            ]
+                        }
+                    ],
+                    "pickup_points": [
+                        {
+                            "location_name": "McLeod Ganj Bus Stand",
+                            "pickup_time": "07:00 AM",
+                            "google_maps_url": "https://maps.google.com/?q=McLeod+Ganj+Bus+Stand",
+                            "instructions": "Meet at the taxi stand near the main square.",
+                            "menu_order": 1
+                        }
+                    ],
+                    "dates": [
+                        {
+                            "id": 301,
+                            "departure_date": "2026-11-07",
+                            "status": "open",
+                            "notes": "",
+                            "seats": {
+                                "total_seats": 12,
+                                "booked_seats": 5,
+                                "available_seats": 7
+                            }
+                        },
+                        {
+                            "id": 302,
+                            "departure_date": "2026-11-21",
+                            "status": "open",
+                            "notes": "",
+                            "seats": {
+                                "total_seats": 12,
+                                "booked_seats": 8,
+                                "available_seats": 4
+                            }
+                        },
+                        {
+                            "id": 303,
+                            "departure_date": "2027-03-13",
+                            "status": "open",
+                            "notes": "",
+                            "seats": {
+                                "total_seats": 12,
+                                "booked_seats": 0,
+                                "available_seats": 12
+                            }
+                        }
+                    ],
+                    "pricing": [
+                        {
+                            "date_id": 0,
+                            "adult_price": 6499,
+                            "child_price": 5499,
+                            "offer_price": 5799,
+                            "group_discount": "[{\"min_seats\":5,\"type\":\"percent\",\"value\":10},{\"min_seats\":10,\"type\":\"percent\",\"value\":15}]",
+                            "extra_charges": "[{\"name\":\"Forest permit & camping fee\",\"price\":350,\"type\":\"person\"},{\"name\":\"Trek leader tip fund\",\"price\":100,\"type\":\"flat\"}]",
+                            "optional_addons": "[{\"name\":\"Rental trekking pole\",\"price\":300,\"type\":\"person\",\"desc\":\"Adjustable aluminium pole for the whole trek\"},{\"name\":\"Rental microspikes\",\"price\":450,\"type\":\"person\",\"desc\":\"Recommended for icy trails\"},{\"name\":\"Porter for backpack\",\"price\":1800,\"type\":\"person\",\"desc\":\"Offload your bag, max 10 kg\"}]",
+                            "transport_options": "[{\"name\":\"Shared Tempo Traveller\",\"price\":0},{\"name\":\"Private SUV (up to 4)\",\"price\":2500}]"
+                        },
+                        {
+                            "date_id": 302,
+                            "adult_price": 6999,
+                            "child_price": 5999,
+                            "offer_price": 6299,
+                            "group_discount": "[{\"min_seats\":5,\"type\":\"percent\",\"value\":10},{\"min_seats\":10,\"type\":\"percent\",\"value\":15}]",
+                            "extra_charges": "[{\"name\":\"Forest permit & camping fee\",\"price\":350,\"type\":\"person\"},{\"name\":\"Trek leader tip fund\",\"price\":100,\"type\":\"flat\"}]",
+                            "optional_addons": "[{\"name\":\"Rental trekking pole\",\"price\":300,\"type\":\"person\",\"desc\":\"Adjustable aluminium pole for the whole trek\"},{\"name\":\"Rental microspikes\",\"price\":450,\"type\":\"person\",\"desc\":\"Recommended for icy trails\"},{\"name\":\"Porter for backpack\",\"price\":1800,\"type\":\"person\",\"desc\":\"Offload your bag, max 10 kg\"}]",
+                            "transport_options": "[{\"name\":\"Shared Tempo Traveller\",\"price\":0},{\"name\":\"Private SUV (up to 4)\",\"price\":2500}]"
+                        }
+                    ]
+                },
+                {
+                    "city_name": "Chandigarh",
+                    "base_price": 7999,
+                    "offer_price": 7299,
+                    "transport_type": "Shared Tempo Traveller",
+                    "reporting_time": "05:00 AM",
+                    "google_map_link": "https://maps.google.com/?q=ISBT+Sector+43+Chandigarh",
+                    "booking_deadline": 2,
+                    "status": "active",
+                    "menu_order": 2,
+                    "itineraries": [
+                        {
+                            "day_number": 1,
+                            "title": "Chandigarh to McLeod Ganj",
+                            "description": "Drive 250 km to McLeod Ganj and start the trek.",
+                            "menu_order": 1,
+                            "items": [
+                                {
+                                    "item_time": "05:00 AM",
+                                    "title": "Departure from Chandigarh",
+                                    "description": "Board the tempo traveller at ISBT Sector 43.",
+                                    "icon": "dashicons-car",
+                                    "image_url": "https://picsum.photos/seed/triund-c1a/1600/1000.jpg",
+                                    "menu_order": 1
+                                },
+                                {
+                                    "item_time": "12:00 PM",
+                                    "title": "Arrive McLeod Ganj",
+                                    "description": "Lunch and begin the Triund trek.",
+                                    "icon": "dashicons-location",
+                                    "image_url": "https://picsum.photos/seed/triund-c1b/1600/1000.jpg",
+                                    "menu_order": 2
+                                }
+                            ]
+                        }
+                    ],
+                    "pickup_points": [
+                        {
+                            "location_name": "ISBT Sector 43",
+                            "pickup_time": "05:00 AM",
+                            "google_maps_url": "https://maps.google.com/?q=ISBT+Sector+43+Chandigarh",
+                            "instructions": "Near the Himachal Roadways counters.",
+                            "menu_order": 1
+                        }
+                    ],
+                    "dates": [
+                        {
+                            "id": 401,
+                            "departure_date": "2026-11-06",
+                            "status": "open",
+                            "notes": "",
+                            "seats": {
+                                "total_seats": 12,
+                                "booked_seats": 3,
+                                "available_seats": 9
+                            }
+                        },
+                        {
+                            "id": 402,
+                            "departure_date": "2026-11-20",
+                            "status": "full",
+                            "notes": "Waitlist only",
+                            "seats": {
+                                "total_seats": 12,
+                                "booked_seats": 12,
+                                "available_seats": 0
+                            }
+                        }
+                    ],
+                    "pricing": [
+                        {
+                            "date_id": 0,
+                            "adult_price": 7999,
+                            "child_price": 6999,
+                            "offer_price": 7299,
+                            "group_discount": "[{\"min_seats\":5,\"type\":\"percent\",\"value\":10},{\"min_seats\":10,\"type\":\"percent\",\"value\":15}]",
+                            "extra_charges": "[{\"name\":\"Forest permit & camping fee\",\"price\":350,\"type\":\"person\"},{\"name\":\"Trek leader tip fund\",\"price\":100,\"type\":\"flat\"}]",
+                            "optional_addons": "[{\"name\":\"Rental trekking pole\",\"price\":300,\"type\":\"person\",\"desc\":\"Adjustable aluminium pole for the whole trek\"},{\"name\":\"Rental microspikes\",\"price\":450,\"type\":\"person\",\"desc\":\"Recommended for icy trails\"},{\"name\":\"Porter for backpack\",\"price\":1800,\"type\":\"person\",\"desc\":\"Offload your bag, max 10 kg\"}]",
+                            "transport_options": "[{\"name\":\"Shared Tempo Traveller\",\"price\":0},{\"name\":\"Private SUV (up to 4)\",\"price\":2500}]"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

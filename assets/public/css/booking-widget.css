@@ -2,7 +2,7 @@
  * Stylesheet for Frontend Booking Widget UI
  */
 
-.trekpilot-booking-widget-wrapper {
+.yatravanta-booking-widget-wrapper {
 	background: #ffffff;
 	border: 1px solid #e0e0e0;
 	border-radius: 12px;
@@ -17,26 +17,26 @@
 	overflow-x: hidden;
 }
 
-.trekpilot-booking-widget-wrapper * {
+.yatravanta-booking-widget-wrapper * {
 	box-sizing: border-box;
 	min-width: 0;
 }
 
 /* Header */
-.trekpilot-widget-header {
+.yatravanta-widget-header {
 	margin-bottom: 20px;
 	border-bottom: 1px solid #f0f0f0;
 	padding-bottom: 15px;
 }
 
-.trekpilot-widget-header h3 {
+.yatravanta-widget-header h3 {
 	margin: 0 0 5px 0;
 	font-size: 20px;
 	font-weight: 700;
 	color: #1a1a1a;
 }
 
-.trekpilot-widget-subtitle {
+.yatravanta-widget-subtitle {
 	margin: 0;
 	font-size: 13px;
 	color: #666;
@@ -44,11 +44,11 @@
 }
 
 /* Sections */
-.trekpilot-widget-section {
+.yatravanta-widget-section {
 	margin-bottom: 25px;
 }
 
-.trekpilot-section-title {
+.yatravanta-section-title {
 	margin: 0 0 15px 0;
 	font-size: 14px;
 	font-weight: 600;
@@ -60,11 +60,11 @@
 	gap: 8px;
 }
 
-.trekpilot-step-badge {
+.yatravanta-step-badge {
 	display: inline-block;
 	width: 20px;
 	height: 20px;
-	background: var(--trekpilot-primary-color, #137a7f);
+	background: var(--yatravanta-primary-color, #137a7f);
 	color: #fff;
 	font-size: 11px;
 	font-weight: 700;
@@ -74,13 +74,13 @@
 }
 
 /* City pills */
-.trekpilot-city-pills-grid {
+.yatravanta-city-pills-grid {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 8px;
 }
 
-.trekpilot-city-pill-btn {
+.yatravanta-city-pill-btn {
 	background: #f6f7f7;
 	border: 1px solid #dcdcdc;
 	color: #444;
@@ -96,22 +96,22 @@
 	outline: none;
 }
 
-.trekpilot-city-pill-btn:hover,
-.trekpilot-city-pill-btn.active:hover {
-	background: var(--trekpilot-secondary-color, #0f6165);
-	border-color: var(--trekpilot-secondary-color, #0f6165);
+.yatravanta-city-pill-btn:hover,
+.yatravanta-city-pill-btn.active:hover {
+	background: var(--yatravanta-secondary-color, #0f6165);
+	border-color: var(--yatravanta-secondary-color, #0f6165);
 	color: #fff;
 }
 
-.trekpilot-city-pill-btn.active {
-	background: var(--trekpilot-primary-color, #137a7f);
-	border-color: var(--trekpilot-primary-color, #137a7f);
+.yatravanta-city-pill-btn.active {
+	background: var(--yatravanta-primary-color, #137a7f);
+	border-color: var(--yatravanta-primary-color, #137a7f);
 	color: #ffffff;
 	box-shadow: 0 2px 8px rgba(19, 122, 127, 0.3);
 }
 
 /* Loading indicators */
-.trekpilot-loading-indicator {
+.yatravanta-loading-indicator {
 	font-size: 13px;
 	color: #666;
 	display: flex;
@@ -120,13 +120,13 @@
 }
 
 /* Dates selector grid */
-.trekpilot-dates-grid {
+.yatravanta-dates-grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 10px;
 }
 
-.trekpilot-date-select-btn {
+.yatravanta-date-select-btn {
 	background: #fff;
 	border: 1px solid #dcdcdc;
 	border-radius: 8px;
@@ -140,30 +140,30 @@
 	outline: none;
 }
 
-.trekpilot-date-select-btn:hover {
-	border-color: var(--trekpilot-secondary-color, #0f6165);
+.yatravanta-date-select-btn:hover {
+	border-color: var(--yatravanta-secondary-color, #0f6165);
 	background: #fafafa;
 }
 
-.trekpilot-date-select-btn.active {
-	border-color: var(--trekpilot-primary-color, #137a7f);
-	background: color-mix(in srgb, var(--trekpilot-primary-color, #137a7f) 8%, white);
-	box-shadow: 0 0 0 1px var(--trekpilot-primary-color, #137a7f);
+.yatravanta-date-select-btn.active {
+	border-color: var(--yatravanta-primary-color, #137a7f);
+	background: color-mix(in srgb, var(--yatravanta-primary-color, #137a7f) 8%, white);
+	box-shadow: 0 0 0 1px var(--yatravanta-primary-color, #137a7f);
 }
 
-.trekpilot-date-select-btn.sold-out {
+.yatravanta-date-select-btn.sold-out {
 	opacity: 0.5;
 	cursor: not-allowed;
 	background: #f5f5f5;
 }
 
-.trekpilot-date-val {
+.yatravanta-date-val {
 	font-size: 13px;
 	font-weight: 700;
 	color: #222;
 }
 
-.trekpilot-date-status-badge {
+.yatravanta-date-status-badge {
 	font-size: 9px;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -172,30 +172,30 @@
 	display: inline-block;
 }
 
-.trekpilot-date-status-badge.open {
+.yatravanta-date-status-badge.open {
 	background: #e2f0d9;
 	color: #385723;
 }
 
-.trekpilot-date-status-badge.few {
+.yatravanta-date-status-badge.few {
 	background: #fff2cc;
 	color: #d68100;
 }
 
-.trekpilot-date-status-badge.sold {
+.yatravanta-date-status-badge.sold {
 	background: #fce4d6;
 	color: #b32d2e;
 }
 
 /* Details grid */
-.trekpilot-widget-details-grid {
+.yatravanta-widget-details-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 8px;
 	margin-bottom: 15px;
 }
 
-.trekpilot-detail-card {
+.yatravanta-detail-card {
 	background: #fafafa;
 	border: 1px solid #e5e5e5;
 	padding: 10px 8px;
@@ -203,7 +203,7 @@
 	text-align: center;
 }
 
-.trekpilot-detail-label {
+.yatravanta-detail-label {
 	display: block;
 	font-size: 10px;
 	color: #666;
@@ -213,7 +213,7 @@
 	line-height: 1.3;
 }
 
-.trekpilot-detail-value {
+.yatravanta-detail-value {
 	line-height: 1.3;
 	font-size: 11px;
 	font-weight: 700;
@@ -222,45 +222,45 @@
 }
 
 /* Pricing Info box */
-.trekpilot-pricing-infobox {
-	background: color-mix(in srgb, var(--trekpilot-primary-color, #137a7f) 8%, white);
-	border: 1px dashed var(--trekpilot-primary-color, #137a7f);
+.yatravanta-pricing-infobox {
+	background: color-mix(in srgb, var(--yatravanta-primary-color, #137a7f) 8%, white);
+	border: 1px dashed var(--yatravanta-primary-color, #137a7f);
 	padding: 15px;
 	border-radius: 6px;
 	margin-bottom: 20px;
 }
 
 /* Pax calculator */
-.trekpilot-pax-calculator {
+.yatravanta-pax-calculator {
 	border-top: 1px solid #f0f0f0;
 	border-bottom: 1px solid #f0f0f0;
 	padding: 15px 0;
 	margin-bottom: 20px;
 }
 
-.trekpilot-pax-row {
+.yatravanta-pax-row {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 12px;
 }
 
-.trekpilot-pax-row:last-child {
+.yatravanta-pax-row:last-child {
 	margin-bottom: 0;
 }
 
-.trekpilot-pax-label strong {
+.yatravanta-pax-label strong {
 	display: block;
 	font-size: 13px;
 	color: #222;
 }
 
-.trekpilot-pax-label .description {
+.yatravanta-pax-label .description {
 	font-size: 11px;
 	color: #666;
 }
 
-.trekpilot-pax-counter {
+.yatravanta-pax-counter {
 	display: flex;
 	align-items: center;
 	border: 1px solid #ccd0d4;
@@ -269,7 +269,7 @@
 	height: 30px;
 }
 
-.trekpilot-counter-btn {
+.yatravanta-counter-btn {
 	background: #f6f7f7;
 	border: none;
 	width: 30px;
@@ -286,12 +286,12 @@
 	margin: 0;
 }
 
-.trekpilot-counter-btn:hover {
+.yatravanta-counter-btn:hover {
 	background: #efefef;
-	color: var(--trekpilot-secondary-color, #0f6165);
+	color: var(--yatravanta-secondary-color, #0f6165);
 }
 
-.trekpilot-pax-counter input {
+.yatravanta-pax-counter input {
 	border: none;
 	width: 40px;
 	text-align: center;
@@ -305,18 +305,18 @@
 	-moz-appearance: textfield;
 }
 
-.trekpilot-pax-counter input::-webkit-outer-spin-button,
-.trekpilot-pax-counter input::-webkit-inner-spin-button {
+.yatravanta-pax-counter input::-webkit-outer-spin-button,
+.yatravanta-pax-counter input::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
 
 /* Addons section */
-.trekpilot-widget-addons-container {
+.yatravanta-widget-addons-container {
 	margin-bottom: 20px;
 }
 
-.trekpilot-addon-checkbox-item {
+.yatravanta-addon-checkbox-item {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
@@ -329,7 +329,7 @@
 	margin-bottom: 8px;
 }
 
-.trekpilot-addon-checkbox-item label {
+.yatravanta-addon-checkbox-item label {
 	display: flex;
 	align-items: flex-start;
 	gap: 8px;
@@ -339,11 +339,11 @@
 	color: #333;
 }
 
-.trekpilot-addon-checkbox-item label input {
+.yatravanta-addon-checkbox-item label input {
 	margin-top: 3px;
 }
 
-.trekpilot-addon-checkbox-item label span.addon-desc {
+.yatravanta-addon-checkbox-item label span.addon-desc {
 	display: block;
 	font-size: 10px;
 	color: #666;
@@ -351,20 +351,20 @@
 	margin-top: 2px;
 }
 
-.trekpilot-addon-price-label {
+.yatravanta-addon-price-label {
 	font-size: 12px;
 	font-weight: 700;
-	color: var(--trekpilot-primary-color, #137a7f);
+	color: var(--yatravanta-primary-color, #137a7f);
 }
 
 /* Transportation Type options */
-.trekpilot-transport-options-list {
+.yatravanta-transport-options-list {
 	display: flex;
 	flex-direction: column;
 	gap: 8px;
 }
 
-.trekpilot-transport-option-item {
+.yatravanta-transport-option-item {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -377,17 +377,17 @@
 	transition: border-color 0.2s, background 0.2s;
 }
 
-.trekpilot-transport-option-item:has(input:checked) {
-	border-color: var(--trekpilot-primary-color, #137a7f);
-	background: color-mix(in srgb, var(--trekpilot-primary-color, #137a7f) 6%, white);
+.yatravanta-transport-option-item:has(input:checked) {
+	border-color: var(--yatravanta-primary-color, #137a7f);
+	background: color-mix(in srgb, var(--yatravanta-primary-color, #137a7f) 6%, white);
 }
 
-.trekpilot-transport-option-item input[type="radio"] {
+.yatravanta-transport-option-item input[type="radio"] {
 	margin: 0;
 	flex-shrink: 0;
 }
 
-.trekpilot-transport-option-name {
+.yatravanta-transport-option-name {
 	flex-grow: 1;
 	font-size: 13px;
 	font-weight: 600;
@@ -395,15 +395,15 @@
 	overflow-wrap: break-word;
 }
 
-.trekpilot-transport-option-price {
+.yatravanta-transport-option-price {
 	font-size: 12px;
 	font-weight: 700;
-	color: var(--trekpilot-primary-color, #137a7f);
+	color: var(--yatravanta-primary-color, #137a7f);
 	flex-shrink: 0;
 }
 
 /* Receipt breakdown */
-.trekpilot-booking-receipt {
+.yatravanta-booking-receipt {
 	background: #f9f9f9;
 	border: 1px solid #e5e5e5;
 	border-radius: 8px;
@@ -411,7 +411,7 @@
 	margin-bottom: 20px;
 }
 
-.trekpilot-receipt-rows {
+.yatravanta-receipt-rows {
 	font-size: 12px;
 	color: #555;
 	display: flex;
@@ -423,21 +423,21 @@
 }
 
 /* Each line item is injected from JS as an inline-styled flex row (label + amount)
-   shared by both the widget and payment-modal receipts (same .trekpilot-receipt-rows class,
+   shared by both the widget and payment-modal receipts (same .yatravanta-receipt-rows class,
    different IDs); these rules add the wrap/shrink behavior the inline styles don't
    set, so a long label ("Adults Price (3 x ₹1599.00)") never forces the widget
    wider than its box. */
-.trekpilot-receipt-rows > div {
+.yatravanta-receipt-rows > div {
 	flex-wrap: wrap;
 	row-gap: 2px;
 }
 
-.trekpilot-receipt-rows > div > span:first-child {
+.yatravanta-receipt-rows > div > span:first-child {
 	overflow-wrap: break-word;
 	word-break: break-word;
 }
 
-.trekpilot-receipt-total {
+.yatravanta-receipt-total {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -448,13 +448,13 @@
 	color: #222;
 }
 
-.trekpilot-receipt-total strong {
-	color: var(--trekpilot-primary-color, #137a7f);
+.yatravanta-receipt-total strong {
+	color: var(--yatravanta-primary-color, #137a7f);
 	font-size: 18px;
 }
 
 /* Payment step */
-.trekpilot-payment-method-box {
+.yatravanta-payment-method-box {
 	background: #f9f9f9;
 	border: 1px solid #e5e5e5;
 	border-radius: 8px;
@@ -462,7 +462,7 @@
 	text-align: center;
 }
 
-.trekpilot-payment-qr-img {
+.yatravanta-payment-qr-img {
 	display: block;
 	max-width: 180px;
 	width: 100%;
@@ -474,13 +474,13 @@
 	padding: 6px;
 }
 
-.trekpilot-payment-upi-id {
+.yatravanta-payment-upi-id {
 	font-size: 13px;
 	color: #222;
 	margin: 0 0 6px 0;
 }
 
-.trekpilot-upi-copy-btn {
+.yatravanta-upi-copy-btn {
 	-webkit-appearance: none;
 	appearance: none;
 	display: inline-flex;
@@ -495,33 +495,33 @@
 	padding: 0;
 	margin: 0 0 0 4px;
 	cursor: pointer;
-	color: var(--trekpilot-primary-color, #137a7f);
+	color: var(--yatravanta-primary-color, #137a7f);
 	vertical-align: middle;
 	box-shadow: none;
 	line-height: 1;
 }
 
-.trekpilot-upi-copy-btn .dashicons {
+.yatravanta-upi-copy-btn .dashicons {
 	font-size: 16px;
 	width: 16px;
 	height: 16px;
 	line-height: 1;
 }
 
-.trekpilot-upi-copy-btn:hover,
-.trekpilot-upi-copy-btn:focus {
+.yatravanta-upi-copy-btn:hover,
+.yatravanta-upi-copy-btn:focus {
 	background: rgba(19, 122, 127, 0.08);
-	color: var(--trekpilot-secondary-color, #0f6165);
+	color: var(--yatravanta-secondary-color, #0f6165);
 	outline: none;
 }
 
-.trekpilot-upi-copy-btn.copied {
+.yatravanta-upi-copy-btn.copied {
 	color: #385723;
 }
 
 /* Submit buttons */
-.trekpilot-book-now-btn {
-	background: var(--trekpilot-primary-color, #137a7f);
+.yatravanta-book-now-btn {
+	background: var(--yatravanta-primary-color, #137a7f);
 	border: none;
 	color: #fff;
 	font-weight: 700;
@@ -537,17 +537,17 @@
 	outline: none;
 }
 
-.trekpilot-book-now-btn:hover {
-	background: var(--trekpilot-secondary-color, #0f6165);
+.yatravanta-book-now-btn:hover {
+	background: var(--yatravanta-secondary-color, #0f6165);
 	box-shadow: 0 4px 15px rgba(19, 122, 127, 0.35);
 }
 
-.trekpilot-book-now-btn:active {
+.yatravanta-book-now-btn:active {
 	transform: scale(0.99);
 }
 
 /* Modals Overlay */
-.trekpilot-booking-modal {
+.yatravanta-booking-modal {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -562,7 +562,7 @@
 	padding: 20px;
 }
 
-.trekpilot-booking-modal-content {
+.yatravanta-booking-modal-content {
 	background: #ffffff;
 	border-radius: 10px;
 	width: 100%;
@@ -573,7 +573,7 @@
 	flex-direction: column;
 }
 
-.trekpilot-booking-modal-header {
+.yatravanta-booking-modal-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -582,29 +582,29 @@
 	background: #fbfbfb;
 }
 
-.trekpilot-booking-modal-header h4 {
+.yatravanta-booking-modal-header h4 {
 	margin: 0;
 	font-size: 15px;
 	font-weight: 700;
 	color: #222;
 }
 
-.trekpilot-booking-modal-close {
+.yatravanta-booking-modal-close {
 	font-size: 24px;
 	cursor: pointer;
 	color: #999;
 	font-weight: bold;
 }
 
-.trekpilot-booking-modal-close:hover {
+.yatravanta-booking-modal-close:hover {
 	color: #222;
 }
 
-.trekpilot-booking-modal-body {
+.yatravanta-booking-modal-body {
 	padding: 20px;
 }
 
-.trekpilot-booking-modal-footer {
+.yatravanta-booking-modal-footer {
 	display: flex;
 	justify-content: flex-end;
 	gap: 10px;
@@ -613,7 +613,7 @@
 	border-top: 1px solid #eaeaea;
 }
 
-.trekpilot-modal-btn {
+.yatravanta-modal-btn {
 	border: 1px solid #ccd0d4;
 	padding: 8px 16px;
 	font-size: 13px;
@@ -622,38 +622,38 @@
 	cursor: pointer;
 }
 
-.trekpilot-modal-btn.cancel {
+.yatravanta-modal-btn.cancel {
 	background: #fff;
 	color: #444;
 }
 
-.trekpilot-modal-btn.cancel:hover {
+.yatravanta-modal-btn.cancel:hover {
 	background: #fafafa;
-	color: var(--trekpilot-secondary-color, #0f6165);
-	border-color: var(--trekpilot-secondary-color, #0f6165);
+	color: var(--yatravanta-secondary-color, #0f6165);
+	border-color: var(--yatravanta-secondary-color, #0f6165);
 }
 
-.trekpilot-modal-btn.confirm {
-	background: var(--trekpilot-primary-color, #137a7f);
-	border-color: var(--trekpilot-primary-color, #137a7f);
+.yatravanta-modal-btn.confirm {
+	background: var(--yatravanta-primary-color, #137a7f);
+	border-color: var(--yatravanta-primary-color, #137a7f);
 	color: #fff;
 }
 
-.trekpilot-modal-btn.confirm:hover {
-	background: var(--trekpilot-secondary-color, #0f6165);
+.yatravanta-modal-btn.confirm:hover {
+	background: var(--yatravanta-secondary-color, #0f6165);
 }
 
-.trekpilot-modal-btn.confirm:disabled {
+.yatravanta-modal-btn.confirm:disabled {
 	background: #a7bdbe;
 	border-color: #a7bdbe;
 	cursor: not-allowed;
 }
 
-.trekpilot-form-field {
+.yatravanta-form-field {
 	margin-bottom: 15px;
 }
 
-.trekpilot-form-field label {
+.yatravanta-form-field label {
 	display: block;
 	font-weight: 600;
 	font-size: 12px;
@@ -661,10 +661,10 @@
 	margin-bottom: 5px;
 }
 
-.trekpilot-form-field input[type="text"],
-.trekpilot-form-field input[type="email"],
-.trekpilot-form-field input[type="tel"],
-.trekpilot-form-field select {
+.yatravanta-form-field input[type="text"],
+.yatravanta-form-field input[type="email"],
+.yatravanta-form-field input[type="tel"],
+.yatravanta-form-field select {
 	width: 100%;
 	padding: 10px;
 	border: 1px solid #ccd0d4;
@@ -672,27 +672,27 @@
 	font-size: 13px;
 }
 
-.trekpilot-form-field input:focus,
-.trekpilot-form-field select:focus {
-	border-color: var(--trekpilot-primary-color, #137a7f);
+.yatravanta-form-field input:focus,
+.yatravanta-form-field select:focus {
+	border-color: var(--yatravanta-primary-color, #137a7f);
 	outline: none;
-	box-shadow: 0 0 0 1px var(--trekpilot-primary-color, #137a7f);
+	box-shadow: 0 0 0 1px var(--yatravanta-primary-color, #137a7f);
 }
 
 /* Timeline Layout for Itinerary integration on page */
-.trekpilot-frontend-itinerary-timeline {
+.yatravanta-frontend-itinerary-timeline {
 	position: relative;
 	margin: 20px 0;
 	padding-left: 32px;
 }
 
-.trekpilot-timeline-day-block {
+.yatravanta-timeline-day-block {
 	position: relative;
 	margin-bottom: 30px;
 }
 
 /* Day marker: a filled dot on the timeline, centred on the day badge/title row. */
-.trekpilot-timeline-day-block::after {
+.yatravanta-timeline-day-block::after {
 	content: "";
 	position: absolute;
 	left: -32px;
@@ -702,12 +702,12 @@
 	box-sizing: border-box;
 	border: 3px solid #fff;
 	border-radius: 50%;
-	background: var(--trekpilot-primary-color, #137a7f);
-	box-shadow: 0 0 0 2px var(--trekpilot-primary-color, #137a7f);
+	background: var(--yatravanta-primary-color, #137a7f);
+	box-shadow: 0 0 0 2px var(--yatravanta-primary-color, #137a7f);
 }
 
 /* Connector from this day's dot down to the next one (none after the last day). */
-.trekpilot-timeline-day-block::before {
+.yatravanta-timeline-day-block::before {
 	content: "";
 	position: absolute;
 	left: -26px;
@@ -717,23 +717,23 @@
 	background: #d6e4e5;
 }
 
-.trekpilot-timeline-day-block:last-child::before {
+.yatravanta-timeline-day-block:last-child::before {
 	display: none;
 }
 
-.trekpilot-timeline-day-block:last-child {
+.yatravanta-timeline-day-block:last-child {
 	margin-bottom: 0;
 }
 
-.trekpilot-timeline-day-header {
+.yatravanta-timeline-day-header {
 	display: flex;
 	align-items: center;
 	gap: 10px;
 	margin-bottom: 8px;
 }
 
-.trekpilot-timeline-day-badge {
-	background: var(--trekpilot-primary-color, #137a7f);
+.yatravanta-timeline-day-badge {
+	background: var(--yatravanta-primary-color, #137a7f);
 	color: #fff;
 	font-size: 11px;
 	font-weight: 700;
@@ -741,21 +741,21 @@
 	border-radius: 4px;
 }
 
-.trekpilot-timeline-day-title {
+.yatravanta-timeline-day-title {
 	margin: 0;
 	font-size: 15px;
 	font-weight: 700;
 	color: #222;
 }
 
-.trekpilot-timeline-day-summary {
+.yatravanta-timeline-day-summary {
 	margin: 0 0 15px 0;
 	font-size: 12px;
 	color: #666;
 	line-height: 1.4;
 }
 
-.trekpilot-day-toggle-btn {
+.yatravanta-day-toggle-btn {
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
@@ -765,7 +765,7 @@
 	box-shadow: none !important;
 	padding: 0 0 15px !important;
 	margin: 0;
-	color: var(--trekpilot-primary-color, #137a7f) !important;
+	color: var(--yatravanta-primary-color, #137a7f) !important;
 	font-size: 12px;
 	font-weight: 700;
 	text-decoration: none !important;
@@ -773,32 +773,32 @@
 	cursor: pointer;
 }
 
-.trekpilot-day-toggle-btn:hover,
-.trekpilot-day-toggle-btn:focus {
+.yatravanta-day-toggle-btn:hover,
+.yatravanta-day-toggle-btn:focus {
 	background: transparent !important;
-	color: var(--trekpilot-secondary-color, #0f6165) !important;
+	color: var(--yatravanta-secondary-color, #0f6165) !important;
 	text-decoration: none !important;
 	outline: none !important;
 	box-shadow: none !important;
 }
 
-.trekpilot-day-toggle-btn:focus:not(:focus-visible) {
+.yatravanta-day-toggle-btn:focus:not(:focus-visible) {
 	outline: none !important;
 	box-shadow: none !important;
 }
 
-.trekpilot-day-toggle-btn .dashicons {
+.yatravanta-day-toggle-btn .dashicons {
 	font-size: 14px;
 	width: 14px;
 	height: 14px;
 	transition: transform 0.2s ease;
 }
 
-.trekpilot-timeline-day-block.expanded .trekpilot-day-toggle-btn .dashicons {
+.yatravanta-timeline-day-block.expanded .yatravanta-day-toggle-btn .dashicons {
 	transform: rotate(180deg);
 }
 
-.trekpilot-timeline-events {
+.yatravanta-timeline-events {
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
@@ -807,13 +807,13 @@
 	transition: max-height 0.3s ease;
 }
 
-.trekpilot-timeline-event-card {
+.yatravanta-timeline-event-card {
 	display: flex;
 	gap: 12px;
 	position: relative;
 }
 
-.trekpilot-event-icon-wrapper {
+.yatravanta-event-icon-wrapper {
 	/* Fixed size that never shrinks: a wide event photo used to squeeze this flex item into an oval. */
 	flex: 0 0 24px;
 	width: 24px;
@@ -821,22 +821,22 @@
 	min-width: 24px;
 	box-sizing: border-box;
 	align-self: flex-start;
-	background: color-mix(in srgb, var(--trekpilot-primary-color, #137a7f) 8%, white);
-	border: 1px solid var(--trekpilot-primary-color, #137a7f);
+	background: color-mix(in srgb, var(--yatravanta-primary-color, #137a7f) 8%, white);
+	border: 1px solid var(--yatravanta-primary-color, #137a7f);
 	border-radius: 50%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.trekpilot-event-icon-wrapper span.dashicons {
+.yatravanta-event-icon-wrapper span.dashicons {
 	font-size: 14px;
 	width: 14px;
 	height: 14px;
-	color: var(--trekpilot-primary-color, #137a7f);
+	color: var(--yatravanta-primary-color, #137a7f);
 }
 
-.trekpilot-event-content-box {
+.yatravanta-event-content-box {
 	flex: 1 1 auto;
 	min-width: 0;
 	background: #fafafa;
@@ -845,14 +845,14 @@
 	padding: 12px;
 }
 
-.trekpilot-event-meta {
+.yatravanta-event-meta {
 	margin-bottom: 8px;
 }
 
-.trekpilot-event-time {
+.yatravanta-event-time {
 	display: inline-block;
-	background: color-mix(in srgb, var(--trekpilot-primary-color, #137a7f) 8%, white);
-	color: var(--trekpilot-primary-color, #137a7f);
+	background: color-mix(in srgb, var(--yatravanta-primary-color, #137a7f) 8%, white);
+	color: var(--yatravanta-primary-color, #137a7f);
 	padding: 4px 8px;
 	border-radius: 4px;
 	font-size: 11px;
@@ -861,25 +861,25 @@
 	border: 1px solid #d8ecec;
 }
 
-.trekpilot-event-title {
+.yatravanta-event-title {
 	margin: 0 0 5px 0;
 	font-size: 12px;
 	font-weight: 700;
 	color: #333;
 }
 
-.trekpilot-event-description {
+.yatravanta-event-description {
 	margin: 0;
 	font-size: 11px;
 	color: #555;
 	line-height: 1.4;
 }
 
-.trekpilot-event-media {
+.yatravanta-event-media {
 	margin-top: 10px;
 }
 
-.trekpilot-event-media img {
+.yatravanta-event-media img {
 	display: block;
 	max-width: 100%;
 	height: auto;
@@ -887,7 +887,7 @@
 }
 
 /* Sticky Bottom Booking Bar */
-.trekpilot-sticky-booking-bar {
+.yatravanta-sticky-booking-bar {
 	position: fixed;
 	left: 0;
 	right: 0;
@@ -904,7 +904,7 @@
 	padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
 }
 
-.trekpilot-sticky-bar-price {
+.yatravanta-sticky-bar-price {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: baseline;
@@ -913,29 +913,29 @@
 	overflow: hidden;
 }
 
-.trekpilot-sticky-bar-label {
+.yatravanta-sticky-bar-label {
 	font-size: 13px;
 	font-weight: 600;
 	color: #555;
 	flex-shrink: 0;
 }
 
-.trekpilot-sticky-bar-amount {
+.yatravanta-sticky-bar-amount {
 	font-size: 20px;
 	font-weight: 800;
-	color: var(--trekpilot-primary-color, #137a7f);
+	color: var(--yatravanta-primary-color, #137a7f);
 	white-space: nowrap;
 }
 
-.trekpilot-sticky-bar-unit {
+.yatravanta-sticky-bar-unit {
 	font-size: 12px;
 	color: #777;
 	white-space: nowrap;
 }
 
-.trekpilot-sticky-bar-cta {
+.yatravanta-sticky-bar-cta {
 	flex-shrink: 0;
-	background: var(--trekpilot-primary-color, #137a7f);
+	background: var(--yatravanta-primary-color, #137a7f);
 	color: #fff;
 	border: none;
 	font-weight: 700;
@@ -948,73 +948,73 @@
 	white-space: nowrap;
 }
 
-.trekpilot-sticky-bar-cta:hover {
-	background: var(--trekpilot-secondary-color, #0f6165);
+.yatravanta-sticky-bar-cta:hover {
+	background: var(--yatravanta-secondary-color, #0f6165);
 }
 
 /* ── Mobile responsive pass ─────────────────────────────────────── */
 @media (max-width: 600px) {
-	.trekpilot-booking-widget-wrapper {
+	.yatravanta-booking-widget-wrapper {
 		padding: 18px;
 		margin: 12px auto;
 		border-radius: 10px;
 	}
 
-	.trekpilot-widget-header h3 {
+	.yatravanta-widget-header h3 {
 		font-size: 17px;
 	}
 
-	.trekpilot-city-pill-btn {
+	.yatravanta-city-pill-btn {
 		padding: 9px 14px;
 		font-size: 12px;
 	}
 
-	.trekpilot-dates-grid {
+	.yatravanta-dates-grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
 
 	/* Two columns (the third card spans the full row) so the text can be larger. */
-	.trekpilot-widget-details-grid {
+	.yatravanta-widget-details-grid {
 		grid-template-columns: repeat(2, 1fr);
 		gap: 8px;
 	}
 
-	.trekpilot-widget-details-grid .trekpilot-detail-card:last-child:nth-child(odd) {
+	.yatravanta-widget-details-grid .yatravanta-detail-card:last-child:nth-child(odd) {
 		grid-column: 1 / -1;
 	}
 
-	.trekpilot-detail-card {
+	.yatravanta-detail-card {
 		padding: 10px 8px;
 	}
 
-	.trekpilot-detail-label {
+	.yatravanta-detail-label {
 		font-size: 11px;
 	}
 
-	.trekpilot-detail-value {
+	.yatravanta-detail-value {
 		font-size: 12px;
 	}
 
-	.trekpilot-transport-option-name {
+	.yatravanta-transport-option-name {
 		font-size: 12px;
 	}
 
-	.trekpilot-transport-option-price {
+	.yatravanta-transport-option-price {
 		font-size: 11px;
 	}
 
-	.trekpilot-sticky-booking-bar {
+	.yatravanta-sticky-booking-bar {
 		padding: 10px 14px;
 		padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
 	}
-	.trekpilot-sticky-bar-amount {
+	.yatravanta-sticky-bar-amount {
 		font-size: 17px;
 	}
-	.trekpilot-sticky-bar-label,
-	.trekpilot-sticky-bar-unit {
+	.yatravanta-sticky-bar-label,
+	.yatravanta-sticky-bar-unit {
 		font-size: 11px;
 	}
-	.trekpilot-sticky-bar-cta {
+	.yatravanta-sticky-bar-cta {
 		padding: 11px 18px;
 		font-size: 13px;
 	}
@@ -1023,36 +1023,36 @@
 /* Very narrow phones: stack the sticky bar's price above a full-width CTA rather
    than risk the two ever competing for the same line. */
 @media (max-width: 360px) {
-	.trekpilot-sticky-booking-bar {
+	.yatravanta-sticky-booking-bar {
 		flex-direction: column;
 		align-items: stretch;
 		gap: 8px;
 	}
-	.trekpilot-sticky-bar-price {
+	.yatravanta-sticky-bar-price {
 		justify-content: center;
 	}
-	.trekpilot-sticky-bar-cta {
+	.yatravanta-sticky-bar-cta {
 		width: 100%;
 	}
 
-	.trekpilot-dates-grid {
+	.yatravanta-dates-grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
 
 }
 
 /* Inline checkout validation */
-.trekpilot-form-field.has-error input,
-.trekpilot-form-field.has-error select {
+.yatravanta-form-field.has-error input,
+.yatravanta-form-field.has-error select {
 	border-color: #d63638;
 	background: #fff8f8;
 }
-.trekpilot-form-field.has-error input:focus,
-.trekpilot-form-field.has-error select:focus {
+.yatravanta-form-field.has-error input:focus,
+.yatravanta-form-field.has-error select:focus {
 	border-color: #d63638;
 	box-shadow: 0 0 0 1px #d63638;
 }
-.trekpilot-field-error {
+.yatravanta-field-error {
 	display: flex;
 	align-items: flex-start;
 	gap: 5px;
@@ -1061,7 +1061,7 @@
 	line-height: 1.4;
 	color: #d63638;
 }
-.trekpilot-field-error::before {
+.yatravanta-field-error::before {
 	content: "!";
 	flex: 0 0 14px;
 	width: 14px;
@@ -1075,22 +1075,22 @@
 	line-height: 14px;
 	text-align: center;
 }
-.trekpilot-checkout-terms.has-error .trekpilot-field-error {
+.yatravanta-checkout-terms.has-error .yatravanta-field-error {
 	margin-top: 6px;
 }
 
 /* Booking success receipt */
-.trekpilot-success-receipt {
+.yatravanta-success-receipt {
 	text-align: left;
 }
-.trekpilot-receipt-row {
+.yatravanta-receipt-row {
 	display: flex;
 	align-items: center;
 	gap: 14px;
 	padding: 11px 2px;
 	border-bottom: 1px solid #eceff1;
 }
-.trekpilot-receipt-icon {
+.yatravanta-receipt-icon {
 	flex: 0 0 40px;
 	display: flex;
 	align-items: center;
@@ -1101,32 +1101,32 @@
 	background: #eef1f4;
 	color: #475569;
 }
-.trekpilot-receipt-trek .trekpilot-receipt-icon { background: #e8edf2; color: #475569; }
-.trekpilot-receipt-date .trekpilot-receipt-icon { background: #e3f5ec; color: #16805a; }
-.trekpilot-receipt-user .trekpilot-receipt-icon { background: #e4eefb; color: #2563a8; }
-.trekpilot-receipt-city .trekpilot-receipt-icon { background: #fdeede; color: #c2620a; }
-.trekpilot-receipt-pickup .trekpilot-receipt-icon { background: #ece8fb; color: #5b3fbf; }
-.trekpilot-receipt-transport .trekpilot-receipt-icon { background: #fdf0d5; color: #b7791f; }
-.trekpilot-receipt-seats .trekpilot-receipt-icon { background: #fde6ea; color: #c0264a; }
-.trekpilot-receipt-text {
+.yatravanta-receipt-trek .yatravanta-receipt-icon { background: #e8edf2; color: #475569; }
+.yatravanta-receipt-date .yatravanta-receipt-icon { background: #e3f5ec; color: #16805a; }
+.yatravanta-receipt-user .yatravanta-receipt-icon { background: #e4eefb; color: #2563a8; }
+.yatravanta-receipt-city .yatravanta-receipt-icon { background: #fdeede; color: #c2620a; }
+.yatravanta-receipt-pickup .yatravanta-receipt-icon { background: #ece8fb; color: #5b3fbf; }
+.yatravanta-receipt-transport .yatravanta-receipt-icon { background: #fdf0d5; color: #b7791f; }
+.yatravanta-receipt-seats .yatravanta-receipt-icon { background: #fde6ea; color: #c0264a; }
+.yatravanta-receipt-text {
 	display: flex;
 	flex-direction: column;
 	min-width: 0;
 	text-align: left;
 }
-.trekpilot-receipt-label {
+.yatravanta-receipt-label {
 	font-size: 12px;
 	line-height: 1.3;
 	color: #64748b;
 }
-.trekpilot-receipt-value {
+.yatravanta-receipt-value {
 	font-size: 15px;
 	line-height: 1.35;
 	font-weight: 700;
 	color: #0f172a;
 	overflow-wrap: anywhere;
 }
-.trekpilot-receipt-total {
+.yatravanta-receipt-total {
 	display: flex;
 	align-items: center;
 	gap: 14px;
@@ -1135,15 +1135,15 @@
 	border-radius: 12px;
 	background: #e6f6f4;
 }
-.trekpilot-receipt-total .trekpilot-receipt-icon {
+.yatravanta-receipt-total .yatravanta-receipt-icon {
 	background: #cdeeea;
 	color: #0f766e;
 }
-.trekpilot-receipt-total .trekpilot-receipt-label {
+.yatravanta-receipt-total .yatravanta-receipt-label {
 	font-weight: 600;
 	color: #0f766e;
 }
-.trekpilot-receipt-amount {
+.yatravanta-receipt-amount {
 	font-size: 24px;
 	line-height: 1.2;
 	font-weight: 800;
@@ -1151,7 +1151,7 @@
 }
 
 /* Success dialog header */
-.trekpilot-success-check {
+.yatravanta-success-check {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -1162,7 +1162,7 @@
 	background: #e3f1dc;
 	color: #385723;
 }
-.trekpilot-success-title {
+.yatravanta-success-title {
 	margin: 0 0 10px;
 	padding: 0;
 	font-size: 22px;
@@ -1171,14 +1171,14 @@
 	color: #385723;
 	text-align: center;
 }
-.trekpilot-success-title::before,
-.trekpilot-success-title::after {
+.yatravanta-success-title::before,
+.yatravanta-success-title::after {
 	content: none;
 	display: none;
 }
 
-/* Total row in the success receipt (overrides the generic .trekpilot-receipt-total used in the price breakdown) */
-.trekpilot-success-receipt .trekpilot-receipt-total {
+/* Total row in the success receipt (overrides the generic .yatravanta-receipt-total used in the price breakdown) */
+.yatravanta-success-receipt .yatravanta-receipt-total {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
@@ -1186,102 +1186,102 @@
 	gap: 14px;
 	text-align: left;
 }
-.trekpilot-success-receipt .trekpilot-receipt-total .trekpilot-receipt-text {
+.yatravanta-success-receipt .yatravanta-receipt-total .yatravanta-receipt-text {
 	align-items: flex-start;
 	flex: 1;
 }
-.trekpilot-success-receipt .trekpilot-receipt-total strong.trekpilot-receipt-amount {
+.yatravanta-success-receipt .yatravanta-receipt-total strong.yatravanta-receipt-amount {
 	font-size: 24px;
 	font-weight: 800;
 	color: #0f3d3a;
 }
 
 /* Compact success dialog */
-#trekpilot_success_modal .trekpilot-booking-modal-body {
+#yatravanta_success_modal .yatravanta-booking-modal-body {
 	padding: 20px 18px !important;
 }
-#trekpilot_success_modal .trekpilot-success-check {
+#yatravanta_success_modal .yatravanta-success-check {
 	width: 44px;
 	height: 44px;
 	margin-bottom: 8px;
 }
-#trekpilot_success_modal .trekpilot-success-check svg {
+#yatravanta_success_modal .yatravanta-success-check svg {
 	width: 24px;
 	height: 24px;
 }
-#trekpilot_success_modal .trekpilot-success-title {
+#yatravanta_success_modal .yatravanta-success-title {
 	margin-bottom: 6px;
 	font-size: 19px;
 }
-#trekpilot_success_modal .trekpilot-booking-modal-body > p {
+#yatravanta_success_modal .yatravanta-booking-modal-body > p {
 	margin-bottom: 12px !important;
 	font-size: 12px !important;
 	line-height: 1.35 !important;
 }
-#trekpilot_success_modal .trekpilot-success-receipt {
+#yatravanta_success_modal .yatravanta-success-receipt {
 	margin-bottom: 12px !important;
 }
-#trekpilot_success_modal .trekpilot-receipt-row {
+#yatravanta_success_modal .yatravanta-receipt-row {
 	gap: 12px;
 	padding: 7px 2px;
 }
-#trekpilot_success_modal .trekpilot-receipt-icon {
+#yatravanta_success_modal .yatravanta-receipt-icon {
 	flex-basis: 32px;
 	width: 32px;
 	height: 32px;
 }
-#trekpilot_success_modal .trekpilot-receipt-icon svg {
+#yatravanta_success_modal .yatravanta-receipt-icon svg {
 	width: 16px;
 	height: 16px;
 }
-#trekpilot_success_modal .trekpilot-receipt-label {
+#yatravanta_success_modal .yatravanta-receipt-label {
 	font-size: 11px;
 	line-height: 1.2;
 }
-#trekpilot_success_modal .trekpilot-receipt-value {
+#yatravanta_success_modal .yatravanta-receipt-value {
 	font-size: 13.5px;
 	line-height: 1.25;
 }
-#trekpilot_success_modal .trekpilot-success-receipt .trekpilot-receipt-total {
+#yatravanta_success_modal .yatravanta-success-receipt .yatravanta-receipt-total {
 	margin-top: 8px;
 	padding: 9px 12px;
 	gap: 12px;
 }
-#trekpilot_success_modal .trekpilot-success-receipt .trekpilot-receipt-total strong.trekpilot-receipt-amount {
+#yatravanta_success_modal .yatravanta-success-receipt .yatravanta-receipt-total strong.yatravanta-receipt-amount {
 	font-size: 20px;
 	line-height: 1.15;
 }
-#trekpilot_success_modal #trekpilot_success_close_btn {
+#yatravanta_success_modal #yatravanta_success_close_btn {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
 
 /* Adults / Children counter: hardened so theme and Elementor button/input styles cannot break it. */
-.trekpilot-booking-widget-wrapper .trekpilot-pax-row {
+.yatravanta-booking-widget-wrapper .yatravanta-pax-row {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-between;
 	align-items: center;
 	gap: 12px;
 }
-.trekpilot-booking-widget-wrapper .trekpilot-pax-label {
+.yatravanta-booking-widget-wrapper .yatravanta-pax-label {
 	flex: 1 1 auto;
 	min-width: 0;
 }
-.trekpilot-booking-widget-wrapper .trekpilot-pax-label strong {
+.yatravanta-booking-widget-wrapper .yatravanta-pax-label strong {
 	display: block;
 	font-size: 13px;
 	line-height: 1.3;
 	color: #222;
 }
-.trekpilot-booking-widget-wrapper .trekpilot-pax-label .description {
+.yatravanta-booking-widget-wrapper .yatravanta-pax-label .description {
 	display: block;
 	font-size: 11px;
 	line-height: 1.3;
 	color: #666;
 	white-space: nowrap;
 }
-.trekpilot-booking-widget-wrapper .trekpilot-pax-counter {
+.yatravanta-booking-widget-wrapper .yatravanta-pax-counter {
 	display: inline-flex;
 	flex: 0 0 auto;
 	align-items: stretch;
@@ -1292,7 +1292,7 @@
 	background: #fff;
 	overflow: hidden;
 }
-.trekpilot-booking-widget-wrapper .trekpilot-pax-counter .trekpilot-counter-btn {
+.yatravanta-booking-widget-wrapper .yatravanta-pax-counter .yatravanta-counter-btn {
 	flex: 0 0 32px;
 	width: 32px;
 	min-width: 32px;
@@ -1313,14 +1313,14 @@
 	align-items: center;
 	justify-content: center;
 }
-.trekpilot-booking-widget-wrapper .trekpilot-pax-counter .trekpilot-counter-btn:hover,
-.trekpilot-booking-widget-wrapper .trekpilot-pax-counter .trekpilot-counter-btn:focus {
+.yatravanta-booking-widget-wrapper .yatravanta-pax-counter .yatravanta-counter-btn:hover,
+.yatravanta-booking-widget-wrapper .yatravanta-pax-counter .yatravanta-counter-btn:focus {
 	background: #ebeef0;
-	color: var(--trekpilot-secondary-color, #0f6165);
+	color: var(--yatravanta-secondary-color, #0f6165);
 	box-shadow: none;
 	outline: none;
 }
-.trekpilot-booking-widget-wrapper .trekpilot-pax-counter input[type="number"] {
+.yatravanta-booking-widget-wrapper .yatravanta-pax-counter input[type="number"] {
 	flex: 0 0 44px;
 	width: 44px;
 	min-width: 0;

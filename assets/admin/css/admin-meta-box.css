@@ -1,8 +1,8 @@
 /**
- * Stylesheet for TrekPilot Meta Box Admin UI
+ * Stylesheet for YatraVanta Trek Booking Manager Meta Box Admin UI
  */
 
-.trekpilot-meta-tabs-wrapper {
+.yatravanta-meta-tabs-wrapper {
 	display: flex;
 	flex-direction: column;
 	background: #fcfcfc;
@@ -16,52 +16,52 @@
 }
 
 /* Tab Navigation: default WP .nav-tab styling, only spacing tweaks. */
-.trekpilot-meta-tabs-nav {
+.yatravanta-meta-tabs-nav {
 	padding: 9px 10px 0;
 	background: #f0f0f1;
 }
 
 /* No transition and no focus ring, so clicking a tab does not flash a line under it. */
-.trekpilot-meta-tabs-nav .nav-tab {
+.yatravanta-meta-tabs-nav .nav-tab {
 	transition: none;
 }
 
-.trekpilot-meta-tabs-nav .nav-tab:focus,
-.trekpilot-meta-tabs-nav .nav-tab:focus-visible,
-.trekpilot-meta-tabs-nav .nav-tab:active {
+.yatravanta-meta-tabs-nav .nav-tab:focus,
+.yatravanta-meta-tabs-nav .nav-tab:focus-visible,
+.yatravanta-meta-tabs-nav .nav-tab:active {
 	text-decoration: none;
 	box-shadow: none;
 	outline: none;
 }
 
 /* Tab Panels */
-.trekpilot-meta-tabs-content {
+.yatravanta-meta-tabs-content {
 	padding: 25px;
 	background: #ffffff;
 }
 
-.trekpilot-meta-tab-panel {
+.yatravanta-meta-tab-panel {
 	display: none;
 }
 
-.trekpilot-meta-tab-panel.active {
+.yatravanta-meta-tab-panel.active {
 	display: block;
 }
 
 /* Form Styles inside Panels */
-.trekpilot-meta-tab-panel table.form-table th {
+.yatravanta-meta-tab-panel table.form-table th {
 	width: 220px;
 	font-weight: 600;
 	color: #3c434a;
 	padding: 15px 10px 15px 0;
 }
 
-.trekpilot-meta-tab-panel table.form-table td {
+.yatravanta-meta-tab-panel table.form-table td {
 	padding: 15px 10px;
 }
 
 /* Gallery Styles */
-.trekpilot-gallery-thumbs {
+.yatravanta-gallery-thumbs {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 12px;
@@ -74,7 +74,7 @@
 	align-items: center;
 }
 
-.trekpilot-gallery-thumb-item {
+.yatravanta-gallery-thumb-item {
 	position: relative;
 	width: 100px;
 	height: 100px;
@@ -85,13 +85,13 @@
 	box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-.trekpilot-gallery-thumb-item img {
+.yatravanta-gallery-thumb-item img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
 
-.trekpilot-gallery-remove-btn {
+.yatravanta-gallery-remove-btn {
 	position: absolute;
 	top: 4px;
 	right: 4px;
@@ -108,13 +108,13 @@
 	transition: background 0.2s;
 }
 
-.trekpilot-gallery-remove-btn:hover {
+.yatravanta-gallery-remove-btn:hover {
 	background: rgb(220, 53, 69);
 	color: #fff;
 }
 
 /* FAQ Repeater Styles */
-.trekpilot-faq-repeater-row {
+.yatravanta-faq-repeater-row {
 	display: flex;
 	align-items: flex-start;
 	background: #fafafa;
@@ -126,32 +126,32 @@
 	box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 
-.trekpilot-drag-handle {
+.yatravanta-drag-handle {
 	font-size: 20px;
 	color: #a7aaad;
 	padding: 5px 15px 5px 0;
 	user-select: none;
 }
 
-.trekpilot-faq-row-fields {
+.yatravanta-faq-row-fields {
 	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
 
-.trekpilot-faq-row-fields input,
-.trekpilot-faq-row-fields textarea {
+.yatravanta-faq-row-fields input,
+.yatravanta-faq-row-fields textarea {
 	width: 100%;
 }
 
-.trekpilot-remove-faq-row-btn {
+.yatravanta-remove-faq-row-btn {
 	margin-left: 15px !important;
 	color: #b32d2e !important;
 	border-color: #b32d2e !important;
 }
 
-.trekpilot-remove-faq-row-btn:hover {
+.yatravanta-remove-faq-row-btn:hover {
 	background: #b32d2e !important;
 	color: #fff !important;
 }
@@ -163,7 +163,7 @@
 }
 
 
-#trekpilot_admin_toast {
+#yatravanta_admin_toast {
 	visibility: hidden;
 	min-width: 250px;
 	background-color: #d63638;
@@ -179,45 +179,45 @@
 	font-size: 15px;
 	box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-#trekpilot_admin_toast.show {
+#yatravanta_admin_toast.show {
 	visibility: visible;
-	-webkit-animation: trekpilot_fadein 0.5s, trekpilot_fadeout 0.5s 3s;
-	animation: trekpilot_fadein 0.5s, trekpilot_fadeout 0.5s 3s;
+	-webkit-animation: yatravanta_fadein 0.5s, yatravanta_fadeout 0.5s 3s;
+	animation: yatravanta_fadein 0.5s, yatravanta_fadeout 0.5s 3s;
 }
-#trekpilot_admin_toast .dashicons {
+#yatravanta_admin_toast .dashicons {
 	vertical-align: text-bottom;
 }
-@-webkit-keyframes trekpilot_fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-@keyframes trekpilot_fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-@-webkit-keyframes trekpilot_fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-@keyframes trekpilot_fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+@-webkit-keyframes yatravanta_fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+@keyframes yatravanta_fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+@-webkit-keyframes yatravanta_fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+@keyframes yatravanta_fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
 
-#trekpilot_admin_confirm_overlay {
+#yatravanta_admin_confirm_overlay {
 	position: fixed; top: 0; left: 0; width: 100%; height: 100%;
 	background: rgba(0,0,0,0.5); z-index: 999999;
 	display: none; align-items: center; justify-content: center;
 }
-#trekpilot_admin_confirm_overlay.show { display: flex; }
-.trekpilot-admin-confirm-box {
+#yatravanta_admin_confirm_overlay.show { display: flex; }
+.yatravanta-admin-confirm-box {
 	background: #fff; padding: 20px 30px; border-radius: 6px;
 	box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 	max-width: 400px; text-align: center;
 }
-.trekpilot-admin-confirm-icon {
+.yatravanta-admin-confirm-icon {
 	color: #d63638; font-size: 40px; margin-bottom: 15px;
 }
-.trekpilot-admin-confirm-icon .dashicons {
+.yatravanta-admin-confirm-icon .dashicons {
 	font-size: 40px; width: 40px; height: 40px;
 }
-.trekpilot-admin-confirm-msg {
+.yatravanta-admin-confirm-msg {
 	font-size: 16px; margin-bottom: 20px; color: #3c434a;
 }
-.trekpilot-admin-confirm-actions {
+.yatravanta-admin-confirm-actions {
 	display: flex; justify-content: center; gap: 10px;
 }
 
 /* Fix for Flatpickr readonly styling in WP Admin */
-input.trekpilot-timepicker[readonly] {
+input.yatravanta-timepicker[readonly] {
 	background-color: #fff !important;
 	cursor: pointer !important;
 }
@@ -228,30 +228,30 @@ input.trekpilot-timepicker[readonly] {
 }
 
 /* Policies: keep every editor tall enough to use. */
-.trekpilot-meta-tab-panel .wp-editor-wrap .wp-editor-area {
+.yatravanta-meta-tab-panel .wp-editor-wrap .wp-editor-area {
 	min-height: 160px;
 }
-.trekpilot-meta-tab-panel .wp-editor-wrap {
+.yatravanta-meta-tab-panel .wp-editor-wrap {
 	min-width: 320px;
 	max-width: 800px;
 }
 
 /* Textareas never collapse: the FAQ answer sits in a flex column and was being squashed to one line. */
-.trekpilot-faq-row-fields textarea {
+.yatravanta-faq-row-fields textarea {
 	flex: 0 0 auto;
 	min-height: 90px;
 }
-.trekpilot-meta-tab-panel textarea {
+.yatravanta-meta-tab-panel textarea {
 	min-height: 90px;
 }
 
 /* FAQ rows with only a question or only an answer. */
-.trekpilot-faq-repeater-row.trekpilot-faq-incomplete input[type="text"],
-.trekpilot-faq-repeater-row.trekpilot-faq-incomplete textarea {
+.yatravanta-faq-repeater-row.yatravanta-faq-incomplete input[type="text"],
+.yatravanta-faq-repeater-row.yatravanta-faq-incomplete textarea {
 	border-color: #b32d2e;
 }
 
-.trekpilot-faq-row-error {
+.yatravanta-faq-row-error {
 	margin: 4px 0 0;
 	color: #b32d2e;
 	font-size: 12px;

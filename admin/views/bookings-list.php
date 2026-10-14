@@ -2,7 +2,7 @@
 /**
  * Bookings List View.
  *
- * @package TrekPilot
+ * @package YatraVanta
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,21 +11,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div class="wrap">
-	<h1 class="wp-heading-inline"><?php esc_html_e( 'Trek Bookings', 'trekpilot' ); ?></h1>
-	<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=trekpilot_trek&page=trekpilot-bookings&action=add' ) ); ?>" class="page-title-action"><?php esc_html_e( 'Add New', 'trekpilot' ); ?></a>
+	<h1 class="wp-heading-inline"><?php esc_html_e( 'Trek Bookings', 'yatravanta-trek-booking-manager' ); ?></h1>
+	<a href="<?php echo esc_url( admin_url( 'edit.php?post_type=yatravanta_trek&page=yatravanta-bookings&action=add' ) ); ?>" class="page-title-action"><?php esc_html_e( 'Add New', 'yatravanta-trek-booking-manager' ); ?></a>
 	<hr class="wp-header-end">
 
 	<?php
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	if ( isset( $_GET['trekpilot_saved'] ) ) :
+	if ( isset( $_GET['yatravanta_saved'] ) ) :
 		?>
-		<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Booking saved successfully.', 'trekpilot' ); ?></p></div>
+		<div class="notice notice-success is-dismissible"><p><?php esc_html_e( 'Booking saved successfully.', 'yatravanta-trek-booking-manager' ); ?></p></div>
 		<?php
 	endif;
 	// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-	if ( isset( $_GET['trekpilot_error'] ) ) :
+	if ( isset( $_GET['yatravanta_error'] ) ) :
 		?>
-		<div class="notice notice-error is-dismissible"><p><?php esc_html_e( 'Please fill in all the required fields before saving the booking.', 'trekpilot' ); ?></p></div>
+		<div class="notice notice-error is-dismissible"><p><?php esc_html_e( 'Please fill in all the required fields before saving the booking.', 'yatravanta-trek-booking-manager' ); ?></p></div>
 		<?php
 	endif;
 	?>
@@ -36,8 +36,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="meta-box-sortables ui-sortable">
 					<?php $table->views(); ?>
 					<form method="get">
-						<input type="hidden" name="post_type" value="trekpilot_trek" />
-						<input type="hidden" name="page" value="trekpilot-bookings" />
+						<input type="hidden" name="post_type" value="yatravanta_trek" />
+						<input type="hidden" name="page" value="yatravanta-bookings" />
 						<?php
 						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 						if ( isset( $_GET['booking_view'] ) && 'trash' === $_GET['booking_view'] ) :
@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<input type="hidden" name="booking_view" value="trash" />
 						<?php endif; ?>
 						<?php
-						$table->search_box( __( 'Search', 'trekpilot' ), 'search_id' );
+						$table->search_box( __( 'Search', 'yatravanta-trek-booking-manager' ), 'search_id' );
 						$table->display();
 						?>
 					</form>
@@ -56,24 +56,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 	<!-- Booking Details View Modal -->
-	<div class="trekpilot-modal-overlay" id="trekpilot_booking_view_modal" style="display:none;">
-		<div class="trekpilot-modal-box" style="max-width:600px;">
-			<div class="trekpilot-modal-header">
-				<h2><?php esc_html_e( 'Booking Details', 'trekpilot' ); ?> - <span id="trekpilot_booking_view_ref"></span></h2>
-				<span class="trekpilot-modal-close" id="trekpilot_booking_view_close_btn">&times;</span>
+	<div class="yatravanta-modal-overlay" id="yatravanta_booking_view_modal" style="display:none;">
+		<div class="yatravanta-modal-box" style="max-width:600px;">
+			<div class="yatravanta-modal-header">
+				<h2><?php esc_html_e( 'Booking Details', 'yatravanta-trek-booking-manager' ); ?> - <span id="yatravanta_booking_view_ref"></span></h2>
+				<span class="yatravanta-modal-close" id="yatravanta_booking_view_close_btn">&times;</span>
 			</div>
-			<div class="trekpilot-modal-body">
-				<div class="trekpilot-loading-spinner" id="trekpilot_booking_view_loading">
-					<span class="spinner is-active"></span> <?php esc_html_e( 'Loading booking details...', 'trekpilot' ); ?>
+			<div class="yatravanta-modal-body">
+				<div class="yatravanta-loading-spinner" id="yatravanta_booking_view_loading">
+					<span class="spinner is-active"></span> <?php esc_html_e( 'Loading booking details...', 'yatravanta-trek-booking-manager' ); ?>
 				</div>
-				<table class="widefat striped" id="trekpilot_booking_view_table" style="display:none;">
-					<tbody id="trekpilot_booking_view_tbody">
+				<table class="widefat striped" id="yatravanta_booking_view_table" style="display:none;">
+					<tbody id="yatravanta_booking_view_tbody">
 						<!-- Populated via AJAX -->
 					</tbody>
 				</table>
 			</div>
-			<div class="trekpilot-modal-footer">
-				<button type="button" class="button" id="trekpilot_booking_view_close_btn2"><?php esc_html_e( 'Close', 'trekpilot' ); ?></button>
+			<div class="yatravanta-modal-footer">
+				<button type="button" class="button" id="yatravanta_booking_view_close_btn2"><?php esc_html_e( 'Close', 'yatravanta-trek-booking-manager' ); ?></button>
 			</div>
 		</div>
 	</div>

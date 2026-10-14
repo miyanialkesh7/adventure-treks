@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: TrekPilot 1.0.3\n"
-"Report-Msgid-Bugs-To: https://github.com/nileshvastarpara/trekpilot\n"
+"Project-Id-Version: YatraVanta Trek Booking Manager 1.0.3\n"
+"Report-Msgid-Bugs-To: https://github.com/nileshvastarpara/yatravanta-trek-booking-manager\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-08-03T11:49:23+00:00\n"
 "X-Generator: manual\n"
-"X-Domain: trekpilot\n"
+"X-Domain: yatravanta-trek-booking-manager\n"
 
 #: admin/controllers/class-admincontroller.php:230
 msgid "$ (US Dollar)"
@@ -48,7 +48,7 @@ msgstr ""
 msgid "AED (UAE Dirham)"
 msgstr ""
 
-#: public/views/single-trekpilot_trek.php:165
+#: public/views/single-yatravanta_trek.php:165
 msgid "About This Trek"
 msgstr ""
 
@@ -191,16 +191,16 @@ msgid "Trek"
 msgstr ""
 
 #: includes/class-posttypes.php:68
-msgid "TrekPilot trek post type"
+msgid "YatraVanta Trek Booking Manager trek post type"
 msgstr ""
 
 #: includes/class-elementor.php:53
 #: includes/class-posttypes.php:39
-msgid "TrekPilot"
+msgid "YatraVanta Trek Booking Manager"
 msgstr ""
 
 #: admin/controllers/class-admincontroller.php:82
-msgid "TrekPilot Settings"
+msgid "YatraVanta Trek Booking Manager Settings"
 msgstr ""
 
 #: public/views/booking-widget.php:95
@@ -982,7 +982,7 @@ msgstr ""
 msgid "New Trek"
 msgstr ""
 
-#: public/views/archive-trekpilot_trek.php:44
+#: public/views/archive-yatravanta_trek.php:44
 #: public/views/trek-archive.php:37
 msgid "Next »"
 msgstr ""
@@ -1024,7 +1024,7 @@ msgstr ""
 msgid "No seats are available for the selected departure date. Please choose another date."
 msgstr ""
 
-#: public/views/archive-trekpilot_trek.php:50
+#: public/views/archive-yatravanta_trek.php:50
 #: public/views/trek-archive.php:46
 msgid "No treks found."
 msgstr ""
@@ -1574,7 +1574,7 @@ msgstr ""
 msgid "Trek Settings & Detailed Specifications"
 msgstr ""
 
-#: public/views/single-trekpilot_trek.php:22
+#: public/views/single-yatravanta_trek.php:22
 msgid "Trek not found."
 msgstr ""
 
@@ -1813,7 +1813,7 @@ msgstr ""
 msgid "¥ (Japanese Yen / Chinese Yuan)"
 msgstr ""
 
-#: public/views/archive-trekpilot_trek.php:43
+#: public/views/archive-yatravanta_trek.php:43
 #: public/views/trek-archive.php:36
 msgid "« Prev"
 msgstr ""

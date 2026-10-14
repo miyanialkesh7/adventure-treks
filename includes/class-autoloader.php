@@ -1,13 +1,13 @@
 <?php
 /**
- * Autoloader implementation for TrekPilot
+ * Autoloader implementation for YatraVanta Trek Booking Manager
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Includes
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Includes
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Includes;
+namespace YatraVanta\Includes;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -35,7 +35,7 @@ class Autoloader {
 	 */
 	public static function autoload( $fully_qualified_class ) {
 		// Project-specific namespace prefix.
-		$prefix = 'TrekPilot\\';
+		$prefix = 'YatraVanta\\';
 
 		// Base directory for the namespace prefix.
 		$base_dir = plugin_dir_path( __DIR__ );

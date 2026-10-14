@@ -2,12 +2,12 @@
 /**
  * Fired during plugin deactivation
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Includes
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Includes
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Includes;
+namespace YatraVanta\Includes;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.

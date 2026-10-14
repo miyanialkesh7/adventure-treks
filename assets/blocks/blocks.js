@@ -1,5 +1,5 @@
 /**
- * Editor UI for the TrekPilot blocks (no build step: plain ES5 against the wp.* globals).
+ * Editor UI for the YatraVanta Trek Booking Manager blocks (no build step: plain ES5 against the wp.* globals).
  * Each block is server-rendered, so the editor shows the real output via ServerSideRender.
  */
 ( function ( wp ) {
@@ -26,7 +26,7 @@
 		return useSelect( function ( select ) {
 			var store = select( 'core' );
 			var query = { per_page: -1, orderby: 'title', order: 'asc', status: 'publish,draft,private' };
-			var records = store.getEntityRecords( 'postType', 'trekpilot_trek', query );
+			var records = store.getEntityRecords( 'postType', 'yatravanta_trek', query );
 			return {
 				loading: records === null || records === undefined,
 				treks: ( records || [] ).map( function ( post ) {
@@ -46,7 +46,7 @@
 
 	/** Preview wrapper: the output is live markup, so make it inert in the editor. */
 	function Preview( props ) {
-		return el( 'div', { className: 'trekpilot-block-preview' },
+		return el( 'div', { className: 'yatravanta-block-preview' },
 			el( ServerSideRender, {
 				block: props.block,
 				attributes: props.attributes,
@@ -64,13 +64,13 @@
 			var data = useTreks();
 			var postId = useCurrentPostId();
 			var blockProps = useBlockProps();
-			var options = [ { value: 0, label: __( 'Current Post / Trek Page', 'trekpilot' ) } ].concat( data.treks );
+			var options = [ { value: 0, label: __( 'Current Post / Trek Page', 'yatravanta-trek-booking-manager' ) } ].concat( data.treks );
 
 			return el( Fragment, {},
 				el( InspectorControls, {},
-					el( PanelBody, { title: __( 'Configuration', 'trekpilot' ), initialOpen: true },
+					el( PanelBody, { title: __( 'Configuration', 'yatravanta-trek-booking-manager' ), initialOpen: true },
 						el( SelectControl, {
-							label: __( 'Select Trek', 'trekpilot' ),
+							label: __( 'Select Trek', 'yatravanta-trek-booking-manager' ),
 							value: props.attributes.trekId,
 							options: options,
 							onChange: function ( value ) {
@@ -86,17 +86,17 @@
 		};
 	}
 
-	registerBlockType( 'trekpilot/trek-details', {
-		edit: singleTrekEdit( 'trekpilot/trek-details' ),
+	registerBlockType( 'yatravanta-trek-booking-manager/trek-details', {
+		edit: singleTrekEdit( 'yatravanta-trek-booking-manager/trek-details' ),
 		save: function () { return null; }
 	} );
 
-	registerBlockType( 'trekpilot/trek-booking', {
-		edit: singleTrekEdit( 'trekpilot/trek-booking' ),
+	registerBlockType( 'yatravanta-trek-booking-manager/trek-booking', {
+		edit: singleTrekEdit( 'yatravanta-trek-booking-manager/trek-booking' ),
 		save: function () { return null; }
 	} );
 
-	registerBlockType( 'trekpilot/trek-archive', {
+	registerBlockType( 'yatravanta-trek-booking-manager/trek-archive', {
 		edit: function ( props ) {
 			var a = props.attributes;
 			var set = props.setAttributes;
@@ -118,13 +118,13 @@
 
 			return el( Fragment, {},
 				el( InspectorControls, {},
-					el( PanelBody, { title: __( 'Query', 'trekpilot' ), initialOpen: true },
+					el( PanelBody, { title: __( 'Query', 'yatravanta-trek-booking-manager' ), initialOpen: true },
 						el( SelectControl, {
-							label: __( 'Source', 'trekpilot' ),
+							label: __( 'Source', 'yatravanta-trek-booking-manager' ),
 							value: a.source,
 							options: [
-								{ value: 'all', label: __( 'All', 'trekpilot' ) },
-								{ value: 'manual', label: __( 'Manual Selection', 'trekpilot' ) }
+								{ value: 'all', label: __( 'All', 'yatravanta-trek-booking-manager' ) },
+								{ value: 'manual', label: __( 'Manual Selection', 'yatravanta-trek-booking-manager' ) }
 							],
 							onChange: function ( value ) { set( { source: value } ); }
 						} ),
@@ -139,62 +139,62 @@
 								} );
 							} ) ),
 						! manual && el( SelectControl, {
-							label: __( 'Order By', 'trekpilot' ),
+							label: __( 'Order By', 'yatravanta-trek-booking-manager' ),
 							value: a.orderby,
 							options: [
-								{ value: 'date', label: __( 'Publish Date', 'trekpilot' ) },
-								{ value: 'title', label: __( 'Title', 'trekpilot' ) },
-								{ value: 'menu_order', label: __( 'Menu Order', 'trekpilot' ) },
-								{ value: 'rand', label: __( 'Random', 'trekpilot' ) }
+								{ value: 'date', label: __( 'Publish Date', 'yatravanta-trek-booking-manager' ) },
+								{ value: 'title', label: __( 'Title', 'yatravanta-trek-booking-manager' ) },
+								{ value: 'menu_order', label: __( 'Menu Order', 'yatravanta-trek-booking-manager' ) },
+								{ value: 'rand', label: __( 'Random', 'yatravanta-trek-booking-manager' ) }
 							],
 							onChange: function ( value ) { set( { orderby: value } ); }
 						} ),
 						! manual && el( SelectControl, {
-							label: __( 'Order', 'trekpilot' ),
+							label: __( 'Order', 'yatravanta-trek-booking-manager' ),
 							value: a.order,
 							options: [
-								{ value: 'DESC', label: __( 'Descending', 'trekpilot' ) },
-								{ value: 'ASC', label: __( 'Ascending', 'trekpilot' ) }
+								{ value: 'DESC', label: __( 'Descending', 'yatravanta-trek-booking-manager' ) },
+								{ value: 'ASC', label: __( 'Ascending', 'yatravanta-trek-booking-manager' ) }
 							],
 							onChange: function ( value ) { set( { order: value } ); }
 						} )
 					),
-					el( PanelBody, { title: __( 'Layout', 'trekpilot' ), initialOpen: true },
+					el( PanelBody, { title: __( 'Layout', 'yatravanta-trek-booking-manager' ), initialOpen: true },
 						! manual && el( RangeControl, {
-							label: __( 'Treks Per Page', 'trekpilot' ),
+							label: __( 'Treks Per Page', 'yatravanta-trek-booking-manager' ),
 							value: a.postsPerPage,
 							min: 1,
 							max: 100,
 							onChange: function ( value ) { set( { postsPerPage: value || 9 } ); }
 						} ),
 						el( RangeControl, {
-							label: __( 'Columns', 'trekpilot' ),
+							label: __( 'Columns', 'yatravanta-trek-booking-manager' ),
 							value: a.columns,
 							min: 1,
 							max: 6,
 							onChange: function ( value ) { set( { columns: value || 3 } ); }
 						} ),
 						el( ToggleControl, {
-							label: __( 'Show Excerpt', 'trekpilot' ),
+							label: __( 'Show Excerpt', 'yatravanta-trek-booking-manager' ),
 							checked: !! a.showExcerpt,
 							onChange: function ( value ) { set( { showExcerpt: value } ); }
 						} ),
 						el( ToggleControl, {
-							label: __( 'Show Price', 'trekpilot' ),
+							label: __( 'Show Price', 'yatravanta-trek-booking-manager' ),
 							checked: !! a.showPrice,
 							onChange: function ( value ) { set( { showPrice: value } ); }
 						} )
 					),
-					! manual && el( PanelBody, { title: __( 'Pagination', 'trekpilot' ), initialOpen: false },
+					! manual && el( PanelBody, { title: __( 'Pagination', 'yatravanta-trek-booking-manager' ), initialOpen: false },
 						el( ToggleControl, {
-							label: __( 'Show Pagination', 'trekpilot' ),
+							label: __( 'Show Pagination', 'yatravanta-trek-booking-manager' ),
 							checked: !! a.showPagination,
 							onChange: function ( value ) { set( { showPagination: value } ); }
 						} )
 					)
 				),
 				el( 'div', blockProps,
-					el( Preview, { block: 'trekpilot/trek-archive', attributes: a, postId: postId } )
+					el( Preview, { block: 'yatravanta-trek-booking-manager/trek-archive', attributes: a, postId: postId } )
 				)
 			);
 		},

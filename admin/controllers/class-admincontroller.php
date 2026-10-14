@@ -2,12 +2,12 @@
 /**
  * Main Admin Area Controller
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Admin/Controllers
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Admin/Controllers
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Admin\Controllers;
+namespace YatraVanta\Admin\Controllers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -37,7 +37,7 @@ class AdminController {
 	 * @return void
 	 */
 	public function add_dynamic_color_vars() {
-		wp_add_inline_style( 'trekpilot-admin-departures-css', \TrekPilot\Includes\Plugin::get_dynamic_color_css() );
+		wp_add_inline_style( 'yatravanta-admin-departures-css', \YatraVanta\Includes\Plugin::get_dynamic_color_css() );
 	}
 
 	/**
@@ -48,7 +48,7 @@ class AdminController {
 	public function enqueue_assets() {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
-		if ( 'trekpilot-settings' !== $page ) {
+		if ( 'yatravanta-settings' !== $page ) {
 			return;
 		}
 
@@ -56,33 +56,33 @@ class AdminController {
 		wp_enqueue_media();
 
 		wp_enqueue_style(
-			'trekpilot-admin-settings-css',
-			TREKPILOT_URL . 'assets/admin/css/admin-settings.css',
+			'yatravanta-admin-settings-css',
+			YATRAVANTA_URL . 'assets/admin/css/admin-settings.css',
 			array(),
-			\TrekPilot\Includes\Plugin::asset_version( 'assets/admin/css/admin-settings.css' )
+			\YatraVanta\Includes\Plugin::asset_version( 'assets/admin/css/admin-settings.css' )
 		);
 
 		wp_enqueue_script(
-			'trekpilot-admin-settings-js',
-			TREKPILOT_URL . 'assets/admin/js/admin-settings.js',
+			'yatravanta-admin-settings-js',
+			YATRAVANTA_URL . 'assets/admin/js/admin-settings.js',
 			array( 'wp-color-picker' ),
-			TREKPILOT_VERSION . '.' . filemtime( TREKPILOT_PATH . 'assets/admin/js/admin-settings.js' ),
+			YATRAVANTA_VERSION . '.' . filemtime( YATRAVANTA_PATH . 'assets/admin/js/admin-settings.js' ),
 			true
 		);
 	}
 
 	/**
-	 * Register submenus under edit.php?post_type=trekpilot_trek.
+	 * Register submenus under edit.php?post_type=yatravanta_trek.
 	 *
 	 * @return void
 	 */
 	public function register_admin_menus() {
 		add_submenu_page(
-			'edit.php?post_type=trekpilot_trek',
-			__( 'TrekPilot Settings', 'trekpilot' ),
-			__( 'Settings', 'trekpilot' ),
+			'edit.php?post_type=yatravanta_trek',
+			__( 'YatraVanta Trek Booking Manager Settings', 'yatravanta-trek-booking-manager' ),
+			__( 'Settings', 'yatravanta-trek-booking-manager' ),
 			'manage_options',
-			'trekpilot-settings',
+			'yatravanta-settings',
 			array( $this, 'render_settings_page' )
 		);
 	}
@@ -94,8 +94,8 @@ class AdminController {
 	 */
 	public function register_settings_fields() {
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_currency_symbol',
+			'yatravanta_settings_group',
+			'yatravanta_currency_symbol',
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => array( $this, 'sanitize_currency_symbol' ),
@@ -104,8 +104,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_currency_position',
+			'yatravanta_settings_group',
+			'yatravanta_currency_position',
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => array( $this, 'sanitize_currency_position' ),
@@ -114,8 +114,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_thousand_separator',
+			'yatravanta_settings_group',
+			'yatravanta_thousand_separator',
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => array( $this, 'sanitize_separator' ),
@@ -124,8 +124,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_decimal_separator',
+			'yatravanta_settings_group',
+			'yatravanta_decimal_separator',
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => array( $this, 'sanitize_decimal_separator' ),
@@ -134,8 +134,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_price_decimals',
+			'yatravanta_settings_group',
+			'yatravanta_price_decimals',
 			array(
 				'type'              => 'integer',
 				'sanitize_callback' => array( $this, 'sanitize_price_decimals' ),
@@ -144,8 +144,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_booking_email',
+			'yatravanta_settings_group',
+			'yatravanta_booking_email',
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => 'sanitize_email',
@@ -154,8 +154,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_from_name',
+			'yatravanta_settings_group',
+			'yatravanta_from_name',
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -164,8 +164,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_use_site_logo',
+			'yatravanta_settings_group',
+			'yatravanta_use_site_logo',
 			array(
 				'type'              => 'boolean',
 				'sanitize_callback' => 'rest_sanitize_boolean',
@@ -174,8 +174,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_enable_schema',
+			'yatravanta_settings_group',
+			'yatravanta_enable_schema',
 			array(
 				'type'              => 'boolean',
 				'sanitize_callback' => 'rest_sanitize_boolean',
@@ -184,8 +184,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_primary_color',
+			'yatravanta_settings_group',
+			'yatravanta_primary_color',
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => 'sanitize_hex_color',
@@ -194,8 +194,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_secondary_color',
+			'yatravanta_settings_group',
+			'yatravanta_secondary_color',
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => 'sanitize_hex_color',
@@ -204,8 +204,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_payment_method',
+			'yatravanta_settings_group',
+			'yatravanta_payment_method',
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => array( $this, 'sanitize_payment_method' ),
@@ -214,8 +214,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_upi_id',
+			'yatravanta_settings_group',
+			'yatravanta_upi_id',
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -224,8 +224,8 @@ class AdminController {
 		);
 
 		register_setting(
-			'trekpilot_settings_group',
-			'trekpilot_upi_qr_code',
+			'yatravanta_settings_group',
+			'yatravanta_upi_qr_code',
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => 'esc_url_raw',
@@ -245,12 +245,12 @@ class AdminController {
 
 		if ( 'upi' === $input ) {
 			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- options.php has already verified the settings nonce.
-			$upi_id = isset( $_POST['trekpilot_upi_id'] ) ? trim( sanitize_text_field( wp_unslash( $_POST['trekpilot_upi_id'] ) ) ) : '';
-			$upi_qr = isset( $_POST['trekpilot_upi_qr_code'] ) ? trim( esc_url_raw( wp_unslash( $_POST['trekpilot_upi_qr_code'] ) ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$upi_id = isset( $_POST['yatravanta_upi_id'] ) ? trim( sanitize_text_field( wp_unslash( $_POST['yatravanta_upi_id'] ) ) ) : '';
+			$upi_qr = isset( $_POST['yatravanta_upi_qr_code'] ) ? trim( esc_url_raw( wp_unslash( $_POST['yatravanta_upi_qr_code'] ) ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			if ( '' === $upi_id || '' === $upi_qr ) {
-				add_settings_error( 'trekpilot_payment_method', 'trekpilot_upi_required', __( 'Please enter a UPI ID and select a QR code image to use UPI as the payment method.', 'trekpilot' ) );
+				add_settings_error( 'yatravanta_payment_method', 'yatravanta_upi_required', __( 'Please enter a UPI ID and select a QR code image to use UPI as the payment method.', 'yatravanta-trek-booking-manager' ) );
 
-				return 'cash' === get_option( 'trekpilot_payment_method', 'cash' ) ? 'cash' : 'upi';
+				return 'cash' === get_option( 'yatravanta_payment_method', 'cash' ) ? 'cash' : 'upi';
 			}
 		}
 
@@ -277,21 +277,21 @@ class AdminController {
 	 */
 	public static function get_currencies() {
 		return array(
-			'$'   => __( '$ (US Dollar)', 'trekpilot' ),
-			'₹'   => __( '₹ (Indian Rupee)', 'trekpilot' ),
-			'€'   => __( '€ (Euro)', 'trekpilot' ),
-			'£'   => __( '£ (British Pound)', 'trekpilot' ),
-			'¥'   => __( '¥ (Japanese Yen / Chinese Yuan)', 'trekpilot' ),
-			'A$'  => __( 'A$ (Australian Dollar)', 'trekpilot' ),
-			'C$'  => __( 'C$ (Canadian Dollar)', 'trekpilot' ),
-			'Fr'  => __( 'Fr (Swiss Franc)', 'trekpilot' ),
-			'NZ$' => __( 'NZ$ (New Zealand Dollar)', 'trekpilot' ),
-			'kr'  => __( 'kr (Swedish/Norwegian/Danish Krone)', 'trekpilot' ),
-			'R$'  => __( 'R$ (Brazilian Real)', 'trekpilot' ),
-			'R'   => __( 'R (South African Rand)', 'trekpilot' ),
-			'AED' => __( 'AED (UAE Dirham)', 'trekpilot' ),
-			'฿'   => __( '฿ (Thai Baht)', 'trekpilot' ),
-			'Rp'  => __( 'Rp (Indonesian Rupiah)', 'trekpilot' ),
+			'$'   => __( '$ (US Dollar)', 'yatravanta-trek-booking-manager' ),
+			'₹'   => __( '₹ (Indian Rupee)', 'yatravanta-trek-booking-manager' ),
+			'€'   => __( '€ (Euro)', 'yatravanta-trek-booking-manager' ),
+			'£'   => __( '£ (British Pound)', 'yatravanta-trek-booking-manager' ),
+			'¥'   => __( '¥ (Japanese Yen / Chinese Yuan)', 'yatravanta-trek-booking-manager' ),
+			'A$'  => __( 'A$ (Australian Dollar)', 'yatravanta-trek-booking-manager' ),
+			'C$'  => __( 'C$ (Canadian Dollar)', 'yatravanta-trek-booking-manager' ),
+			'Fr'  => __( 'Fr (Swiss Franc)', 'yatravanta-trek-booking-manager' ),
+			'NZ$' => __( 'NZ$ (New Zealand Dollar)', 'yatravanta-trek-booking-manager' ),
+			'kr'  => __( 'kr (Swedish/Norwegian/Danish Krone)', 'yatravanta-trek-booking-manager' ),
+			'R$'  => __( 'R$ (Brazilian Real)', 'yatravanta-trek-booking-manager' ),
+			'R'   => __( 'R (South African Rand)', 'yatravanta-trek-booking-manager' ),
+			'AED' => __( 'AED (UAE Dirham)', 'yatravanta-trek-booking-manager' ),
+			'฿'   => __( '฿ (Thai Baht)', 'yatravanta-trek-booking-manager' ),
+			'Rp'  => __( 'Rp (Indonesian Rupiah)', 'yatravanta-trek-booking-manager' ),
 		);
 	}
 
@@ -302,10 +302,10 @@ class AdminController {
 	 */
 	public static function get_currency_positions() {
 		return array(
-			'left'        => __( 'Left ($99.99)', 'trekpilot' ),
-			'right'       => __( 'Right (99.99$)', 'trekpilot' ),
-			'left_space'  => __( 'Left with space ($ 99.99)', 'trekpilot' ),
-			'right_space' => __( 'Right with space (99.99 $)', 'trekpilot' ),
+			'left'        => __( 'Left ($99.99)', 'yatravanta-trek-booking-manager' ),
+			'right'       => __( 'Right (99.99$)', 'yatravanta-trek-booking-manager' ),
+			'left_space'  => __( 'Left with space ($ 99.99)', 'yatravanta-trek-booking-manager' ),
+			'right_space' => __( 'Right with space (99.99 $)', 'yatravanta-trek-booking-manager' ),
 		);
 	}
 
@@ -315,17 +315,17 @@ class AdminController {
 	 * @return array{symbol:string,position:string,thousand:string,decimal:string,decimals:int}
 	 */
 	public static function get_price_format() {
-		$position = get_option( 'trekpilot_currency_position', 'left' );
+		$position = get_option( 'yatravanta_currency_position', 'left' );
 		if ( ! array_key_exists( $position, self::get_currency_positions() ) ) {
 			$position = 'left';
 		}
 
 		return array(
-			'symbol'   => get_option( 'trekpilot_currency_symbol', '$' ),
+			'symbol'   => get_option( 'yatravanta_currency_symbol', '$' ),
 			'position' => $position,
-			'thousand' => (string) get_option( 'trekpilot_thousand_separator', ',' ),
-			'decimal'  => (string) ( '' !== (string) get_option( 'trekpilot_decimal_separator', '.' ) ? get_option( 'trekpilot_decimal_separator', '.' ) : '.' ),
-			'decimals' => max( 0, min( 4, (int) get_option( 'trekpilot_price_decimals', 2 ) ) ),
+			'thousand' => (string) get_option( 'yatravanta_thousand_separator', ',' ),
+			'decimal'  => (string) ( '' !== (string) get_option( 'yatravanta_decimal_separator', '.' ) ? get_option( 'yatravanta_decimal_separator', '.' ) : '.' ),
+			'decimals' => max( 0, min( 4, (int) get_option( 'yatravanta_price_decimals', 2 ) ) ),
 		);
 	}
 
@@ -413,6 +413,6 @@ class AdminController {
 			return $input;
 		}
 
-		return get_option( 'trekpilot_currency_symbol', '$' );
+		return get_option( 'yatravanta_currency_symbol', '$' );
 	}
 }

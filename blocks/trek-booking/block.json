@@ -1,13 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "trekpilot/trek-booking",
+	"name": "yatravanta-trek-booking-manager/trek-booking",
 	"title": "Trek Booking",
-	"category": "trekpilot",
+	"category": "yatravanta-trek-booking-manager",
 	"icon": "calendar-alt",
 	"description": "The booking widget: departure city, date, travellers, price and checkout.",
 	"keywords": [ "trek", "booking", "reserve", "adventure" ],
-	"textdomain": "trekpilot",
+	"textdomain": "yatravanta-trek-booking-manager",
 	"attributes": {
 		"trekId": { "type": "number", "default": 0 }
 	},

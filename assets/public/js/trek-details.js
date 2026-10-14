@@ -1,5 +1,5 @@
 /**
- * JavaScript for managing Frontend Trek Details template [trekpilot_details] (Tabs, Accordions)
+ * JavaScript for managing Frontend Trek Details template [yatravanta_details] (Tabs, Accordions)
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	//    of below it. Height is measured (not hardcoded) since it varies by
 	//    breakpoint and whenever the header is edited in Elementor.
 	// ==========================================
-	function trekpilot_sync_sticky_header_offset() {
+	function yatravanta_sync_sticky_header_offset() {
 		const header = document.querySelector('header[data-elementor-type="header"]');
 		let isSticky = false;
 
@@ -28,22 +28,22 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 
 		const offset = isSticky ? Math.round(header.getBoundingClientRect().height) : 0;
-		document.documentElement.style.setProperty('--trekpilot-header-offset', offset + 'px');
+		document.documentElement.style.setProperty('--yatravanta-header-offset', offset + 'px');
 	}
-	trekpilot_sync_sticky_header_offset();
-	window.addEventListener('resize', trekpilot_sync_sticky_header_offset);
-	window.addEventListener('load', trekpilot_sync_sticky_header_offset);
+	yatravanta_sync_sticky_header_offset();
+	window.addEventListener('resize', yatravanta_sync_sticky_header_offset);
+	window.addEventListener('load', yatravanta_sync_sticky_header_offset);
 
 	// ==========================================
 	// 1. Tab switching: click a nav tab, only that section shows
 	// ==========================================
-	const tabLinks = document.querySelectorAll('.trekpilot-details-tabs-nav a');
-	const tabPanels = document.querySelectorAll('.trekpilot-details-tab-panel');
+	const tabLinks = document.querySelectorAll('.yatravanta-details-tabs-nav a');
+	const tabPanels = document.querySelectorAll('.yatravanta-details-tab-panel');
 
 	if (tabLinks.length > 0 && tabPanels.length > 0) {
 		// Show an arrow/fade on the right while more tabs are hidden beyond the visible edge.
-		const tabsNav = tabLinks[0].closest('.trekpilot-details-tabs-nav');
-		const tabsWrapper = tabLinks[0].closest('.trekpilot-details-tabs-wrapper');
+		const tabsNav = tabLinks[0].closest('.yatravanta-details-tabs-nav');
+		const tabsWrapper = tabLinks[0].closest('.yatravanta-details-tabs-wrapper');
 		function updateTabsHint() {
 			if (!tabsNav || !tabsWrapper) { return; }
 			const more = tabsNav.scrollWidth - tabsNav.clientWidth - tabsNav.scrollLeft > 4;
@@ -62,9 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 				// If the tab bar has been scrolled out of view, a shorter tab would leave the
 				// reader stranded below its content; bring the bar back to the top first.
-				const nav = this.closest('.trekpilot-details-tabs-nav');
+				const nav = this.closest('.yatravanta-details-tabs-nav');
 				if (nav) {
-					const stickyOffset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--trekpilot-header-offset'), 10) || 0;
+					const stickyOffset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--yatravanta-header-offset'), 10) || 0;
 					const navTop = nav.getBoundingClientRect().top;
 					if (navTop < stickyOffset) {
 						window.scrollBy({ top: navTop - stickyOffset - 10, left: 0, behavior: 'instant' });
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			});
 		});
 
-		document.querySelectorAll('.trekpilot-policy-modal').forEach(function(modal) {
+		document.querySelectorAll('.yatravanta-policy-modal').forEach(function(modal) {
 			// Fixed-position popups inside a transformed/filtered ancestor are positioned against
 			// that ancestor, not the screen (they showed at the bottom on mobile). Hoist to <body>.
 			if (modal.parentNode !== document.body) {
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		document.addEventListener('keydown', function(e) {
 			if (e.key === 'Escape') {
-				document.querySelectorAll('.trekpilot-policy-modal.active').forEach(closePolicyModal);
+				document.querySelectorAll('.yatravanta-policy-modal.active').forEach(closePolicyModal);
 			}
 		});
 	}
@@ -129,15 +129,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	// ==========================================
 	// 2. Accordion logic (FAQs)
 	// ==========================================
-	const accordionTriggers = document.querySelectorAll('.trekpilot-accordion-trigger');
+	const accordionTriggers = document.querySelectorAll('.yatravanta-accordion-trigger');
 
 	if (accordionTriggers.length > 0) {
 		accordionTriggers.forEach(function(trigger) {
 			trigger.addEventListener('click', function(e) {
 				e.preventDefault();
 
-				const accordionItem = this.closest('.trekpilot-accordion-item');
-				const content = accordionItem.querySelector('.trekpilot-accordion-content');
+				const accordionItem = this.closest('.yatravanta-accordion-item');
+				const content = accordionItem.querySelector('.yatravanta-accordion-content');
 
 				if (accordionItem.classList.contains('active')) {
 					// Collapse
@@ -145,10 +145,10 @@ document.addEventListener('DOMContentLoaded', function() {
 					content.style.maxHeight = '0px';
 				} else {
 					// Expand (collapse other active items first if desired)
-					const activeSiblings = accordionItem.parentElement.querySelectorAll('.trekpilot-accordion-item.active');
+					const activeSiblings = accordionItem.parentElement.querySelectorAll('.yatravanta-accordion-item.active');
 					activeSiblings.forEach(item => {
 						item.classList.remove('active');
-						item.querySelector('.trekpilot-accordion-content').style.maxHeight = '0px';
+						item.querySelector('.yatravanta-accordion-content').style.maxHeight = '0px';
 					});
 
 					accordionItem.classList.add('active');
@@ -165,15 +165,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	// AJAX (innerHTML swap) whenever the departure city/date changes, which
 	// would detach any listeners bound directly to the day-toggle buttons.
 	document.addEventListener('click', function(e) {
-		const toggleBtn = e.target.closest('.trekpilot-day-toggle-btn');
+		const toggleBtn = e.target.closest('.yatravanta-day-toggle-btn');
 		if (!toggleBtn) return;
 		e.preventDefault();
 
-		const dayBlock = toggleBtn.closest('.trekpilot-timeline-day-block');
-		const eventsEl = dayBlock ? dayBlock.querySelector('.trekpilot-timeline-events') : null;
+		const dayBlock = toggleBtn.closest('.yatravanta-timeline-day-block');
+		const eventsEl = dayBlock ? dayBlock.querySelector('.yatravanta-timeline-events') : null;
 		if (!eventsEl) return;
 
-		const label = toggleBtn.querySelector('.trekpilot-toggle-label');
+		const label = toggleBtn.querySelector('.yatravanta-toggle-label');
 		const isExpanded = dayBlock.classList.contains('expanded');
 
 		if (isExpanded) {

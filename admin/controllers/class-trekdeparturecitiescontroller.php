@@ -2,12 +2,12 @@
 /**
  * Controller for managing Departure Cities.
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Admin/Controllers
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Admin/Controllers
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Admin\Controllers;
+namespace YatraVanta\Admin\Controllers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -26,11 +26,11 @@ class TrekDepartureCitiesController {
 		add_action( 'add_meta_boxes', array( $this, 'register_meta_box' ) );
 
 		// Register AJAX endpoints.
-		add_action( 'wp_ajax_trekpilot_get_departure_cities', array( $this, 'ajax_get_cities' ) );
-		add_action( 'wp_ajax_trekpilot_save_departure_city', array( $this, 'ajax_save_city' ) );
-		add_action( 'wp_ajax_trekpilot_delete_departure_city', array( $this, 'ajax_delete_city' ) );
-		add_action( 'wp_ajax_trekpilot_duplicate_departure_city', array( $this, 'ajax_duplicate_city' ) );
-		add_action( 'wp_ajax_trekpilot_reorder_departure_cities', array( $this, 'ajax_reorder_cities' ) );
+		add_action( 'wp_ajax_yatravanta_get_departure_cities', array( $this, 'ajax_get_cities' ) );
+		add_action( 'wp_ajax_yatravanta_save_departure_city', array( $this, 'ajax_save_city' ) );
+		add_action( 'wp_ajax_yatravanta_delete_departure_city', array( $this, 'ajax_delete_city' ) );
+		add_action( 'wp_ajax_yatravanta_duplicate_departure_city', array( $this, 'ajax_duplicate_city' ) );
+		add_action( 'wp_ajax_yatravanta_reorder_departure_cities', array( $this, 'ajax_reorder_cities' ) );
 
 		// Load CSS/JS.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
@@ -41,10 +41,10 @@ class TrekDepartureCitiesController {
 	 */
 	public function register_meta_box() {
 		add_meta_box(
-			'trekpilot_trek_departure_cities_meta_box',
-			__( 'Departure Cities Manager', 'trekpilot' ),
+			'yatravanta_trek_departure_cities_meta_box',
+			__( 'Departure Cities Manager', 'yatravanta-trek-booking-manager' ),
 			array( $this, 'render_meta_box' ),
-			'trekpilot_trek',
+			'yatravanta_trek',
 			'normal',
 			'high'
 		);
@@ -58,43 +58,43 @@ class TrekDepartureCitiesController {
 	public function enqueue_assets() {
 		global $post_type;
 
-		if ( 'trekpilot_trek' !== $post_type ) {
+		if ( 'yatravanta_trek' !== $post_type ) {
 			return;
 		}
 
 		wp_enqueue_style(
-			'trekpilot-admin-departures-css',
-			TREKPILOT_URL . 'assets/admin/css/admin-departures.css',
+			'yatravanta-admin-departures-css',
+			YATRAVANTA_URL . 'assets/admin/css/admin-departures.css',
 			array(),
-			\TrekPilot\Includes\Plugin::asset_version( 'assets/admin/css/admin-departures.css' )
+			\YatraVanta\Includes\Plugin::asset_version( 'assets/admin/css/admin-departures.css' )
 		);
 
-		wp_enqueue_style( 'flatpickr-css', TREKPILOT_URL . 'assets/vendor/flatpickr/flatpickr.min.css', array(), '4.6.13' );
-		wp_enqueue_script( 'flatpickr-js', TREKPILOT_URL . 'assets/vendor/flatpickr/flatpickr.min.js', array(), '4.6.13', true );
+		wp_enqueue_style( 'flatpickr-css', YATRAVANTA_URL . 'assets/vendor/flatpickr/flatpickr.min.css', array(), '4.6.13' );
+		wp_enqueue_script( 'flatpickr-js', YATRAVANTA_URL . 'assets/vendor/flatpickr/flatpickr.min.js', array(), '4.6.13', true );
 
 		wp_enqueue_script(
-			'trekpilot-admin-departures-js',
-			TREKPILOT_URL . 'assets/admin/js/admin-departures.js',
+			'yatravanta-admin-departures-js',
+			YATRAVANTA_URL . 'assets/admin/js/admin-departures.js',
 			array(),
-			\TrekPilot\Includes\Plugin::asset_version( 'assets/admin/js/admin-departures.js' ),
+			\YatraVanta\Includes\Plugin::asset_version( 'assets/admin/js/admin-departures.js' ),
 			true
 		);
 
 		wp_enqueue_script(
-			'trekpilot-admin-pickups-js',
-			TREKPILOT_URL . 'assets/admin/js/admin-pickups.js',
-			array( 'trekpilot-admin-departures-js' ),
-			\TrekPilot\Includes\Plugin::asset_version( 'assets/admin/js/admin-pickups.js' ),
+			'yatravanta-admin-pickups-js',
+			YATRAVANTA_URL . 'assets/admin/js/admin-pickups.js',
+			array( 'yatravanta-admin-departures-js' ),
+			\YatraVanta\Includes\Plugin::asset_version( 'assets/admin/js/admin-pickups.js' ),
 			true
 		);
 
 		// Localize script with nonce and AJAX URL.
 		wp_localize_script(
-			'trekpilot-admin-departures-js',
-			'trekpilot_departures_obj',
+			'yatravanta-admin-departures-js',
+			'yatravanta_departures_obj',
 			array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( 'trekpilot_departures_nonce_action' ),
+				'nonce'    => wp_create_nonce( 'yatravanta_departures_nonce_action' ),
 			)
 		);
 	}
@@ -122,7 +122,7 @@ class TrekDepartureCitiesController {
 		global $wpdb;
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery
 		$trek_id = $wpdb->get_var(
-			$wpdb->prepare( "SELECT trek_id FROM {$wpdb->prefix}trekpilot_departure_cities WHERE id = %d", $city_id )
+			$wpdb->prepare( "SELECT trek_id FROM {$wpdb->prefix}yatravanta_departure_cities WHERE id = %d", $city_id )
 		);
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery
 		return (int) $trek_id;
@@ -132,18 +132,18 @@ class TrekDepartureCitiesController {
 	 * AJAX: Get list of departure cities for a trek.
 	 */
 	public function ajax_get_cities() {
-		check_ajax_referer( 'trekpilot_departures_nonce_action', 'nonce' );
+		check_ajax_referer( 'yatravanta_departures_nonce_action', 'nonce' );
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		$trek_id = isset( $_GET['trek_id'] ) ? intval( $_GET['trek_id'] ) : 0;
 		if ( ! $trek_id ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid Trek ID', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Invalid Trek ID', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'trekpilot_departure_cities';
+		$table_name = $wpdb->prefix . 'yatravanta_departure_cities';
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$results = $wpdb->get_results(
@@ -168,10 +168,10 @@ class TrekDepartureCitiesController {
 		$prefix = $wpdb->prefix;
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-		$dates     = $wpdb->get_results( $wpdb->prepare( "SELECT city_id, COUNT(*) AS n FROM {$prefix}trekpilot_departure_dates WHERE trek_id = %d AND status != 'cancelled' AND departure_date >= CURDATE() GROUP BY city_id", $trek_id ), OBJECT_K );
-		$pickups   = $wpdb->get_results( $wpdb->prepare( "SELECT city_id, COUNT(*) AS n FROM {$prefix}trekpilot_pickup_points WHERE trek_id = %d GROUP BY city_id", $trek_id ), OBJECT_K );
-		$itinerary = $wpdb->get_results( $wpdb->prepare( "SELECT city_id, COUNT(*) AS n FROM {$prefix}trekpilot_itineraries WHERE trek_id = %d GROUP BY city_id", $trek_id ), OBJECT_K );
-		$pricing   = $wpdb->get_col( $wpdb->prepare( "SELECT DISTINCT city_id FROM {$prefix}trekpilot_pricing WHERE trek_id = %d AND date_id = 0", $trek_id ) );
+		$dates     = $wpdb->get_results( $wpdb->prepare( "SELECT city_id, COUNT(*) AS n FROM {$prefix}yatravanta_departure_dates WHERE trek_id = %d AND status != 'cancelled' AND departure_date >= CURDATE() GROUP BY city_id", $trek_id ), OBJECT_K );
+		$pickups   = $wpdb->get_results( $wpdb->prepare( "SELECT city_id, COUNT(*) AS n FROM {$prefix}yatravanta_pickup_points WHERE trek_id = %d GROUP BY city_id", $trek_id ), OBJECT_K );
+		$itinerary = $wpdb->get_results( $wpdb->prepare( "SELECT city_id, COUNT(*) AS n FROM {$prefix}yatravanta_itineraries WHERE trek_id = %d GROUP BY city_id", $trek_id ), OBJECT_K );
+		$pricing   = $wpdb->get_col( $wpdb->prepare( "SELECT DISTINCT city_id FROM {$prefix}yatravanta_pricing WHERE trek_id = %d AND date_id = 0", $trek_id ) );
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 
 		foreach ( $cities as &$city ) {
@@ -192,14 +192,14 @@ class TrekDepartureCitiesController {
 	 * AJAX: Add or Edit a departure city.
 	 */
 	public function ajax_save_city() {
-		check_ajax_referer( 'trekpilot_departures_nonce_action', 'nonce' );
+		check_ajax_referer( 'yatravanta_departures_nonce_action', 'nonce' );
 
 		$id      = isset( $_POST['id'] ) ? intval( wp_unslash( $_POST['id'] ) ) : 0;
 		$trek_id = isset( $_POST['trek_id'] ) ? intval( wp_unslash( $_POST['trek_id'] ) ) : 0;
 
 		$owner_trek_id = $id ? $this->get_city_trek_id( $id ) : $trek_id;
 		if ( ! $owner_trek_id || ! current_user_can( 'edit_post', $owner_trek_id ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		$city_name        = isset( $_POST['city_name'] ) ? sanitize_text_field( wp_unslash( $_POST['city_name'] ) ) : '';
@@ -212,20 +212,20 @@ class TrekDepartureCitiesController {
 		$status           = isset( $_POST['status'] ) ? sanitize_text_field( wp_unslash( $_POST['status'] ) ) : 'active';
 
 		if ( empty( $city_name ) || ! $trek_id ) {
-			wp_send_json_error( array( 'message' => __( 'City name is required', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'City name is required', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		if ( $base_price < 0 || $offer_price < 0 ) {
-			wp_send_json_error( array( 'message' => __( 'Prices cannot be negative.', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Prices cannot be negative.', 'yatravanta-trek-booking-manager' ) ) );
 		}
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce verified at the top of this handler.
 		if ( isset( $_POST['booking_deadline'] ) && ! preg_match( '/^\d+$/', trim( sanitize_text_field( wp_unslash( $_POST['booking_deadline'] ) ) ) ) ) {
-			wp_send_json_error( array( 'message' => __( 'Booking deadline must be a whole number of days.', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Booking deadline must be a whole number of days.', 'yatravanta-trek-booking-manager' ) ) );
 		}
 		$booking_deadline = max( 0, $booking_deadline );
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'trekpilot_departure_cities';
+		$table_name = $wpdb->prefix . 'yatravanta_departure_cities';
 
 		$data = array(
 			'trek_id'          => $trek_id,
@@ -250,11 +250,11 @@ class TrekDepartureCitiesController {
 				array( '%d' )
 			);
 			if ( false === $updated ) {
-				wp_send_json_error( array( 'message' => __( 'Failed to update city', 'trekpilot' ) ) );
+				wp_send_json_error( array( 'message' => __( 'Failed to update city', 'yatravanta-trek-booking-manager' ) ) );
 			}
 			wp_send_json_success(
 				array(
-					'message' => __( 'City updated successfully', 'trekpilot' ),
+					'message' => __( 'City updated successfully', 'yatravanta-trek-booking-manager' ),
 					'id'      => $id,
 				)
 			);
@@ -272,12 +272,12 @@ class TrekDepartureCitiesController {
 				array( '%d', '%s', '%f', '%f', '%s', '%s', '%s', '%d', '%s', '%d' )
 			);
 			if ( ! $inserted ) {
-				wp_send_json_error( array( 'message' => __( 'Failed to insert city', 'trekpilot' ) ) );
+				wp_send_json_error( array( 'message' => __( 'Failed to insert city', 'yatravanta-trek-booking-manager' ) ) );
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 			wp_send_json_success(
 				array(
-					'message' => __( 'City added successfully', 'trekpilot' ),
+					'message' => __( 'City added successfully', 'yatravanta-trek-booking-manager' ),
 					'id'      => $wpdb->insert_id,
 				)
 			);
@@ -288,58 +288,58 @@ class TrekDepartureCitiesController {
 	 * AJAX: Delete departure city.
 	 */
 	public function ajax_delete_city() {
-		check_ajax_referer( 'trekpilot_departures_nonce_action', 'nonce' );
+		check_ajax_referer( 'yatravanta_departures_nonce_action', 'nonce' );
 
 		$id = isset( $_POST['id'] ) ? intval( wp_unslash( $_POST['id'] ) ) : 0;
 		if ( ! $id ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid City ID', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Invalid City ID', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		$trek_id = $this->get_city_trek_id( $id );
 		if ( ! $trek_id || ! current_user_can( 'edit_post', $trek_id ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		global $wpdb;
 
 		// Delete city.
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery
-		$wpdb->delete( $wpdb->prefix . 'trekpilot_departure_cities', array( 'id' => $id ), array( '%d' ) );
+		$wpdb->delete( $wpdb->prefix . 'yatravanta_departure_cities', array( 'id' => $id ), array( '%d' ) );
 
 		// Delete child tables (dates, itineraries, etc. cascade delete is simulated here manually).
-		$wpdb->delete( $wpdb->prefix . 'trekpilot_departure_dates', array( 'city_id' => $id ), array( '%d' ) );
-		$wpdb->delete( $wpdb->prefix . 'trekpilot_itineraries', array( 'city_id' => $id ), array( '%d' ) );
-		$wpdb->delete( $wpdb->prefix . 'trekpilot_pickup_points', array( 'city_id' => $id ), array( '%d' ) );
-		$wpdb->delete( $wpdb->prefix . 'trekpilot_pricing', array( 'city_id' => $id ), array( '%d' ) );
+		$wpdb->delete( $wpdb->prefix . 'yatravanta_departure_dates', array( 'city_id' => $id ), array( '%d' ) );
+		$wpdb->delete( $wpdb->prefix . 'yatravanta_itineraries', array( 'city_id' => $id ), array( '%d' ) );
+		$wpdb->delete( $wpdb->prefix . 'yatravanta_pickup_points', array( 'city_id' => $id ), array( '%d' ) );
+		$wpdb->delete( $wpdb->prefix . 'yatravanta_pricing', array( 'city_id' => $id ), array( '%d' ) );
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery
 
-		wp_send_json_success( array( 'message' => __( 'City deleted successfully', 'trekpilot' ) ) );
+		wp_send_json_success( array( 'message' => __( 'City deleted successfully', 'yatravanta-trek-booking-manager' ) ) );
 	}
 
 	/**
 	 * AJAX: Duplicate departure city.
 	 */
 	public function ajax_duplicate_city() {
-		check_ajax_referer( 'trekpilot_departures_nonce_action', 'nonce' );
+		check_ajax_referer( 'yatravanta_departures_nonce_action', 'nonce' );
 
 		$id = isset( $_POST['id'] ) ? intval( wp_unslash( $_POST['id'] ) ) : 0;
 		if ( ! $id ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid City ID', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Invalid City ID', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		$trek_id = $this->get_city_trek_id( $id );
 		if ( ! $trek_id || ! current_user_can( 'edit_post', $trek_id ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'trekpilot_departure_cities';
+		$table_name = $wpdb->prefix . 'yatravanta_departure_cities';
 
 		// Get city to clone.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$city = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE id = %d", $id ), ARRAY_A );
 		if ( ! $city ) {
-			wp_send_json_error( array( 'message' => __( 'City not found', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'City not found', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		// Insert duplicate city with modified name.
@@ -352,7 +352,7 @@ class TrekDepartureCitiesController {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$inserted = $wpdb->insert( $table_name, $city );
 		if ( ! $inserted ) {
-			wp_send_json_error( array( 'message' => __( 'Failed to duplicate city', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Failed to duplicate city', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
@@ -360,63 +360,63 @@ class TrekDepartureCitiesController {
 
 		// Duplicate child itineraries.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-		$itineraries = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}trekpilot_itineraries WHERE city_id = %d", $id ), ARRAY_A );
+		$itineraries = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}yatravanta_itineraries WHERE city_id = %d", $id ), ARRAY_A );
 		foreach ( $itineraries as $it ) {
 			$old_it_id = $it['id'];
 			unset( $it['id'] );
 			$it['city_id'] = $new_city_id;
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-			$wpdb->insert( $wpdb->prefix . 'trekpilot_itineraries', $it );
+			$wpdb->insert( $wpdb->prefix . 'yatravanta_itineraries', $it );
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 			$new_it_id = $wpdb->insert_id;
 
 			// Duplicate itinerary items.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-			$it_items = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}trekpilot_itinerary_items WHERE itinerary_id = %d", $old_it_id ), ARRAY_A );
+			$it_items = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}yatravanta_itinerary_items WHERE itinerary_id = %d", $old_it_id ), ARRAY_A );
 			foreach ( $it_items as $item ) {
 				unset( $item['id'] );
 				$item['itinerary_id'] = $new_it_id;
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-				$wpdb->insert( $wpdb->prefix . 'trekpilot_itinerary_items', $item );
+				$wpdb->insert( $wpdb->prefix . 'yatravanta_itinerary_items', $item );
 			}
 		}
 
 		// Duplicate child pickup points.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-		$pickups = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}trekpilot_pickup_points WHERE city_id = %d", $id ), ARRAY_A );
+		$pickups = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}yatravanta_pickup_points WHERE city_id = %d", $id ), ARRAY_A );
 		foreach ( $pickups as $pick ) {
 			unset( $pick['id'] );
 			$pick['city_id'] = $new_city_id;
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-			$wpdb->insert( $wpdb->prefix . 'trekpilot_pickup_points', $pick );
+			$wpdb->insert( $wpdb->prefix . 'yatravanta_pickup_points', $pick );
 		}
 
 		// Duplicate child dates and availability.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-		$dates = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}trekpilot_departure_dates WHERE city_id = %d", $id ), ARRAY_A );
+		$dates = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}yatravanta_departure_dates WHERE city_id = %d", $id ), ARRAY_A );
 		foreach ( $dates as $date ) {
 			$old_date_id = $date['id'];
 			unset( $date['id'] );
 			$date['city_id'] = $new_city_id;
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-			$wpdb->insert( $wpdb->prefix . 'trekpilot_departure_dates', $date );
+			$wpdb->insert( $wpdb->prefix . 'yatravanta_departure_dates', $date );
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 			$new_date_id = $wpdb->insert_id;
 
 			// Duplicate availability.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-			$avail = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}trekpilot_availability WHERE date_id = %d", $old_date_id ), ARRAY_A );
+			$avail = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}yatravanta_availability WHERE date_id = %d", $old_date_id ), ARRAY_A );
 			if ( $avail ) {
 				unset( $avail['id'] );
 				$avail['date_id'] = $new_date_id;
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-				$wpdb->insert( $wpdb->prefix . 'trekpilot_availability', $avail );
+				$wpdb->insert( $wpdb->prefix . 'yatravanta_availability', $avail );
 			}
 		}
 
 		// Duplicate pricing rules.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-		$prices = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}trekpilot_pricing WHERE city_id = %d", $id ), ARRAY_A );
+		$prices = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}yatravanta_pricing WHERE city_id = %d", $id ), ARRAY_A );
 		foreach ( $prices as $price ) {
 			unset( $price['id'] );
 			$price['city_id'] = $new_city_id;
@@ -425,42 +425,42 @@ class TrekDepartureCitiesController {
 				// Find the corresponding cloned date.
 				// This is a simple fallback: find the date with same value in the new city.
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-				$old_date = $wpdb->get_var( $wpdb->prepare( "SELECT departure_date FROM {$wpdb->prefix}trekpilot_departure_dates WHERE id = %d", $price['date_id'] ) );
+				$old_date = $wpdb->get_var( $wpdb->prepare( "SELECT departure_date FROM {$wpdb->prefix}yatravanta_departure_dates WHERE id = %d", $price['date_id'] ) );
 				if ( $old_date ) {
 					// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-					$new_date_id      = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$wpdb->prefix}trekpilot_departure_dates WHERE city_id = %d AND departure_date = %s", $new_city_id, $old_date ) );
+					$new_date_id      = $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$wpdb->prefix}yatravanta_departure_dates WHERE city_id = %d AND departure_date = %s", $new_city_id, $old_date ) );
 					$price['date_id'] = $new_date_id ? $new_date_id : 0;
 				}
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-			$wpdb->insert( $wpdb->prefix . 'trekpilot_pricing', $price );
+			$wpdb->insert( $wpdb->prefix . 'yatravanta_pricing', $price );
 		}
 
-		wp_send_json_success( array( 'message' => __( 'City and all scheduled settings duplicated successfully!', 'trekpilot' ) ) );
+		wp_send_json_success( array( 'message' => __( 'City and all scheduled settings duplicated successfully!', 'yatravanta-trek-booking-manager' ) ) );
 	}
 
 	/**
 	 * AJAX: Save city ordering.
 	 */
 	public function ajax_reorder_cities() {
-		check_ajax_referer( 'trekpilot_departures_nonce_action', 'nonce' );
+		check_ajax_referer( 'yatravanta_departures_nonce_action', 'nonce' );
 
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$raw_order = isset( $_POST['order'] ) ? wp_unslash( $_POST['order'] ) : array();
 		$order     = is_array( $raw_order ) ? array_map( 'intval', $raw_order ) : array();
 		if ( empty( $order ) || ! is_array( $order ) ) {
-			wp_send_json_error( array( 'message' => __( 'No order layout received', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'No order layout received', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		foreach ( $order as $id ) {
 			$trek_id = $this->get_city_trek_id( $id );
 			if ( ! $trek_id || ! current_user_can( 'edit_post', $trek_id ) ) {
-				wp_send_json_error( array( 'message' => __( 'Unauthorized', 'trekpilot' ) ) );
+				wp_send_json_error( array( 'message' => __( 'Unauthorized', 'yatravanta-trek-booking-manager' ) ) );
 			}
 		}
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'trekpilot_departure_cities';
+		$table_name = $wpdb->prefix . 'yatravanta_departure_cities';
 
 		foreach ( $order as $menu_order => $id ) {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
@@ -473,6 +473,6 @@ class TrekDepartureCitiesController {
 			);
 		}
 
-		wp_send_json_success( array( 'message' => __( 'Ordering updated successfully', 'trekpilot' ) ) );
+		wp_send_json_success( array( 'message' => __( 'Ordering updated successfully', 'yatravanta-trek-booking-manager' ) ) );
 	}
 }

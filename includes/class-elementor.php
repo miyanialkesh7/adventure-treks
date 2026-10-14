@@ -2,12 +2,12 @@
 /**
  * Elementor integration bootstrap class.
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Includes
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Includes
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Includes;
+namespace YatraVanta\Includes;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -48,9 +48,9 @@ class Elementor {
 	 */
 	public function register_category( $elements_manager ) {
 		$elements_manager->add_category(
-			'trekpilot',
+			'yatravanta-trek-booking-manager',
 			array(
-				'title' => esc_html__( 'TrekPilot', 'trekpilot' ),
+				'title' => esc_html__( 'YatraVanta Trek Booking Manager', 'yatravanta-trek-booking-manager' ),
 				'icon'  => 'fa fa-mountain',
 			)
 		);
@@ -64,13 +64,13 @@ class Elementor {
 	 */
 	public function register_widgets( $widgets_manager ) {
 		// Include widget files.
-		require_once TREKPILOT_PATH . 'includes/elementor/widgets/class-trekdetailswidget.php';
-		require_once TREKPILOT_PATH . 'includes/elementor/widgets/class-trekbookingwidget.php';
-		require_once TREKPILOT_PATH . 'includes/elementor/widgets/class-trekarchivewidget.php';
+		require_once YATRAVANTA_PATH . 'includes/elementor/widgets/class-trekdetailswidget.php';
+		require_once YATRAVANTA_PATH . 'includes/elementor/widgets/class-trekbookingwidget.php';
+		require_once YATRAVANTA_PATH . 'includes/elementor/widgets/class-trekarchivewidget.php';
 
 		// Instantiate and register.
-		$widgets_manager->register( new \TrekPilot\Includes\Elementor\Widgets\TrekDetailsWidget() );
-		$widgets_manager->register( new \TrekPilot\Includes\Elementor\Widgets\TrekBookingWidget() );
-		$widgets_manager->register( new \TrekPilot\Includes\Elementor\Widgets\TrekArchiveWidget() );
+		$widgets_manager->register( new \YatraVanta\Includes\Elementor\Widgets\TrekDetailsWidget() );
+		$widgets_manager->register( new \YatraVanta\Includes\Elementor\Widgets\TrekBookingWidget() );
+		$widgets_manager->register( new \YatraVanta\Includes\Elementor\Widgets\TrekArchiveWidget() );
 	}
 }

@@ -5,12 +5,12 @@
  * Shows, at a glance, the trek's key specs, its departure cities, starting price, next departure,
  * seats left, bookings and whether the setup is complete.
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Admin/Controllers
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Admin/Controllers
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Admin\Controllers;
+namespace YatraVanta\Admin\Controllers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -32,13 +32,13 @@ class TrekListController {
 	 * Constructor: hook the list table.
 	 */
 	public function __construct() {
-		add_filter( 'manage_trekpilot_trek_posts_columns', array( $this, 'add_columns' ) );
-		add_action( 'manage_trekpilot_trek_posts_custom_column', array( $this, 'render_column' ), 10, 2 );
+		add_filter( 'manage_yatravanta_trek_posts_columns', array( $this, 'add_columns' ) );
+		add_action( 'manage_yatravanta_trek_posts_custom_column', array( $this, 'render_column' ), 10, 2 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 	}
 
 	/**
-	 * Insert the TrekPilot columns after the title.
+	 * Insert the YatraVanta Trek Booking Manager columns after the title.
 	 *
 	 * @param array $columns Existing columns.
 	 * @return array
@@ -48,13 +48,13 @@ class TrekListController {
 		foreach ( $columns as $key => $label ) {
 			$new[ $key ] = $label;
 			if ( 'title' === $key ) {
-				$new['trekpilot_specs']    = __( 'Details', 'trekpilot' );
-				$new['trekpilot_cities']   = __( 'Departure Cities', 'trekpilot' );
-				$new['trekpilot_price']    = __( 'Starting Price', 'trekpilot' );
-				$new['trekpilot_next']     = __( 'Next Departure', 'trekpilot' );
-				$new['trekpilot_seats']    = __( 'Seats Left', 'trekpilot' );
-				$new['trekpilot_bookings'] = __( 'Bookings', 'trekpilot' );
-				$new['trekpilot_setup']    = __( 'Setup', 'trekpilot' );
+				$new['yatravanta_specs']    = __( 'Details', 'yatravanta-trek-booking-manager' );
+				$new['yatravanta_cities']   = __( 'Departure Cities', 'yatravanta-trek-booking-manager' );
+				$new['yatravanta_price']    = __( 'Starting Price', 'yatravanta-trek-booking-manager' );
+				$new['yatravanta_next']     = __( 'Next Departure', 'yatravanta-trek-booking-manager' );
+				$new['yatravanta_seats']    = __( 'Seats Left', 'yatravanta-trek-booking-manager' );
+				$new['yatravanta_bookings'] = __( 'Bookings', 'yatravanta-trek-booking-manager' );
+				$new['yatravanta_setup']    = __( 'Setup', 'yatravanta-trek-booking-manager' );
 			}
 		}
 		return $new;
@@ -68,18 +68,18 @@ class TrekListController {
 	 */
 	public function enqueue_styles( $hook ) {
 		$screen = get_current_screen();
-		if ( 'edit.php' !== $hook || ! $screen || 'edit-trekpilot_trek' !== $screen->id ) {
+		if ( 'edit.php' !== $hook || ! $screen || 'edit-yatravanta_trek' !== $screen->id ) {
 			return;
 		}
 
-		wp_register_style( 'trekpilot-admin-trek-list', false, array(), TREKPILOT_VERSION );
-		wp_enqueue_style( 'trekpilot-admin-trek-list' );
+		wp_register_style( 'yatravanta-admin-trek-list', false, array(), YATRAVANTA_VERSION );
+		wp_enqueue_style( 'yatravanta-admin-trek-list' );
 		wp_add_inline_style(
-			'trekpilot-admin-trek-list',
-			'.post-type-trekpilot_trek .wp-list-table{table-layout:auto}.post-type-trekpilot_trek .column-title{min-width:200px}.column-trekpilot_setup{min-width:170px}.column-trekpilot_cities{min-width:120px}.column-trekpilot_specs{min-width:130px}'
-			. '.trekpilot-list-muted{color:#787c82}.trekpilot-list-pill{display:inline-block;margin:0 4px 4px 0;padding:0 8px;border-radius:10px;font-size:11px;line-height:18px;background:#f0f0f1;color:#3c434a}'
-			. '.trekpilot-list-ok{background:#e6f4ea;color:#1e6b34}.trekpilot-list-warn{background:#fff4e0;color:#8a5a00}.trekpilot-list-bad{background:#fde8e8;color:#b32d2e}'
-			. '.trekpilot-list-todo{display:block;margin:2px 0 0;font-size:12px;color:#8a5a00}.trekpilot-list-spec{display:block;line-height:1.5}'
+			'yatravanta-admin-trek-list',
+			'.post-type-yatravanta_trek .wp-list-table{table-layout:auto}.post-type-yatravanta_trek .column-title{min-width:200px}.column-yatravanta_setup{min-width:170px}.column-yatravanta_cities{min-width:120px}.column-yatravanta_specs{min-width:130px}'
+			. '.yatravanta-list-muted{color:#787c82}.yatravanta-list-pill{display:inline-block;margin:0 4px 4px 0;padding:0 8px;border-radius:10px;font-size:11px;line-height:18px;background:#f0f0f1;color:#3c434a}'
+			. '.yatravanta-list-ok{background:#e6f4ea;color:#1e6b34}.yatravanta-list-warn{background:#fff4e0;color:#8a5a00}.yatravanta-list-bad{background:#fde8e8;color:#b32d2e}'
+			. '.yatravanta-list-todo{display:block;margin:2px 0 0;font-size:12px;color:#8a5a00}.yatravanta-list-spec{display:block;line-height:1.5}'
 		);
 	}
 
@@ -104,12 +104,12 @@ class TrekListController {
 		$placeholders = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, PluginCheck.Security.DirectDB.UnescapedDBParameter
-		$specs    = $wpdb->get_results( $wpdb->prepare( "SELECT post_id, difficulty, duration, region FROM {$prefix}trekpilot_treks WHERE post_id IN ($placeholders)", $ids ), OBJECT_K );
-		$cities   = $wpdb->get_results( $wpdb->prepare( "SELECT id, trek_id, city_name, base_price, offer_price, status FROM {$prefix}trekpilot_departure_cities WHERE trek_id IN ($placeholders) ORDER BY menu_order ASC, id ASC", $ids ) );
-		$dates    = $wpdb->get_results( $wpdb->prepare( "SELECT d.trek_id, d.city_id, MIN(d.departure_date) AS next_date, COALESCE(SUM(a.available_seats), 0) AS seats FROM {$prefix}trekpilot_departure_dates d LEFT JOIN {$prefix}trekpilot_availability a ON a.date_id = d.id WHERE d.trek_id IN ($placeholders) AND d.status != 'cancelled' AND d.departure_date >= CURDATE() GROUP BY d.trek_id, d.city_id", $ids ) );
-		$pickups  = $wpdb->get_results( $wpdb->prepare( "SELECT trek_id, city_id, COUNT(*) AS n FROM {$prefix}trekpilot_pickup_points WHERE trek_id IN ($placeholders) GROUP BY trek_id, city_id", $ids ) );
-		$itins    = $wpdb->get_results( $wpdb->prepare( "SELECT trek_id, city_id, COUNT(*) AS n FROM {$prefix}trekpilot_itineraries WHERE trek_id IN ($placeholders) GROUP BY trek_id, city_id", $ids ) );
-		$bookings = $wpdb->get_results( $wpdb->prepare( "SELECT trek_id, COUNT(*) AS total, SUM(status = 'pending') AS pending FROM {$prefix}trekpilot_bookings WHERE trek_id IN ($placeholders) AND trashed_at IS NULL GROUP BY trek_id", $ids ), OBJECT_K );
+		$specs    = $wpdb->get_results( $wpdb->prepare( "SELECT post_id, difficulty, duration, region FROM {$prefix}yatravanta_treks WHERE post_id IN ($placeholders)", $ids ), OBJECT_K );
+		$cities   = $wpdb->get_results( $wpdb->prepare( "SELECT id, trek_id, city_name, base_price, offer_price, status FROM {$prefix}yatravanta_departure_cities WHERE trek_id IN ($placeholders) ORDER BY menu_order ASC, id ASC", $ids ) );
+		$dates    = $wpdb->get_results( $wpdb->prepare( "SELECT d.trek_id, d.city_id, MIN(d.departure_date) AS next_date, COALESCE(SUM(a.available_seats), 0) AS seats FROM {$prefix}yatravanta_departure_dates d LEFT JOIN {$prefix}yatravanta_availability a ON a.date_id = d.id WHERE d.trek_id IN ($placeholders) AND d.status != 'cancelled' AND d.departure_date >= CURDATE() GROUP BY d.trek_id, d.city_id", $ids ) );
+		$pickups  = $wpdb->get_results( $wpdb->prepare( "SELECT trek_id, city_id, COUNT(*) AS n FROM {$prefix}yatravanta_pickup_points WHERE trek_id IN ($placeholders) GROUP BY trek_id, city_id", $ids ) );
+		$itins    = $wpdb->get_results( $wpdb->prepare( "SELECT trek_id, city_id, COUNT(*) AS n FROM {$prefix}yatravanta_itineraries WHERE trek_id IN ($placeholders) GROUP BY trek_id, city_id", $ids ) );
+		$bookings = $wpdb->get_results( $wpdb->prepare( "SELECT trek_id, COUNT(*) AS total, SUM(status = 'pending') AS pending FROM {$prefix}yatravanta_bookings WHERE trek_id IN ($placeholders) AND trashed_at IS NULL GROUP BY trek_id", $ids ), OBJECT_K );
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, PluginCheck.Security.DirectDB.UnescapedDBParameter
 
 		foreach ( $ids as $id ) {
@@ -159,7 +159,7 @@ class TrekListController {
 	 * @return void
 	 */
 	public function render_column( $column, $post_id ) {
-		if ( 0 !== strpos( $column, 'trekpilot_' ) ) {
+		if ( 0 !== strpos( $column, 'yatravanta_' ) ) {
 			return;
 		}
 		if ( null === $this->stats ) {
@@ -167,78 +167,78 @@ class TrekListController {
 		}
 		$post_id = (int) $post_id;
 		$s       = isset( $this->stats[ $post_id ] ) ? $this->stats[ $post_id ] : null;
-		$dash    = '<span class="trekpilot-list-muted">&mdash;</span>';
+		$dash    = '<span class="yatravanta-list-muted">&mdash;</span>';
 		if ( ! $s ) {
 			echo $dash; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup.
 			return;
 		}
 
 		switch ( $column ) {
-			case 'trekpilot_specs':
+			case 'yatravanta_specs':
 				$specs = $s['specs'];
 				$rows  = array();
 				if ( $specs ) {
 					foreach ( array(
-						__( 'Difficulty', 'trekpilot' ) => $specs->difficulty,
-						__( 'Duration', 'trekpilot' ) => $specs->duration,
-						__( 'Region', 'trekpilot' ) => $specs->region,
+						__( 'Difficulty', 'yatravanta-trek-booking-manager' ) => $specs->difficulty,
+						__( 'Duration', 'yatravanta-trek-booking-manager' ) => $specs->duration,
+						__( 'Region', 'yatravanta-trek-booking-manager' ) => $specs->region,
 					) as $label => $value ) {
 						if ( '' !== (string) $value ) {
-							$rows[] = '<span class="trekpilot-list-spec"><span class="trekpilot-list-muted">' . esc_html( $label ) . ':</span> ' . esc_html( $value ) . '</span>';
+							$rows[] = '<span class="yatravanta-list-spec"><span class="yatravanta-list-muted">' . esc_html( $label ) . ':</span> ' . esc_html( $value ) . '</span>';
 						}
 					}
 				}
 				echo $rows ? wp_kses_post( implode( '', $rows ) ) : $dash; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup.
 				break;
 
-			case 'trekpilot_cities':
+			case 'yatravanta_cities':
 				if ( empty( $s['cities'] ) ) {
-					echo '<span class="trekpilot-list-pill trekpilot-list-bad">' . esc_html__( 'None added', 'trekpilot' ) . '</span>';
+					echo '<span class="yatravanta-list-pill yatravanta-list-bad">' . esc_html__( 'None added', 'yatravanta-trek-booking-manager' ) . '</span>';
 					break;
 				}
 				foreach ( $s['cities'] as $city ) {
-					$class = 'active' === $city->status ? 'trekpilot-list-pill' : 'trekpilot-list-pill trekpilot-list-warn';
+					$class = 'active' === $city->status ? 'yatravanta-list-pill' : 'yatravanta-list-pill yatravanta-list-warn';
 					echo '<span class="' . esc_attr( $class ) . '">' . esc_html( $city->city_name ) . '</span>';
 				}
 				break;
 
-			case 'trekpilot_price':
+			case 'yatravanta_price':
 				echo null !== $s['price'] ? esc_html( AdminController::format_price( $s['price'] ) ) : $dash; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup.
 				break;
 
-			case 'trekpilot_next':
-				echo '' !== $s['next'] ? esc_html( wp_date( 'd M Y', strtotime( $s['next'] ) ) ) : '<span class="trekpilot-list-pill trekpilot-list-bad">' . esc_html__( 'No dates', 'trekpilot' ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
+			case 'yatravanta_next':
+				echo '' !== $s['next'] ? esc_html( wp_date( 'd M Y', strtotime( $s['next'] ) ) ) : '<span class="yatravanta-list-pill yatravanta-list-bad">' . esc_html__( 'No dates', 'yatravanta-trek-booking-manager' ) . '</span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
 				break;
 
-			case 'trekpilot_seats':
+			case 'yatravanta_seats':
 				echo '' !== $s['next'] ? esc_html( (string) $s['seats'] ) : $dash; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup.
 				break;
 
-			case 'trekpilot_bookings':
+			case 'yatravanta_bookings':
 				if ( $s['bookings'] ) {
 					$url = add_query_arg(
 						array(
-							'post_type'      => 'trekpilot_trek',
-							'page'           => 'trekpilot-bookings',
+							'post_type'      => 'yatravanta_trek',
+							'page'           => 'yatravanta-bookings',
 							'filter_trek_id' => $post_id,
 						),
 						admin_url( 'edit.php' )
 					);
 					/* translators: %d: total number of bookings for this trek */
-					echo '<a href="' . esc_url( $url ) . '">' . sprintf( esc_html__( 'View bookings (%d)', 'trekpilot' ), (int) $s['bookings']->total ) . '</a>';
+					echo '<a href="' . esc_url( $url ) . '">' . sprintf( esc_html__( 'View bookings (%d)', 'yatravanta-trek-booking-manager' ), (int) $s['bookings']->total ) . '</a>';
 					if ( (int) $s['bookings']->pending > 0 ) {
 						/* translators: %d: number of pending bookings */
-						echo '<span class="trekpilot-list-todo">' . esc_html( sprintf( __( '%d pending', 'trekpilot' ), (int) $s['bookings']->pending ) ) . '</span>';
+						echo '<span class="yatravanta-list-todo">' . esc_html( sprintf( __( '%d pending', 'yatravanta-trek-booking-manager' ), (int) $s['bookings']->pending ) ) . '</span>';
 					}
 				} else {
 					echo '0';
 				}
 				break;
 
-			case 'trekpilot_setup':
+			case 'yatravanta_setup':
 				$todo = array();
 				if ( empty( $s['cities'] ) ) {
-					$todo[] = __( 'Add a departure city', 'trekpilot' );
+					$todo[] = __( 'Add a departure city', 'yatravanta-trek-booking-manager' );
 				}
 				$no_dates   = 0;
 				$no_pickups = 0;
@@ -254,27 +254,27 @@ class TrekListController {
 				}
 				if ( $no_dates ) {
 					/* translators: %d: number of cities */
-					$todo[] = sprintf( _n( 'Add dates (%d city)', 'Add dates (%d cities)', $no_dates, 'trekpilot' ), $no_dates );
+					$todo[] = sprintf( _n( 'Add dates (%d city)', 'Add dates (%d cities)', $no_dates, 'yatravanta-trek-booking-manager' ), $no_dates );
 				}
 				if ( $no_pickups ) {
 					/* translators: %d: number of cities */
-					$todo[] = sprintf( _n( 'Add pickups (%d city)', 'Add pickups (%d cities)', $no_pickups, 'trekpilot' ), $no_pickups );
+					$todo[] = sprintf( _n( 'Add pickups (%d city)', 'Add pickups (%d cities)', $no_pickups, 'yatravanta-trek-booking-manager' ), $no_pickups );
 				}
 				if ( $no_itin ) {
 					/* translators: %d: number of cities */
-					$todo[] = sprintf( _n( 'Add itinerary (%d city)', 'Add itinerary (%d cities)', $no_itin, 'trekpilot' ), $no_itin );
+					$todo[] = sprintf( _n( 'Add itinerary (%d city)', 'Add itinerary (%d cities)', $no_itin, 'yatravanta-trek-booking-manager' ), $no_itin );
 				}
 				if ( ! has_post_thumbnail( $post_id ) ) {
-					$todo[] = __( 'Set a featured image', 'trekpilot' );
+					$todo[] = __( 'Set a featured image', 'yatravanta-trek-booking-manager' );
 				}
 
 				if ( empty( $todo ) ) {
-					echo '<span class="trekpilot-list-pill trekpilot-list-ok">' . esc_html__( 'Ready', 'trekpilot' ) . '</span>';
+					echo '<span class="yatravanta-list-pill yatravanta-list-ok">' . esc_html__( 'Ready', 'yatravanta-trek-booking-manager' ) . '</span>';
 				} else {
 					$blocking = empty( $s['cities'] ) || $no_dates;
-					echo '<span class="trekpilot-list-pill ' . ( $blocking ? 'trekpilot-list-bad' : 'trekpilot-list-warn' ) . '">' . esc_html( $blocking ? __( 'Cannot be booked yet', 'trekpilot' ) : __( 'Almost ready', 'trekpilot' ) ) . '</span>';
+					echo '<span class="yatravanta-list-pill ' . ( $blocking ? 'yatravanta-list-bad' : 'yatravanta-list-warn' ) . '">' . esc_html( $blocking ? __( 'Cannot be booked yet', 'yatravanta-trek-booking-manager' ) : __( 'Almost ready', 'yatravanta-trek-booking-manager' ) ) . '</span>';
 					foreach ( $todo as $item ) {
-						echo '<span class="trekpilot-list-todo">' . esc_html( $item ) . '</span>';
+						echo '<span class="yatravanta-list-todo">' . esc_html( $item ) . '</span>';
 					}
 				}
 				break;

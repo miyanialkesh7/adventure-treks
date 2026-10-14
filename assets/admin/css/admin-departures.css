@@ -2,12 +2,12 @@
  * Stylesheet for Departure Cities, Dates, and Itinerary editors
  */
 
-.trekpilot-departures-container {
+.yatravanta-departures-container {
 	position: relative;
 	margin: 10px 0;
 }
 
-.trekpilot-departures-header {
+.yatravanta-departures-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -20,21 +20,21 @@
 	border-radius: 4px;
 }
 
-.trekpilot-departures-header p.description {
+.yatravanta-departures-header p.description {
 	margin: 0;
 	font-style: italic;
 	flex: 1 1 220px;
 }
 
 /* Spinner */
-.trekpilot-loading-spinner {
+.yatravanta-loading-spinner {
 	margin: 10px 0;
 	font-weight: 600;
 	color: #666;
 }
 
 /* Modal Window styles */
-.trekpilot-modal-overlay {
+.yatravanta-modal-overlay {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -47,7 +47,7 @@
 	backdrop-filter: blur(2px);
 }
 
-.trekpilot-modal-box {
+.yatravanta-modal-box {
 	background: #fff;
 	width: 100%;
 	max-width: 550px;
@@ -58,7 +58,7 @@
 	overflow: hidden;
 }
 
-.trekpilot-modal-header {
+.yatravanta-modal-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -67,32 +67,32 @@
 	border-bottom: 1px solid #ccd0d4;
 }
 
-.trekpilot-modal-header h2,
-.trekpilot-modal-header h3 {
+.yatravanta-modal-header h2,
+.yatravanta-modal-header h3 {
 	margin: 0;
 	font-size: 16px;
 	font-weight: 600;
 	color: #23282d;
 }
 
-.trekpilot-modal-close {
+.yatravanta-modal-close {
 	font-size: 24px;
 	font-weight: bold;
 	cursor: pointer;
 	color: #666;
 }
 
-.trekpilot-modal-close:hover {
+.yatravanta-modal-close:hover {
 	color: #000;
 }
 
-.trekpilot-modal-body {
+.yatravanta-modal-body {
 	padding: 20px;
 	max-height: 70vh;
 	overflow-y: auto;
 }
 
-.trekpilot-modal-footer {
+.yatravanta-modal-footer {
 	display: flex;
 	justify-content: flex-end;
 	gap: 10px;
@@ -102,22 +102,22 @@
 }
 
 /* Form layouts */
-.trekpilot-form-row {
+.yatravanta-form-row {
 	margin-bottom: 15px;
 }
 
-.trekpilot-form-row label {
+.yatravanta-form-row label {
 	display: block;
 	font-weight: 600;
 	margin-bottom: 5px;
 	color: #3c434a;
 }
 
-.trekpilot-form-row input[type="text"],
-.trekpilot-form-row input[type="number"],
-.trekpilot-form-row input[type="url"],
-.trekpilot-form-row select,
-.trekpilot-form-row textarea {
+.yatravanta-form-row input[type="text"],
+.yatravanta-form-row input[type="number"],
+.yatravanta-form-row input[type="url"],
+.yatravanta-form-row select,
+.yatravanta-form-row textarea {
 	width: 100%;
 	padding: 8px;
 	border: 1px solid #ccd0d4;
@@ -127,20 +127,20 @@
 	color: #3c434a;
 }
 
-.trekpilot-form-row input[type="text"],
-.trekpilot-form-row input[type="number"],
-.trekpilot-form-row input[type="url"],
-.trekpilot-form-row select {
+.yatravanta-form-row input[type="text"],
+.yatravanta-form-row input[type="number"],
+.yatravanta-form-row input[type="url"],
+.yatravanta-form-row select {
 	height: 38px;
 	line-height: normal;
 }
 
 /* WP admin caps selects at 25rem, which left the help text sitting beside the field. */
-.trekpilot-form-row select {
+.yatravanta-form-row select {
 	max-width: none;
 }
 
-.trekpilot-form-row .description {
+.yatravanta-form-row .description {
 	display: block;
 	margin-top: 5px;
 	color: #646970;
@@ -148,61 +148,61 @@
 }
 
 /* Style select placeholders (when invalid/empty option selected) */
-.trekpilot-form-row select:has(option[value=""]:checked) {
+.yatravanta-form-row select:has(option[value=""]:checked) {
 	color: #646970;
 }
 
-.trekpilot-form-row select option {
+.yatravanta-form-row select option {
 	color: #3c434a;
 }
 
-.trekpilot-form-grid-2 {
+.yatravanta-form-grid-2 {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 15px;
 }
 
 /* Cities table: fixed layout squeezed the name column to a few px. */
-.trekpilot-cities-list-wrapper {
+.yatravanta-cities-list-wrapper {
 	overflow-x: auto;
 }
 
 /* Tables keep a readable minimum width and scroll sideways inside their box on small screens. */
-.trekpilot-table-scroll {
+.yatravanta-table-scroll {
 	overflow-x: auto;
 }
 
-#trekpilot_cities_table {
+#yatravanta_cities_table {
 	table-layout: fixed;
 	width: 100%;
 	min-width: 1080px;
 }
 
 /* Wide enough for the four setup buttons (Dates, Itinerary, Pricing, Pickups) on one row. */
-#trekpilot_cities_table th.column-actions {
+#yatravanta_cities_table th.column-actions {
 	width: 310px;
 }
 
-#trekpilot_dates_table {
+#yatravanta_dates_table {
 	table-layout: fixed;
 	width: 100%;
 	min-width: 760px;
 }
 
-#trekpilot_pickups_table {
+#yatravanta_pickups_table {
 	table-layout: fixed;
 	width: 100%;
 	min-width: 640px;
 }
 
 /* Table cells stay table cells on phones (WP's list-table rules stack them as blocks). */
-.trekpilot-admin-table td,
-.trekpilot-admin-table th {
+.yatravanta-admin-table td,
+.yatravanta-admin-table th {
 	word-wrap: break-word;
 }
 
 /* Reordering classes */
-.trekpilot-row-drag-handle {
+.yatravanta-row-drag-handle {
 	cursor: move;
 	font-size: 18px;
 	color: #a7aaad;
@@ -210,7 +210,7 @@
 }
 
 /* Status colors */
-.trekpilot-status-badge {
+.yatravanta-status-badge {
 	display: inline-block;
 	padding: 3px 8px;
 	border-radius: 3px;
@@ -219,54 +219,54 @@
 	text-transform: uppercase;
 }
 
-.trekpilot-status-badge.active {
+.yatravanta-status-badge.active {
 	background: #e2f0d9;
 	color: #385723;
 }
 
-.trekpilot-status-badge.inactive {
+.yatravanta-status-badge.inactive {
 	background: #fce4d6;
 	color: #c65911;
 }
 
 /* Action Links */
-.trekpilot-action-link {
+.yatravanta-action-link {
 	text-decoration: none;
 	margin-left: 8px;
 	font-weight: 500;
 }
 
-.trekpilot-action-link.edit {
+.yatravanta-action-link.edit {
 	color: #2271b1;
 }
 
-.trekpilot-action-link.duplicate {
-	color: var(--trekpilot-primary-color, #137a7f);
+.yatravanta-action-link.duplicate {
+	color: var(--yatravanta-primary-color, #137a7f);
 }
 
-.trekpilot-action-link.delete {
+.yatravanta-action-link.delete {
 	color: #b32d2e;
 }
 
-.trekpilot-action-link:hover {
+.yatravanta-action-link:hover {
 	text-decoration: underline;
 }
 
 /* Textareas in the departure, itinerary and pickup dialogs keep a usable minimum height. */
-.trekpilot-form-row textarea,
-.trekpilot-modal-box textarea {
+.yatravanta-form-row textarea,
+.yatravanta-modal-box textarea {
 	min-height: 80px;
 }
 
 /* Departure city setup progress */
-.trekpilot-city-setup {
+.yatravanta-city-setup {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 4px;
 	margin-top: 6px;
 	font-weight: 400;
 }
-.trekpilot-setup-chip {
+.yatravanta-setup-chip {
 	display: inline-block;
 	padding: 1px 8px;
 	border-radius: 10px;
@@ -275,12 +275,12 @@
 	text-decoration: none;
 	border: 1px solid transparent;
 }
-.trekpilot-setup-chip.ok { background: #e6f4ea; color: #1e6b34; border-color: #c4e3cc; }
-.trekpilot-setup-chip.warn { background: #fff4e0; color: #8a5a00; border-color: #f2d9a6; }
-.trekpilot-setup-chip.missing { background: #fde8e8; color: #b32d2e; border-color: #f3bcbc; }
-.trekpilot-setup-chip:hover { filter: brightness(0.96); }
+.yatravanta-setup-chip.ok { background: #e6f4ea; color: #1e6b34; border-color: #c4e3cc; }
+.yatravanta-setup-chip.warn { background: #fff4e0; color: #8a5a00; border-color: #f2d9a6; }
+.yatravanta-setup-chip.missing { background: #fde8e8; color: #b32d2e; border-color: #f3bcbc; }
+.yatravanta-setup-chip:hover { filter: brightness(0.96); }
 
-.trekpilot-next-steps {
+.yatravanta-next-steps {
 	position: relative;
 	margin: 0 0 14px;
 	padding: 14px 40px 14px 16px;
@@ -289,9 +289,9 @@
 	border-left: 4px solid #2271b1;
 	border-radius: 4px;
 }
-.trekpilot-next-steps h4 { margin: 0 0 4px; font-size: 14px; }
-.trekpilot-next-steps p { margin: 0 0 10px; color: #50575e; }
-.trekpilot-next-steps-close {
+.yatravanta-next-steps h4 { margin: 0 0 4px; font-size: 14px; }
+.yatravanta-next-steps p { margin: 0 0 10px; color: #50575e; }
+.yatravanta-next-steps-close {
 	position: absolute;
 	top: 6px;
 	right: 10px;
@@ -302,29 +302,29 @@
 	color: #646970;
 	cursor: pointer;
 }
-.trekpilot-next-steps-list { margin: 0; padding: 0; list-style: none; }
-.trekpilot-next-steps-list li {
+.yatravanta-next-steps-list { margin: 0; padding: 0; list-style: none; }
+.yatravanta-next-steps-list li {
 	display: flex;
 	align-items: flex-start;
 	gap: 10px;
 	padding: 8px 0;
 	border-top: 1px solid #dbe7f3;
 }
-.trekpilot-next-steps-list li.done { opacity: 0.6; }
-.trekpilot-step-mark { flex: 0 0 18px; font-size: 16px; line-height: 20px; color: #2271b1; }
-.trekpilot-next-steps-list li.done .trekpilot-step-mark { color: #1e6b34; }
-.trekpilot-step-body { flex: 1; }
-.trekpilot-step-text { display: block; margin-top: 2px; color: #50575e; font-size: 12px; }
-.trekpilot-step-req { color: #b32d2e; font-size: 11px; font-style: normal; text-transform: uppercase; }
-.trekpilot-step-opt { color: #646970; font-size: 11px; font-style: normal; text-transform: uppercase; }
-.trekpilot-step-done { color: #1e6b34; font-size: 12px; font-weight: 600; }
+.yatravanta-next-steps-list li.done { opacity: 0.6; }
+.yatravanta-step-mark { flex: 0 0 18px; font-size: 16px; line-height: 20px; color: #2271b1; }
+.yatravanta-next-steps-list li.done .yatravanta-step-mark { color: #1e6b34; }
+.yatravanta-step-body { flex: 1; }
+.yatravanta-step-text { display: block; margin-top: 2px; color: #50575e; font-size: 12px; }
+.yatravanta-step-req { color: #b32d2e; font-size: 11px; font-style: normal; text-transform: uppercase; }
+.yatravanta-step-opt { color: #646970; font-size: 11px; font-style: normal; text-transform: uppercase; }
+.yatravanta-step-done { color: #1e6b34; font-size: 12px; font-weight: 600; }
 
-.trekpilot-next-steps-progress { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; }
-.trekpilot-next-steps-bar { flex: 0 0 160px; height: 6px; border-radius: 3px; background: #dbe7f3; overflow: hidden; }
-.trekpilot-next-steps-bar > span { display: block; height: 100%; background: #2271b1; border-radius: 3px; }
-.trekpilot-next-steps-count { font-size: 12px; color: #50575e; }
+.yatravanta-next-steps-progress { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; }
+.yatravanta-next-steps-bar { flex: 0 0 160px; height: 6px; border-radius: 3px; background: #dbe7f3; overflow: hidden; }
+.yatravanta-next-steps-bar > span { display: block; height: 100%; background: #2271b1; border-radius: 3px; }
+.yatravanta-next-steps-count { font-size: 12px; color: #50575e; }
 
 /* Button-style action links are spaced by the flex gap, not a left margin. */
-.trekpilot-action-link.button {
+.yatravanta-action-link.button {
 	margin-left: 0;
 }

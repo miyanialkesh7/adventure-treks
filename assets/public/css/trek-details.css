@@ -2,7 +2,7 @@
  * Stylesheet for Frontend Trek Details Template [trek_details]
  */
 
-.trekpilot-trek-details-container {
+.yatravanta-trek-details-container {
 	margin: 30px auto;
 	max-width: 960px;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -10,12 +10,12 @@
 	line-height: 1.6;
 }
 
-.trekpilot-trek-details-container * {
+.yatravanta-trek-details-container * {
 	box-sizing: border-box;
 }
 
 /* Specs grid */
-.trekpilot-specs-header-grid {
+.yatravanta-specs-header-grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 15px;
@@ -23,23 +23,23 @@
 }
 
 @media (max-width: 768px) {
-	.trekpilot-specs-header-grid {
+	.yatravanta-specs-header-grid {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
 @media (max-width: 480px) {
-	.trekpilot-specs-header-grid {
+	.yatravanta-specs-header-grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 10px;
 	}
-	.trekpilot-spec-item {
+	.yatravanta-spec-item {
 		padding: 12px 10px;
 		min-width: 0;
 	}
 }
 
-.trekpilot-spec-item {
+.yatravanta-spec-item {
 	background: #ffffff;
 	border: 1px solid #e0e0e0;
 	border-radius: 8px;
@@ -50,26 +50,26 @@
 	transition: all 0.25s ease;
 }
 
-.trekpilot-spec-item:hover {
+.yatravanta-spec-item:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-	border-color: var(--trekpilot-primary-color, #137a7f);
+	border-color: var(--yatravanta-primary-color, #137a7f);
 }
 
-.trekpilot-spec-item span.dashicons {
+.yatravanta-spec-item span.dashicons {
 	font-size: 28px;
 	width: 28px;
 	height: 28px;
-	color: var(--trekpilot-primary-color, #137a7f);
+	color: var(--yatravanta-primary-color, #137a7f);
 	line-height: 1;
 }
 
-.trekpilot-spec-info {
+.yatravanta-spec-info {
 	display: flex;
 	flex-direction: column;
 }
 
-.trekpilot-spec-label {
+.yatravanta-spec-label {
 	font-size: 10px;
 	text-transform: uppercase;
 	color: #777;
@@ -77,7 +77,7 @@
 	letter-spacing: 0.5px;
 }
 
-.trekpilot-spec-value {
+.yatravanta-spec-value {
 	font-size: 13px;
 	font-weight: 700;
 	color: #222;
@@ -88,7 +88,7 @@
 /* Only the tab bar sticks (bounded by this wrapper). Making the whole card
    sticky let it slide over the Quick Links card that follows it in the same
    container. No overflow on the wrapper, or sticky would break. */
-.trekpilot-details-tabs-wrapper {
+.yatravanta-details-tabs-wrapper {
 	border: 1px solid #e0e0e0;
 	border-radius: 8px;
 	background: #ffffff;
@@ -96,7 +96,7 @@
 	box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 
-.trekpilot-details-tabs-nav {
+.yatravanta-details-tabs-nav {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -106,30 +106,30 @@
 	border-radius: 8px 8px 0 0;
 	overflow-x: auto;
 	overflow-y: hidden;
-	top: var(--trekpilot-header-offset, 0px);
+	top: var(--yatravanta-header-offset, 0px);
 	z-index: 5;
 	-webkit-overflow-scrolling: touch;
 	scrollbar-width: thin;  /* Firefox */
-	scrollbar-color: var(--trekpilot-primary-color, #137a7f) #eef0f2;
+	scrollbar-color: var(--yatravanta-primary-color, #137a7f) #eef0f2;
 }
 
 /* Visible thin scrollbar so users can tell the tabs scroll sideways. */
-.trekpilot-details-tabs-nav::-webkit-scrollbar {
+.yatravanta-details-tabs-nav::-webkit-scrollbar {
 	height: 6px;
 }
-.trekpilot-details-tabs-nav::-webkit-scrollbar-track {
+.yatravanta-details-tabs-nav::-webkit-scrollbar-track {
 	background: #eef0f2;
 }
-.trekpilot-details-tabs-nav::-webkit-scrollbar-thumb {
-	background: var(--trekpilot-primary-color, #137a7f);
+.yatravanta-details-tabs-nav::-webkit-scrollbar-thumb {
+	background: var(--yatravanta-primary-color, #137a7f);
 	border-radius: 3px;
 }
 
 /* Right-edge fade + arrow while more tabs are hidden off-screen (toggled from JS). */
-.trekpilot-details-tabs-wrapper {
+.yatravanta-details-tabs-wrapper {
 	position: relative;
 }
-.trekpilot-details-tabs-wrapper.has-more-tabs-left::before {
+.yatravanta-details-tabs-wrapper.has-more-tabs-left::before {
 	content: '\2039';
 	position: absolute;
 	top: 1px;
@@ -143,13 +143,13 @@
 	box-sizing: border-box;
 	font-size: 28px;
 	line-height: 1;
-	color: var(--trekpilot-primary-color, #137a7f);
+	color: var(--yatravanta-primary-color, #137a7f);
 	background: linear-gradient(to left, rgba(251, 251, 251, 0), #fbfbfb 70%);
 	border-radius: 8px 0 0 0;
 	pointer-events: none;
 	z-index: 6;
 }
-.trekpilot-details-tabs-wrapper.has-more-tabs::after {
+.yatravanta-details-tabs-wrapper.has-more-tabs::after {
 	content: '\203A';
 	position: absolute;
 	top: 1px;
@@ -163,18 +163,18 @@
 	box-sizing: border-box;
 	font-size: 28px;
 	line-height: 1;
-	color: var(--trekpilot-primary-color, #137a7f);
+	color: var(--yatravanta-primary-color, #137a7f);
 	background: linear-gradient(to right, rgba(251, 251, 251, 0), #fbfbfb 70%);
 	border-radius: 0 8px 0 0;
 	pointer-events: none;
 	z-index: 6;
 }
 
-.trekpilot-details-tabs-nav li {
+.yatravanta-details-tabs-nav li {
 	margin: 0;
 }
 
-.trekpilot-details-tabs-nav a {
+.yatravanta-details-tabs-nav a {
 	display: block;
 	padding: 15px 25px;
 	text-decoration: none;
@@ -186,34 +186,34 @@
 	white-space: nowrap;
 }
 
-.trekpilot-details-tabs-nav li.active a,
-.trekpilot-details-tabs-nav a:hover {
+.yatravanta-details-tabs-nav li.active a,
+.yatravanta-details-tabs-nav a:hover {
 	background: #ffffff;
-	color: var(--trekpilot-primary-color, #137a7f);
+	color: var(--yatravanta-primary-color, #137a7f);
 }
-.trekpilot-details-tabs-nav a:hover {
-	color: var(--trekpilot-secondary-color, #0f6165);
+.yatravanta-details-tabs-nav a:hover {
+	color: var(--yatravanta-secondary-color, #0f6165);
 }
 
-.trekpilot-details-tabs-nav li.active a {
-	border-bottom: 2px solid var(--trekpilot-primary-color, #137a7f);
+.yatravanta-details-tabs-nav li.active a {
+	border-bottom: 2px solid var(--yatravanta-primary-color, #137a7f);
 	margin-bottom: -1px;
 }
 
-.trekpilot-details-tabs-content {
+.yatravanta-details-tabs-content {
 	padding: 25px;
 	border-radius: 0 0 8px 8px;
 }
 
-.trekpilot-details-tab-panel {
+.yatravanta-details-tab-panel {
 	display: none;
 }
 
-.trekpilot-details-tab-panel.active {
+.yatravanta-details-tab-panel.active {
 	display: block;
 }
 
-.trekpilot-tab-headline {
+.yatravanta-tab-headline {
 	margin: -25px -25px 20px;
 	padding: 18px 25px;
 	background: #fff;
@@ -224,19 +224,19 @@
 }
 
 /* Highlights */
-.trekpilot-incl-excl-grid {
+.yatravanta-incl-excl-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 25px;
 }
 
 @media (max-width: 600px) {
-	.trekpilot-incl-excl-grid {
+	.yatravanta-incl-excl-grid {
 		grid-template-columns: 1fr;
 	}
 }
 
-.trekpilot-incl-excl-heading {
+.yatravanta-incl-excl-heading {
 	margin: 0 0 12px;
 	font-size: 13px;
 	font-weight: 700;
@@ -244,16 +244,16 @@
 	letter-spacing: .3px;
 }
 
-.trekpilot-incl-excl-heading.included {
-	color: var(--trekpilot-primary-color, #137a7f);
+.yatravanta-incl-excl-heading.included {
+	color: var(--yatravanta-primary-color, #137a7f);
 }
 
-.trekpilot-incl-excl-heading.excluded {
+.yatravanta-incl-excl-heading.excluded {
 	color: #b32d2e;
 }
 
-.trekpilot-highlights-list-box ul,
-.trekpilot-exclusions-list-box ul {
+.yatravanta-highlights-list-box ul,
+.yatravanta-exclusions-list-box ul {
 	list-style: none;
 	padding: 0;
 	margin: 0;
@@ -262,16 +262,16 @@
 	gap: 10px;
 }
 
-.trekpilot-highlights-list-box li,
-.trekpilot-exclusions-list-box li {
+.yatravanta-highlights-list-box li,
+.yatravanta-exclusions-list-box li {
 	font-size: 13px;
 	display: flex;
 	align-items: flex-start;
 	color: #444;
 }
 
-.trekpilot-highlights-list-box li span.dashicons,
-.trekpilot-exclusions-list-box li span.dashicons {
+.yatravanta-highlights-list-box li span.dashicons,
+.yatravanta-exclusions-list-box li span.dashicons {
 	margin-top: 3px;
 	margin-right: 8px;
 	font-size: 16px;
@@ -280,28 +280,28 @@
 	flex-shrink: 0;
 }
 
-.trekpilot-highlights-list-box li span.dashicons {
-	color: var(--trekpilot-primary-color, #137a7f);
+.yatravanta-highlights-list-box li span.dashicons {
+	color: var(--yatravanta-primary-color, #137a7f);
 }
 
-.trekpilot-exclusions-list-box li span.dashicons {
+.yatravanta-exclusions-list-box li span.dashicons {
 	color: #b32d2e;
 }
 
 /* FAQs Accordion */
-.trekpilot-faq-accordion-container {
+.yatravanta-faq-accordion-container {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
 
-.trekpilot-accordion-item {
+.yatravanta-accordion-item {
 	border: none;
 	border-radius: 6px;
 	overflow: hidden;
 }
 
-.trekpilot-accordion-trigger {
+.yatravanta-accordion-trigger {
 	width: 100%;
 	background: #fafafa;
 	border: none;
@@ -317,29 +317,29 @@
 	outline: none;
 }
 
-.trekpilot-accordion-trigger:hover {
+.yatravanta-accordion-trigger:hover {
 	background: #f5f5f5;
-	color: var(--trekpilot-secondary-color, #0f6165);
+	color: var(--yatravanta-secondary-color, #0f6165);
 }
 
-.trekpilot-accordion-trigger span.dashicons {
+.yatravanta-accordion-trigger span.dashicons {
 	font-size: 16px;
 	width: 16px;
 	height: 16px;
 	transition: transform 0.2s ease;
 }
 
-.trekpilot-accordion-item.active .trekpilot-accordion-trigger span.dashicons {
+.yatravanta-accordion-item.active .yatravanta-accordion-trigger span.dashicons {
 	transform: rotate(180deg);
 }
 
-.trekpilot-accordion-content {
+.yatravanta-accordion-content {
 	overflow: hidden;
 	transition: max-height 0.25s ease-out;
 	background: #ffffff;
 }
 
-.trekpilot-accordion-content p {
+.yatravanta-accordion-content p {
 	margin: 0;
 	padding: 15px 20px;
 	font-size: 13px;
@@ -348,19 +348,19 @@
 }
 
 /* Things to Carry list */
-.trekpilot-carry-items-grid {
+.yatravanta-carry-items-grid {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 12px;
 }
 
 @media (max-width: 600px) {
-	.trekpilot-carry-items-grid {
+	.yatravanta-carry-items-grid {
 		grid-template-columns: 1fr;
 	}
 }
 
-.trekpilot-carry-card {
+.yatravanta-carry-card {
 	display: flex;
 	align-items: flex-start;
 	gap: 10px;
@@ -373,17 +373,17 @@
 }
 
 /* Quick Links & Policies card (Things to Carry / Cancellation / Terms) */
-.trekpilot-quicklinks-card {
+.yatravanta-quicklinks-card {
 	margin: 20px 0 40px;
 }
 
-.trekpilot-quicklinks-row {
+.yatravanta-quicklinks-row {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 12px;
 }
 
-.trekpilot-quicklink-btn {
+.yatravanta-quicklink-btn {
 	display: inline-flex !important;
 	align-items: center;
 	gap: 10px;
@@ -399,15 +399,15 @@
 	transition: border-color 0.2s, color 0.2s;
 }
 
-.trekpilot-quicklink-btn:hover,
-.trekpilot-quicklink-btn:focus {
-	border-color: var(--trekpilot-secondary-color, #0f6165) !important;
-	color: var(--trekpilot-secondary-color, #0f6165) !important;
+.yatravanta-quicklink-btn:hover,
+.yatravanta-quicklink-btn:focus {
+	border-color: var(--yatravanta-secondary-color, #0f6165) !important;
+	color: var(--yatravanta-secondary-color, #0f6165) !important;
 	background: #fff !important;
 	text-decoration: none !important;
 }
 
-.trekpilot-quicklink-icon {
+.yatravanta-quicklink-icon {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -417,25 +417,25 @@
 	flex-shrink: 0;
 }
 
-.trekpilot-quicklink-icon .dashicons {
+.yatravanta-quicklink-icon .dashicons {
 	font-size: 16px;
 	width: 16px;
 	height: 16px;
 }
 
-.trekpilot-quicklink-icon.gray {
+.yatravanta-quicklink-icon.gray {
 	background: #f0f0f1;
 	color: #50575e;
 }
 
 /* Reserved for a future "Rent/Purchase Gears" quick link. */
-.trekpilot-quicklink-icon.orange {
+.yatravanta-quicklink-icon.orange {
 	background: #fff4e5;
 	color: #c9760a;
 }
 
 /* Policy Popup Modals (scrollable) */
-.trekpilot-policy-modal {
+.yatravanta-policy-modal {
 	display: none;
 	position: fixed;
 	inset: 0;
@@ -445,18 +445,18 @@
 	padding: 20px;
 }
 
-.trekpilot-policy-modal.active {
+.yatravanta-policy-modal.active {
 	display: flex;
 }
 
-.trekpilot-policy-modal-overlay {
+.yatravanta-policy-modal-overlay {
 	position: absolute;
 	inset: 0;
 	background: rgba(0, 0, 0, 0.6);
 	cursor: pointer;
 }
 
-.trekpilot-policy-modal-box {
+.yatravanta-policy-modal-box {
 	position: relative;
 	z-index: 1;
 	background: #fff;
@@ -470,7 +470,7 @@
 	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
-.trekpilot-policy-modal-header {
+.yatravanta-policy-modal-header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -479,25 +479,25 @@
 	flex-shrink: 0;
 }
 
-.trekpilot-policy-modal-header h3 {
+.yatravanta-policy-modal-header h3 {
 	margin: 0;
 	font-size: 16px;
 	font-weight: 700;
 	color: #222;
 }
 
-.trekpilot-policy-modal-close {
+.yatravanta-policy-modal-close {
 	cursor: pointer;
 	font-size: 24px;
 	line-height: 1;
 	color: #888;
 }
 
-.trekpilot-policy-modal-close:hover {
+.yatravanta-policy-modal-close:hover {
 	color: #222;
 }
 
-.trekpilot-policy-modal-body {
+.yatravanta-policy-modal-body {
 	padding: 20px 22px;
 	overflow-y: auto;
 	font-size: 13px;
@@ -505,39 +505,39 @@
 	line-height: 1.7;
 }
 
-.trekpilot-policy-modal-body p {
+.yatravanta-policy-modal-body p {
 	margin: 0 0 12px;
 }
 
-.trekpilot-policy-modal-body p:last-child {
+.yatravanta-policy-modal-body p:last-child {
 	margin-bottom: 0;
 }
 
 /* Lists inside policy popups: the theme's list reset left bullets floating far from their text. */
-.trekpilot-policy-modal-body ul,
-.trekpilot-policy-modal-body ol {
+.yatravanta-policy-modal-body ul,
+.yatravanta-policy-modal-body ol {
 	margin: 0 0 12px;
 	padding: 0 0 0 20px;
 }
 
-.trekpilot-policy-modal-body ul {
+.yatravanta-policy-modal-body ul {
 	list-style: disc outside;
 }
 
-.trekpilot-policy-modal-body ol {
+.yatravanta-policy-modal-body ol {
 	list-style: decimal outside;
 }
 
-.trekpilot-policy-modal-body li {
+.yatravanta-policy-modal-body li {
 	margin: 0 0 6px;
 	padding: 0;
 	text-indent: 0;
 	line-height: 1.7;
 }
 
-.trekpilot-policy-modal-body li:last-child,
-.trekpilot-policy-modal-body ul:last-child,
-.trekpilot-policy-modal-body ol:last-child {
+.yatravanta-policy-modal-body li:last-child,
+.yatravanta-policy-modal-body ul:last-child,
+.yatravanta-policy-modal-body ol:last-child {
 	margin-bottom: 0;
 }
 

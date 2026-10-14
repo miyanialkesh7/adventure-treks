@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="TrekPilot">
-	<description>WPCS ruleset for the TrekPilot plugin.</description>
+<ruleset name="YatraVanta Trek Booking Manager">
+	<description>WPCS ruleset for the YatraVanta Trek Booking Manager plugin.</description>
 
 	<!-- Third-party and generated code is never checked (Composer dev dependencies, bundled libraries, assets). -->
 	<exclude-pattern>*/vendor/*</exclude-pattern>
@@ -18,14 +18,14 @@
 	<rule ref="WordPress"/>
 
 	<!--
-	single-trekpilot_trek.php intentionally keeps the underscore: its name
+	single-yatravanta_trek.php intentionally keeps the underscore: its name
 	must match the "single-{post_type}.php" WordPress template-hierarchy
-	convention for the "trekpilot_trek" CPT slug (registered in
+	convention for the "yatravanta_trek" CPT slug (registered in
 	includes/class-posttypes.php) so themes can override it the same way
 	WordPress core resolves single post templates.
 	-->
 	<rule ref="WordPress.Files.FileName">
-		<exclude-pattern>public/views/single-trekpilot_trek\.php</exclude-pattern>
-		<exclude-pattern>public/views/archive-trekpilot_trek\.php</exclude-pattern>
+		<exclude-pattern>public/views/single-yatravanta_trek\.php</exclude-pattern>
+		<exclude-pattern>public/views/archive-yatravanta_trek\.php</exclude-pattern>
 	</rule>
 </ruleset>

@@ -1,20 +1,20 @@
 /**
  * Bookings admin screen styles.
- * Modal shell classes (.trekpilot-modal-overlay, .trekpilot-modal-box, etc.) come from admin-departures.css.
+ * Modal shell classes (.yatravanta-modal-overlay, .yatravanta-modal-box, etc.) come from admin-departures.css.
  */
 
-#trekpilot_booking_view_table th {
+#yatravanta_booking_view_table th {
 	background: #f6f7f7;
 	padding: 8px 12px;
 	font-weight: 600;
 	color: #3c434a;
 }
 
-#trekpilot_booking_view_table td {
+#yatravanta_booking_view_table td {
 	padding: 8px 12px;
 }
 
-#trekpilot_booking_view_loading {
+#yatravanta_booking_view_loading {
 	text-align: center;
 	color: #666;
 	padding: 20px 0;
@@ -28,11 +28,11 @@
 }
 
 /* Add/Edit Booking form. */
-.trekpilot-required {
+.yatravanta-required {
 	color: #d63638;
 }
 
-.trekpilot-price-breakdown-box {
+.yatravanta-price-breakdown-box {
 	background: #f6f7f7;
 	border: 1px solid #dcdcde;
 	border-radius: 4px;
@@ -41,11 +41,11 @@
 	max-width: 420px;
 }
 
-.trekpilot-price-breakdown-box p.description {
+.yatravanta-price-breakdown-box p.description {
 	margin: 0;
 }
 
-.trekpilot-field-hint {
+.yatravanta-field-hint {
 	margin: 4px 0 0;
 }
 

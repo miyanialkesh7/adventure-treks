@@ -2,10 +2,10 @@
 /**
  * Bookings Controller.
  *
- * @package TrekPilot
+ * @package YatraVanta
  */
 
-namespace TrekPilot\Admin\Controllers;
+namespace YatraVanta\Admin\Controllers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -22,10 +22,10 @@ class TrekBookingsController {
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'register_menu' ), 20 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
-		add_action( 'admin_post_trekpilot_save_booking', array( $this, 'handle_save_booking' ) );
-		add_action( 'admin_post_trekpilot_export_bookings_pdf', array( $this, 'handle_export_pdf' ) );
-		add_action( 'wp_ajax_trekpilot_get_single_booking_details', array( $this, 'ajax_get_booking_details' ) );
-		add_filter( 'set_screen_option_trekpilot_bookings_per_page', array( $this, 'save_screen_option' ), 10, 3 );
+		add_action( 'admin_post_yatravanta_save_booking', array( $this, 'handle_save_booking' ) );
+		add_action( 'admin_post_yatravanta_export_bookings_pdf', array( $this, 'handle_export_pdf' ) );
+		add_action( 'wp_ajax_yatravanta_get_single_booking_details', array( $this, 'ajax_get_booking_details' ) );
+		add_filter( 'set_screen_option_yatravanta_bookings_per_page', array( $this, 'save_screen_option' ), 10, 3 );
 	}
 
 	/**
@@ -42,9 +42,9 @@ class TrekBookingsController {
 		add_screen_option(
 			'per_page',
 			array(
-				'label'   => __( 'Number of bookings per page:', 'trekpilot' ),
+				'label'   => __( 'Number of bookings per page:', 'yatravanta-trek-booking-manager' ),
 				'default' => 20,
-				'option'  => 'trekpilot_bookings_per_page',
+				'option'  => 'yatravanta_bookings_per_page',
 			)
 		);
 
@@ -101,7 +101,7 @@ class TrekBookingsController {
 		}
 
 		global $wpdb;
-		$table_avail = $wpdb->prefix . 'trekpilot_availability';
+		$table_avail = $wpdb->prefix . 'yatravanta_availability';
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$avail = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_avail WHERE date_id = %d", $date_id ) );
@@ -133,9 +133,9 @@ class TrekBookingsController {
 	 */
 	public function handle_export_pdf() {
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'trekpilot' ), '', array( 'response' => 403 ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'yatravanta-trek-booking-manager' ), '', array( 'response' => 403 ) );
 		}
-		check_admin_referer( 'trekpilot_export_bookings_pdf' );
+		check_admin_referer( 'yatravanta_export_bookings_pdf' );
 
 		global $wpdb;
 
@@ -152,9 +152,9 @@ class TrekBookingsController {
 
 		$where = Bookings_List_Table::build_where_clause( $filters );
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-		$bookings = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}trekpilot_bookings $where ORDER BY id ASC" );
-		$cities   = $wpdb->get_results( "SELECT id, city_name FROM {$wpdb->prefix}trekpilot_departure_cities", OBJECT_K );
-		$dates    = $wpdb->get_results( "SELECT id, departure_date FROM {$wpdb->prefix}trekpilot_departure_dates", OBJECT_K );
+		$bookings = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}yatravanta_bookings $where ORDER BY id ASC" );
+		$cities   = $wpdb->get_results( "SELECT id, city_name FROM {$wpdb->prefix}yatravanta_departure_cities", OBJECT_K );
+		$dates    = $wpdb->get_results( "SELECT id, departure_date FROM {$wpdb->prefix}yatravanta_departure_dates", OBJECT_K );
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 
 		// Earliest travel date first, then booking order.
@@ -169,7 +169,7 @@ class TrekBookingsController {
 
 		// Filter summary under the title.
 		$summary   = array();
-		$summary[] = $filters['trek_id'] ? get_the_title( $filters['trek_id'] ) : __( 'All treks', 'trekpilot' );
+		$summary[] = $filters['trek_id'] ? get_the_title( $filters['trek_id'] ) : __( 'All treks', 'yatravanta-trek-booking-manager' );
 		if ( $filters['status'] ) {
 			$summary[] = ucfirst( $filters['status'] );
 		}
@@ -177,30 +177,30 @@ class TrekBookingsController {
 			$fmt       = static function ( $date ) {
 				return $date ? wp_date( 'd M Y', strtotime( $date ) ) : '...';
 			};
-			$summary[] = __( 'Travel date', 'trekpilot' ) . ': ' . $fmt( $filters['date_from'] ) . ' - ' . $fmt( $filters['date_to'] );
+			$summary[] = __( 'Travel date', 'yatravanta-trek-booking-manager' ) . ': ' . $fmt( $filters['date_from'] ) . ' - ' . $fmt( $filters['date_to'] );
 		}
 		if ( $filters['search'] ) {
-			$summary[] = __( 'Search', 'trekpilot' ) . ': ' . $filters['search'];
+			$summary[] = __( 'Search', 'yatravanta-trek-booking-manager' ) . ': ' . $filters['search'];
 		}
 		if ( $filters['trash'] ) {
-			$summary[] = __( 'Trash', 'trekpilot' );
+			$summary[] = __( 'Trash', 'yatravanta-trek-booking-manager' );
 		}
 
-		$pdf = new \TrekPilot\Includes\BookingsPdf(
+		$pdf = new \YatraVanta\Includes\BookingsPdf(
 			array(
-				$filters['trash'] ? __( 'Trek Bookings (Trash)', 'trekpilot' ) : __( 'Trek Bookings', 'trekpilot' ),
+				$filters['trash'] ? __( 'Trek Bookings (Trash)', 'yatravanta-trek-booking-manager' ) : __( 'Trek Bookings', 'yatravanta-trek-booking-manager' ),
 				implode( '  |  ', $summary ),
 			),
 			array(
 				array( '#', 8, 'C' ),
-				array( __( 'Trek', 'trekpilot' ), 48, 'L' ),
-				array( __( 'Customer Name', 'trekpilot' ), 40, 'L' ),
-				array( __( 'Phone', 'trekpilot' ), 30, 'L' ),
-				array( __( 'Departure City', 'trekpilot' ), 30, 'L' ),
-				array( __( 'Pickup Point', 'trekpilot' ), 43, 'L' ),
-				array( __( 'Total Seats', 'trekpilot' ), 20, 'C' ),
-				array( __( 'Payment Status', 'trekpilot' ), 28, 'C' ),
-				array( __( 'Balance Amount', 'trekpilot' ), 30, 'R' ),
+				array( __( 'Trek', 'yatravanta-trek-booking-manager' ), 48, 'L' ),
+				array( __( 'Customer Name', 'yatravanta-trek-booking-manager' ), 40, 'L' ),
+				array( __( 'Phone', 'yatravanta-trek-booking-manager' ), 30, 'L' ),
+				array( __( 'Departure City', 'yatravanta-trek-booking-manager' ), 30, 'L' ),
+				array( __( 'Pickup Point', 'yatravanta-trek-booking-manager' ), 43, 'L' ),
+				array( __( 'Total Seats', 'yatravanta-trek-booking-manager' ), 20, 'C' ),
+				array( __( 'Payment Status', 'yatravanta-trek-booking-manager' ), 28, 'C' ),
+				array( __( 'Balance Amount', 'yatravanta-trek-booking-manager' ), 30, 'R' ),
 			)
 		);
 		$pdf->AddPage();
@@ -227,7 +227,7 @@ class TrekBookingsController {
 					isset( $cities[ $booking->city_id ] ) ? $cities[ $booking->city_id ]->city_name : '-',
 					'' !== $booking->pickup_point ? $booking->pickup_point : '-',
 					(string) (int) $booking->seats,
-					$cancelled ? __( 'Cancelled', 'trekpilot' ) : self::payment_status_label( $booking->payment_status ),
+					$cancelled ? __( 'Cancelled', 'yatravanta-trek-booking-manager' ) : self::payment_status_label( $booking->payment_status ),
 					AdminController::format_price( $balance ),
 				),
 				0 === $n % 2
@@ -235,10 +235,10 @@ class TrekBookingsController {
 		}
 
 		if ( ! $n ) {
-			$pdf->row( array( '', __( 'No bookings found for the selected filters.', 'trekpilot' ) ) );
+			$pdf->row( array( '', __( 'No bookings found for the selected filters.', 'yatravanta-trek-booking-manager' ) ) );
 		} else {
 			$pdf->row(
-				array( '', __( 'Total', 'trekpilot' ), '', '', '', '', (string) $total_seats, '', AdminController::format_price( $total_balance ) ),
+				array( '', __( 'Total', 'yatravanta-trek-booking-manager' ), '', '', '', '', (string) $total_seats, '', AdminController::format_price( $total_balance ) ),
 				false,
 				true
 			);
@@ -255,11 +255,11 @@ class TrekBookingsController {
 	 */
 	public function register_menu() {
 		$hook = add_submenu_page(
-			'edit.php?post_type=trekpilot_trek',
-			__( 'Bookings', 'trekpilot' ),
-			__( 'Bookings', 'trekpilot' ),
+			'edit.php?post_type=yatravanta_trek',
+			__( 'Bookings', 'yatravanta-trek-booking-manager' ),
+			__( 'Bookings', 'yatravanta-trek-booking-manager' ),
 			'edit_posts',
-			'trekpilot-bookings',
+			'yatravanta-bookings',
 			array( $this, 'render_page' )
 		);
 
@@ -276,47 +276,47 @@ class TrekBookingsController {
 	public function enqueue_assets() {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
-		if ( 'trekpilot-bookings' !== $page ) {
+		if ( 'yatravanta-bookings' !== $page ) {
 			return;
 		}
 
 		// Reuse the shared modal/form styling already used by the trek meta boxes.
 		wp_enqueue_style(
-			'trekpilot-admin-departures-css',
-			TREKPILOT_URL . 'assets/admin/css/admin-departures.css',
+			'yatravanta-admin-departures-css',
+			YATRAVANTA_URL . 'assets/admin/css/admin-departures.css',
 			array(),
-			\TrekPilot\Includes\Plugin::asset_version( 'assets/admin/css/admin-departures.css' )
+			\YatraVanta\Includes\Plugin::asset_version( 'assets/admin/css/admin-departures.css' )
 		);
 
 		wp_enqueue_style(
-			'trekpilot-admin-bookings-css',
-			TREKPILOT_URL . 'assets/admin/css/admin-bookings.css',
-			array( 'trekpilot-admin-departures-css' ),
-			\TrekPilot\Includes\Plugin::asset_version( 'assets/admin/css/admin-bookings.css' )
+			'yatravanta-admin-bookings-css',
+			YATRAVANTA_URL . 'assets/admin/css/admin-bookings.css',
+			array( 'yatravanta-admin-departures-css' ),
+			\YatraVanta\Includes\Plugin::asset_version( 'assets/admin/css/admin-bookings.css' )
 		);
 
-		wp_enqueue_style( 'flatpickr-css', TREKPILOT_URL . 'assets/vendor/flatpickr/flatpickr.min.css', array(), '4.6.13' );
-		wp_enqueue_script( 'flatpickr-js', TREKPILOT_URL . 'assets/vendor/flatpickr/flatpickr.min.js', array(), '4.6.13', true );
+		wp_enqueue_style( 'flatpickr-css', YATRAVANTA_URL . 'assets/vendor/flatpickr/flatpickr.min.css', array(), '4.6.13' );
+		wp_enqueue_script( 'flatpickr-js', YATRAVANTA_URL . 'assets/vendor/flatpickr/flatpickr.min.js', array(), '4.6.13', true );
 
 		wp_enqueue_script(
-			'trekpilot-admin-bookings-js',
-			TREKPILOT_URL . 'assets/admin/js/admin-bookings.js',
+			'yatravanta-admin-bookings-js',
+			YATRAVANTA_URL . 'assets/admin/js/admin-bookings.js',
 			array( 'flatpickr-js' ),
-			TREKPILOT_VERSION . '.' . filemtime( TREKPILOT_PATH . 'assets/admin/js/admin-bookings.js' ),
+			YATRAVANTA_VERSION . '.' . filemtime( YATRAVANTA_PATH . 'assets/admin/js/admin-bookings.js' ),
 			true
 		);
 
 		wp_localize_script(
-			'trekpilot-admin-bookings-js',
-			'trekpilot_bookings_obj',
+			'yatravanta-admin-bookings-js',
+			'yatravanta_bookings_obj',
 			array(
 				'ajax_url'             => admin_url( 'admin-ajax.php' ),
-				'details_nonce'        => wp_create_nonce( 'trekpilot_bookings_nonce_action' ),
-				'cities_nonce'         => wp_create_nonce( 'trekpilot_departures_nonce_action' ),
-				'dates_nonce'          => wp_create_nonce( 'trekpilot_dates_nonce_action' ),
-				'public_pricing_nonce' => wp_create_nonce( 'trekpilot_booking_nonce_action' ),
-				'currency'             => get_option( 'trekpilot_currency_symbol', '$' ),
-				'price_format'         => \TrekPilot\Admin\Controllers\AdminController::get_price_format(),
+				'details_nonce'        => wp_create_nonce( 'yatravanta_bookings_nonce_action' ),
+				'cities_nonce'         => wp_create_nonce( 'yatravanta_departures_nonce_action' ),
+				'dates_nonce'          => wp_create_nonce( 'yatravanta_dates_nonce_action' ),
+				'public_pricing_nonce' => wp_create_nonce( 'yatravanta_booking_nonce_action' ),
+				'currency'             => get_option( 'yatravanta_currency_symbol', '$' ),
+				'price_format'         => \YatraVanta\Admin\Controllers\AdminController::get_price_format(),
 			)
 		);
 	}
@@ -335,7 +335,7 @@ class TrekBookingsController {
 
 		$table = new Bookings_List_Table();
 		$table->prepare_items();
-		include TREKPILOT_PATH . 'admin/views/bookings-list.php';
+		include YATRAVANTA_PATH . 'admin/views/bookings-list.php';
 	}
 
 	/**
@@ -354,18 +354,18 @@ class TrekBookingsController {
 			$booking_id = isset( $_GET['booking'] ) ? absint( wp_unslash( $_GET['booking'] ) ) : 0;
 			if ( $booking_id ) {
 				// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-				$booking = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}trekpilot_bookings WHERE id = %d", $booking_id ) );
+				$booking = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}yatravanta_bookings WHERE id = %d", $booking_id ) );
 				// phpcs:enable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 			}
 
 			if ( ! $booking ) {
-				wp_die( esc_html__( 'Booking not found.', 'trekpilot' ) );
+				wp_die( esc_html__( 'Booking not found.', 'yatravanta-trek-booking-manager' ) );
 			}
 		}
 
 		$treks = get_posts(
 			array(
-				'post_type'      => 'trekpilot_trek',
+				'post_type'      => 'yatravanta_trek',
 				'posts_per_page' => -1,
 				'post_status'    => 'publish',
 				'orderby'        => 'title',
@@ -373,7 +373,7 @@ class TrekBookingsController {
 			)
 		);
 
-		include TREKPILOT_PATH . 'admin/views/booking-form.php';
+		include YATRAVANTA_PATH . 'admin/views/booking-form.php';
 	}
 
 	/**
@@ -382,16 +382,16 @@ class TrekBookingsController {
 	 * @return void
 	 */
 	public function handle_save_booking() {
-		if ( ! isset( $_POST['trekpilot_booking_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['trekpilot_booking_nonce'] ) ), 'trekpilot_save_booking' ) ) {
-			wp_die( esc_html__( 'Security check failed.', 'trekpilot' ) );
+		if ( ! isset( $_POST['yatravanta_booking_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['yatravanta_booking_nonce'] ) ), 'yatravanta_save_booking' ) ) {
+			wp_die( esc_html__( 'Security check failed.', 'yatravanta-trek-booking-manager' ) );
 		}
 
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'trekpilot' ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'yatravanta-trek-booking-manager' ) );
 		}
 
 		global $wpdb;
-		$table_name = $wpdb->prefix . 'trekpilot_bookings';
+		$table_name = $wpdb->prefix . 'yatravanta_bookings';
 
 		$booking_id      = isset( $_POST['booking_id'] ) ? absint( wp_unslash( $_POST['booking_id'] ) ) : 0;
 		$trek_id         = isset( $_POST['trek_id'] ) ? absint( wp_unslash( $_POST['trek_id'] ) ) : 0;
@@ -434,14 +434,14 @@ class TrekBookingsController {
 		$seats = $num_adults + $num_children;
 
 		$redirect_args = array(
-			'post_type' => 'trekpilot_trek',
-			'page'      => 'trekpilot-bookings',
+			'post_type' => 'yatravanta_trek',
+			'page'      => 'yatravanta-bookings',
 		);
 
 		if ( empty( $cust_name ) || empty( $cust_email ) || ! $trek_id || ! $city_id || ! $date_id || $seats < 1 ) {
 			$redirect_args['action']   = $booking_id ? 'edit' : 'add';
 			$redirect_args['booking']  = $booking_id;
-			$redirect_args['trekpilot_error'] = 1;
+			$redirect_args['yatravanta_error'] = 1;
 			wp_safe_redirect( add_query_arg( $redirect_args, admin_url( 'edit.php' ) ) );
 			exit;
 		}
@@ -456,7 +456,7 @@ class TrekBookingsController {
 		// Authoritative server-side seat capacity check (never trust the browser alone for this).
 		if ( 'cancelled' !== $status ) {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-			$target_avail = $wpdb->get_row( $wpdb->prepare( "SELECT available_seats FROM {$wpdb->prefix}trekpilot_availability WHERE date_id = %d", $date_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
+			$target_avail = $wpdb->get_row( $wpdb->prepare( "SELECT available_seats FROM {$wpdb->prefix}yatravanta_availability WHERE date_id = %d", $date_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 
 			// If this same booking already holds seats on the same date, those seats are
 			// being released and re-consumed, so they count back toward capacity for this save.
@@ -469,7 +469,7 @@ class TrekBookingsController {
 			if ( $target_avail && $seats > $max_allowed_seats ) {
 				$redirect_args['action']         = $booking_id ? 'edit' : 'add';
 				$redirect_args['booking']        = $booking_id;
-				$redirect_args['trekpilot_seats_error'] = $max_allowed_seats;
+				$redirect_args['yatravanta_seats_error'] = $max_allowed_seats;
 				wp_safe_redirect( add_query_arg( $redirect_args, admin_url( 'edit.php' ) ) );
 				exit;
 			}
@@ -525,7 +525,7 @@ class TrekBookingsController {
 			$this->send_status_update_email( $booking_id, $trek_id, $city_id, $date_id, $cust_name, $cust_email, $seats, $num_adults, $num_children, $pickup_point, $transport_type, $transport_price, $total_amount, $status );
 		}
 
-		$redirect_args['trekpilot_saved'] = 1;
+		$redirect_args['yatravanta_saved'] = 1;
 		wp_safe_redirect( add_query_arg( $redirect_args, admin_url( 'edit.php' ) ) );
 		exit;
 	}
@@ -558,91 +558,91 @@ class TrekBookingsController {
 
 		$trek_title = get_the_title( $trek_id );
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-		$city_name = $wpdb->get_var( $wpdb->prepare( "SELECT city_name FROM {$wpdb->prefix}trekpilot_departure_cities WHERE id = %d", $city_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
+		$city_name = $wpdb->get_var( $wpdb->prepare( "SELECT city_name FROM {$wpdb->prefix}yatravanta_departure_cities WHERE id = %d", $city_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-		$date_val       = $wpdb->get_var( $wpdb->prepare( "SELECT departure_date FROM {$wpdb->prefix}trekpilot_departure_dates WHERE id = %d", $date_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
+		$date_val       = $wpdb->get_var( $wpdb->prepare( "SELECT departure_date FROM {$wpdb->prefix}yatravanta_departure_dates WHERE id = %d", $date_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$date_formatted = $date_val ? gmdate( 'd M Y', strtotime( $date_val ) ) : '';
 
 		$status_labels = array(
-			'pending'   => __( 'Pending Confirmation', 'trekpilot' ),
-			'confirmed' => __( 'Confirmed', 'trekpilot' ),
-			'cancelled' => __( 'Cancelled', 'trekpilot' ),
+			'pending'   => __( 'Pending Confirmation', 'yatravanta-trek-booking-manager' ),
+			'confirmed' => __( 'Confirmed', 'yatravanta-trek-booking-manager' ),
+			'cancelled' => __( 'Cancelled', 'yatravanta-trek-booking-manager' ),
 		);
 		$status_label  = isset( $status_labels[ $status ] ) ? $status_labels[ $status ] : ucfirst( $status );
 
 		$intro_messages = array(
-			'pending'   => __( 'Thank you for booking your trek with us! Our team is currently reviewing your booking details, and we will confirm it shortly. Stay tuned!', 'trekpilot' ),
-			'confirmed' => __( 'Great news! Our team has reviewed and confirmed your booking. Get ready for your exciting trek!', 'trekpilot' ),
-			'cancelled' => __( 'Your booking has been successfully cancelled. If you have any questions or need further assistance, please feel free to reach out to our team.', 'trekpilot' ),
+			'pending'   => __( 'Thank you for booking your trek with us! Our team is currently reviewing your booking details, and we will confirm it shortly. Stay tuned!', 'yatravanta-trek-booking-manager' ),
+			'confirmed' => __( 'Great news! Our team has reviewed and confirmed your booking. Get ready for your exciting trek!', 'yatravanta-trek-booking-manager' ),
+			'cancelled' => __( 'Your booking has been successfully cancelled. If you have any questions or need further assistance, please feel free to reach out to our team.', 'yatravanta-trek-booking-manager' ),
 		);
-		$intro          = isset( $intro_messages[ $status ] ) ? $intro_messages[ $status ] : __( 'Your reservation status has been updated.', 'trekpilot' );
+		$intro          = isset( $intro_messages[ $status ] ) ? $intro_messages[ $status ] : __( 'Your reservation status has been updated.', 'yatravanta-trek-booking-manager' );
 
 		/* translators: %s: new booking status label. */
-		$subject = sprintf( __( 'Booking %s', 'trekpilot' ), $status_label );
+		$subject = sprintf( __( 'Booking %s', 'yatravanta-trek-booking-manager' ), $status_label );
 
 		$details_rows = array(
 			array(
-				'label' => __( 'Booking ID', 'trekpilot' ),
+				'label' => __( 'Booking ID', 'yatravanta-trek-booking-manager' ),
 				'value' => self::format_booking_ref( $booking_id ),
 			),
 			array(
-				'label' => __( 'Trek', 'trekpilot' ),
+				'label' => __( 'Trek', 'yatravanta-trek-booking-manager' ),
 				'value' => $trek_title,
 			),
 			array(
-				'label' => __( 'Departure City', 'trekpilot' ),
+				'label' => __( 'Departure City', 'yatravanta-trek-booking-manager' ),
 				'value' => $city_name,
 			),
 			array(
-				'label' => __( 'Departure Date', 'trekpilot' ),
+				'label' => __( 'Departure Date', 'yatravanta-trek-booking-manager' ),
 				'value' => $date_formatted,
 			),
 			array(
 				/* translators: 1: total seats, 2: adult count, 3: children count. */
-				'label' => __( 'Seats Booked', 'trekpilot' ),
+				'label' => __( 'Seats Booked', 'yatravanta-trek-booking-manager' ),
 				'value' => sprintf( '%1$d (Adults: %2$d, Children: %3$d)', $seats, $num_adults, $num_children ),
 			),
 			array(
-				'label' => __( 'Pickup Point', 'trekpilot' ),
+				'label' => __( 'Pickup Point', 'yatravanta-trek-booking-manager' ),
 				'value' => $pickup_point,
 			),
 			array(
-				'label' => __( 'Transportation Type', 'trekpilot' ),
-				'value' => $transport_type ? $transport_type . ( $transport_price > 0 ? ' (+' . \TrekPilot\Admin\Controllers\AdminController::format_price( $transport_price ) . ')' : '' ) : '',
+				'label' => __( 'Transportation Type', 'yatravanta-trek-booking-manager' ),
+				'value' => $transport_type ? $transport_type . ( $transport_price > 0 ? ' (+' . \YatraVanta\Admin\Controllers\AdminController::format_price( $transport_price ) . ')' : '' ) : '',
 			),
 			array(
-				'label' => __( 'Total Amount', 'trekpilot' ),
-				'value' => \TrekPilot\Admin\Controllers\AdminController::format_price( (float) $total_amount ),
+				'label' => __( 'Total Amount', 'yatravanta-trek-booking-manager' ),
+				'value' => \YatraVanta\Admin\Controllers\AdminController::format_price( (float) $total_amount ),
 			),
 			array(
-				'label' => __( 'Status', 'trekpilot' ),
+				'label' => __( 'Status', 'yatravanta-trek-booking-manager' ),
 				'value' => $status_label,
 			),
 		);
 
 		// Advance / partial payments: show what was received and what is still due.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-		$amount_paid = (float) $wpdb->get_var( $wpdb->prepare( "SELECT amount_paid FROM {$wpdb->prefix}trekpilot_bookings WHERE id = %d", $booking_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
+		$amount_paid = (float) $wpdb->get_var( $wpdb->prepare( "SELECT amount_paid FROM {$wpdb->prefix}yatravanta_bookings WHERE id = %d", $booking_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 		if ( $amount_paid > 0 ) {
 			$details_rows[] = array(
-				'label' => __( 'Amount Paid', 'trekpilot' ),
-				'value' => \TrekPilot\Admin\Controllers\AdminController::format_price( $amount_paid ),
+				'label' => __( 'Amount Paid', 'yatravanta-trek-booking-manager' ),
+				'value' => \YatraVanta\Admin\Controllers\AdminController::format_price( $amount_paid ),
 			);
 			$details_rows[] = array(
-				'label' => __( 'Balance Due', 'trekpilot' ),
-				'value' => \TrekPilot\Admin\Controllers\AdminController::format_price( max( 0.0, (float) $total_amount - $amount_paid ) ),
+				'label' => __( 'Balance Due', 'yatravanta-trek-booking-manager' ),
+				'value' => \YatraVanta\Admin\Controllers\AdminController::format_price( max( 0.0, (float) $total_amount - $amount_paid ) ),
 			);
 		}
 
-		$message = \TrekPilot\Includes\Plugin::render_email_html(
+		$message = \YatraVanta\Includes\Plugin::render_email_html(
 			/* translators: %s: customer name. */
-			sprintf( __( 'Hello, %s!', 'trekpilot' ), $cust_name ),
+			sprintf( __( 'Hello, %s!', 'yatravanta-trek-booking-manager' ), $cust_name ),
 			$intro,
 			$details_rows
 		);
 
-		$from_name  = get_option( 'trekpilot_from_name', get_bloginfo( 'name' ) );
-		$from_email = get_option( 'trekpilot_booking_email', get_bloginfo( 'admin_email' ) );
+		$from_name  = get_option( 'yatravanta_from_name', get_bloginfo( 'name' ) );
+		$from_email = get_option( 'yatravanta_booking_email', get_bloginfo( 'admin_email' ) );
 
 		$headers = array(
 			'Content-Type: text/html; charset=UTF-8',
@@ -675,9 +675,9 @@ class TrekBookingsController {
 	 */
 	public static function payment_status_label( $status ) {
 		$labels = array(
-			'pending' => __( 'Pending', 'trekpilot' ),
-			'partial' => __( 'Partially Paid', 'trekpilot' ),
-			'paid'    => __( 'Paid', 'trekpilot' ),
+			'pending' => __( 'Pending', 'yatravanta-trek-booking-manager' ),
+			'partial' => __( 'Partially Paid', 'yatravanta-trek-booking-manager' ),
+			'paid'    => __( 'Paid', 'yatravanta-trek-booking-manager' ),
 		);
 
 		return isset( $labels[ $status ] ) ? $labels[ $status ] : ucfirst( (string) $status );
@@ -689,7 +689,7 @@ class TrekBookingsController {
 	 * @return void
 	 */
 	public function ajax_get_booking_details() {
-		check_ajax_referer( 'trekpilot_bookings_nonce_action', 'nonce' );
+		check_ajax_referer( 'yatravanta_bookings_nonce_action', 'nonce' );
 
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			wp_send_json_error( array( 'message' => 'Unauthorized' ) );
@@ -703,20 +703,20 @@ class TrekBookingsController {
 		global $wpdb;
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-		$booking = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}trekpilot_bookings WHERE id = %d", $booking_id ), ARRAY_A );
+		$booking = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}yatravanta_bookings WHERE id = %d", $booking_id ), ARRAY_A );
 		if ( ! $booking ) {
 			wp_send_json_error( array( 'message' => 'Booking not found' ) );
 		}
 
 		$booking['booking_ref']    = self::format_booking_ref( $booking['id'] );
 		$booking['trek_title']     = get_the_title( $booking['trek_id'] );
-		$booking['city_name']      = $wpdb->get_var( $wpdb->prepare( "SELECT city_name FROM {$wpdb->prefix}trekpilot_departure_cities WHERE id = %d", $booking['city_id'] ) );
-		$booking['departure_date'] = $wpdb->get_var( $wpdb->prepare( "SELECT departure_date FROM {$wpdb->prefix}trekpilot_departure_dates WHERE id = %d", $booking['date_id'] ) );
+		$booking['city_name']      = $wpdb->get_var( $wpdb->prepare( "SELECT city_name FROM {$wpdb->prefix}yatravanta_departure_cities WHERE id = %d", $booking['city_id'] ) );
+		$booking['departure_date'] = $wpdb->get_var( $wpdb->prepare( "SELECT departure_date FROM {$wpdb->prefix}yatravanta_departure_dates WHERE id = %d", $booking['date_id'] ) );
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 
 		$addons              = ! empty( $booking['addons'] ) ? json_decode( $booking['addons'], true ) : array();
 		$booking['addons']   = is_array( $addons ) ? $addons : array();
-		$booking['currency'] = get_option( 'trekpilot_currency_symbol', '$' );
+		$booking['currency'] = get_option( 'yatravanta_currency_symbol', '$' );
 
 		$booking['payment_status_label'] = self::payment_status_label( $booking['payment_status'] );
 		$booking['balance_due']          = max( 0.0, (float) $booking['total_amount'] - (float) $booking['amount_paid'] );

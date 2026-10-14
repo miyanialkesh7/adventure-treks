@@ -2,12 +2,12 @@
 /**
  * Elementor Trek Details Widget.
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Includes/Elementor/Widgets
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Includes/Elementor/Widgets
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Includes\Elementor\Widgets;
+namespace YatraVanta\Includes\Elementor\Widgets;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -24,7 +24,7 @@ class TrekDetailsWidget extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'trekpilot_trek_details';
+		return 'yatravanta_trek_details';
 	}
 
 	/**
@@ -33,7 +33,7 @@ class TrekDetailsWidget extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Trek Details', 'trekpilot' );
+		return esc_html__( 'Trek Details', 'yatravanta-trek-booking-manager' );
 	}
 
 	/**
@@ -51,7 +51,7 @@ class TrekDetailsWidget extends \Elementor\Widget_Base {
 	 * @return array
 	 */
 	public function get_categories() {
-		return array( 'trekpilot' );
+		return array( 'yatravanta-trek-booking-manager' );
 	}
 
 	/**
@@ -62,7 +62,7 @@ class TrekDetailsWidget extends \Elementor\Widget_Base {
 	 * @return array
 	 */
 	public function get_style_depends() {
-		return array( 'trekpilot-public-details-css' );
+		return array( 'yatravanta-public-details-css' );
 	}
 
 	/**
@@ -72,7 +72,7 @@ class TrekDetailsWidget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_section',
 			array(
-				'label' => esc_html__( 'Configuration', 'trekpilot' ),
+				'label' => esc_html__( 'Configuration', 'yatravanta-trek-booking-manager' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -80,12 +80,12 @@ class TrekDetailsWidget extends \Elementor\Widget_Base {
 		// Get all treks.
 		$treks = get_posts(
 			array(
-				'post_type'      => 'trekpilot_trek',
+				'post_type'      => 'yatravanta_trek',
 				'posts_per_page' => -1,
 			)
 		);
 
-		$options = array( '0' => esc_html__( 'Current Post / Trek Page', 'trekpilot' ) );
+		$options = array( '0' => esc_html__( 'Current Post / Trek Page', 'yatravanta-trek-booking-manager' ) );
 		if ( ! empty( $treks ) ) {
 			foreach ( $treks as $t ) {
 				$options[ $t->ID ] = $t->post_title;
@@ -95,7 +95,7 @@ class TrekDetailsWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'trek_id',
 			array(
-				'label'   => esc_html__( 'Select Trek', 'trekpilot' ),
+				'label'   => esc_html__( 'Select Trek', 'yatravanta-trek-booking-manager' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => '0',
 				'options' => $options,
@@ -116,10 +116,10 @@ class TrekDetailsWidget extends \Elementor\Widget_Base {
 			$trek_id = get_the_ID();
 		}
 
-		if ( $trek_id && get_post_type( $trek_id ) === 'trekpilot_trek' ) {
-			echo do_shortcode( '[trekpilot_details id="' . $trek_id . '"]' );
+		if ( $trek_id && get_post_type( $trek_id ) === 'yatravanta_trek' ) {
+			echo do_shortcode( '[yatravanta_details id="' . $trek_id . '"]' );
 		} else {
-			echo '<p style="color:#666; font-style:italic;">' . esc_html__( 'Please select a valid Trek CPT or insert this widget into a Trek single post page.', 'trekpilot' ) . '</p>';
+			echo '<p style="color:#666; font-style:italic;">' . esc_html__( 'Please select a valid Trek CPT or insert this widget into a Trek single post page.', 'yatravanta-trek-booking-manager' ) . '</p>';
 		}
 	}
 }

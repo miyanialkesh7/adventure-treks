@@ -2,12 +2,12 @@
 /**
  * Elementor Trek Archive Widget.
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Includes/Elementor/Widgets
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Includes/Elementor/Widgets
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Includes\Elementor\Widgets;
+namespace YatraVanta\Includes\Elementor\Widgets;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -24,7 +24,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'trekpilot_trek_archive';
+		return 'yatravanta_trek_archive';
 	}
 
 	/**
@@ -33,7 +33,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Trek List', 'trekpilot' );
+		return esc_html__( 'Trek List', 'yatravanta-trek-booking-manager' );
 	}
 
 	/**
@@ -51,7 +51,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 	 * @return array
 	 */
 	public function get_categories() {
-		return array( 'trekpilot' );
+		return array( 'yatravanta-trek-booking-manager' );
 	}
 
 	/**
@@ -62,7 +62,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 	 * @return array
 	 */
 	public function get_style_depends() {
-		return array( 'trekpilot-public-archive-css' );
+		return array( 'yatravanta-public-archive-css' );
 	}
 
 	/**
@@ -75,7 +75,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'query_section',
 			array(
-				'label' => esc_html__( 'Query', 'trekpilot' ),
+				'label' => esc_html__( 'Query', 'yatravanta-trek-booking-manager' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -83,12 +83,12 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'source',
 			array(
-				'label'   => esc_html__( 'Source', 'trekpilot' ),
+				'label'   => esc_html__( 'Source', 'yatravanta-trek-booking-manager' ),
 				'type'    => \Elementor\Controls_Manager::SELECT,
 				'default' => 'all',
 				'options' => array(
-					'all'    => esc_html__( 'All', 'trekpilot' ),
-					'manual' => esc_html__( 'Manual Selection', 'trekpilot' ),
+					'all'    => esc_html__( 'All', 'yatravanta-trek-booking-manager' ),
+					'manual' => esc_html__( 'Manual Selection', 'yatravanta-trek-booking-manager' ),
 				),
 			)
 		);
@@ -96,7 +96,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'selected_treks',
 			array(
-				'label'       => esc_html__( 'Search & Select', 'trekpilot' ),
+				'label'       => esc_html__( 'Search & Select', 'yatravanta-trek-booking-manager' ),
 				'type'        => \Elementor\Controls_Manager::SELECT2,
 				'multiple'    => true,
 				'label_block' => true,
@@ -110,14 +110,14 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'orderby',
 			array(
-				'label'     => esc_html__( 'Order By', 'trekpilot' ),
+				'label'     => esc_html__( 'Order By', 'yatravanta-trek-booking-manager' ),
 				'type'      => \Elementor\Controls_Manager::SELECT,
 				'default'   => 'date',
 				'options'   => array(
-					'date'       => esc_html__( 'Publish Date', 'trekpilot' ),
-					'title'      => esc_html__( 'Title', 'trekpilot' ),
-					'menu_order' => esc_html__( 'Menu Order', 'trekpilot' ),
-					'rand'       => esc_html__( 'Random', 'trekpilot' ),
+					'date'       => esc_html__( 'Publish Date', 'yatravanta-trek-booking-manager' ),
+					'title'      => esc_html__( 'Title', 'yatravanta-trek-booking-manager' ),
+					'menu_order' => esc_html__( 'Menu Order', 'yatravanta-trek-booking-manager' ),
+					'rand'       => esc_html__( 'Random', 'yatravanta-trek-booking-manager' ),
 				),
 				'condition' => array(
 					'source' => 'all',
@@ -128,12 +128,12 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'order',
 			array(
-				'label'     => esc_html__( 'Order', 'trekpilot' ),
+				'label'     => esc_html__( 'Order', 'yatravanta-trek-booking-manager' ),
 				'type'      => \Elementor\Controls_Manager::SELECT,
 				'default'   => 'DESC',
 				'options'   => array(
-					'DESC' => esc_html__( 'Descending', 'trekpilot' ),
-					'ASC'  => esc_html__( 'Ascending', 'trekpilot' ),
+					'DESC' => esc_html__( 'Descending', 'yatravanta-trek-booking-manager' ),
+					'ASC'  => esc_html__( 'Ascending', 'yatravanta-trek-booking-manager' ),
 				),
 				'condition' => array(
 					'source' => 'all',
@@ -147,7 +147,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'layout_section',
 			array(
-				'label' => esc_html__( 'Layout', 'trekpilot' ),
+				'label' => esc_html__( 'Layout', 'yatravanta-trek-booking-manager' ),
 				'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -155,7 +155,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'posts_per_page',
 			array(
-				'label'     => esc_html__( 'Treks Per Page', 'trekpilot' ),
+				'label'     => esc_html__( 'Treks Per Page', 'yatravanta-trek-booking-manager' ),
 				'type'      => \Elementor\Controls_Manager::NUMBER,
 				'min'       => 1,
 				'max'       => 100,
@@ -169,7 +169,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'columns',
 			array(
-				'label'   => esc_html__( 'Columns', 'trekpilot' ),
+				'label'   => esc_html__( 'Columns', 'yatravanta-trek-booking-manager' ),
 				'type'    => \Elementor\Controls_Manager::NUMBER,
 				'min'     => 1,
 				'max'     => 6,
@@ -180,10 +180,10 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'show_excerpt',
 			array(
-				'label'        => esc_html__( 'Show Excerpt', 'trekpilot' ),
+				'label'        => esc_html__( 'Show Excerpt', 'yatravanta-trek-booking-manager' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'trekpilot' ),
-				'label_off'    => esc_html__( 'No', 'trekpilot' ),
+				'label_on'     => esc_html__( 'Yes', 'yatravanta-trek-booking-manager' ),
+				'label_off'    => esc_html__( 'No', 'yatravanta-trek-booking-manager' ),
 				'return_value' => 'yes',
 				'default'      => 'yes',
 			)
@@ -192,10 +192,10 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'show_price',
 			array(
-				'label'        => esc_html__( 'Show Price', 'trekpilot' ),
+				'label'        => esc_html__( 'Show Price', 'yatravanta-trek-booking-manager' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'trekpilot' ),
-				'label_off'    => esc_html__( 'No', 'trekpilot' ),
+				'label_on'     => esc_html__( 'Yes', 'yatravanta-trek-booking-manager' ),
+				'label_off'    => esc_html__( 'No', 'yatravanta-trek-booking-manager' ),
 				'return_value' => 'yes',
 				'default'      => 'yes',
 			)
@@ -207,7 +207,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'pagination_section',
 			array(
-				'label'     => esc_html__( 'Pagination', 'trekpilot' ),
+				'label'     => esc_html__( 'Pagination', 'yatravanta-trek-booking-manager' ),
 				'tab'       => \Elementor\Controls_Manager::TAB_CONTENT,
 				'condition' => array(
 					'source' => 'all',
@@ -218,10 +218,10 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 		$this->add_control(
 			'show_pagination',
 			array(
-				'label'        => esc_html__( 'Show Pagination', 'trekpilot' ),
+				'label'        => esc_html__( 'Show Pagination', 'yatravanta-trek-booking-manager' ),
 				'type'         => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'trekpilot' ),
-				'label_off'    => esc_html__( 'No', 'trekpilot' ),
+				'label_on'     => esc_html__( 'Yes', 'yatravanta-trek-booking-manager' ),
+				'label_off'    => esc_html__( 'No', 'yatravanta-trek-booking-manager' ),
 				'return_value' => 'yes',
 				'default'      => 'yes',
 			)
@@ -238,7 +238,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 	private function get_trek_options() {
 		$treks   = get_posts(
 			array(
-				'post_type'      => 'trekpilot_trek',
+				'post_type'      => 'yatravanta_trek',
 				'posts_per_page' => -1,
 				'orderby'        => 'title',
 				'order'          => 'ASC',
@@ -262,7 +262,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 			$selected_ids = array_filter( array_map( 'intval', (array) $settings['selected_treks'] ) );
 
 			$shortcode = sprintf(
-				'[trekpilot_list include="%1$s" columns="%2$d" show_excerpt="%3$s" show_price="%4$s" pagination="no"]',
+				'[yatravanta_list include="%1$s" columns="%2$d" show_excerpt="%3$s" show_price="%4$s" pagination="no"]',
 				implode( ',', $selected_ids ),
 				intval( $settings['columns'] ),
 				'yes' === $settings['show_excerpt'] ? 'yes' : 'no',
@@ -270,7 +270,7 @@ class TrekArchiveWidget extends \Elementor\Widget_Base {
 			);
 		} else {
 			$shortcode = sprintf(
-				'[trekpilot_list posts_per_page="%1$d" columns="%2$d" orderby="%3$s" order="%4$s" show_excerpt="%5$s" show_price="%6$s" pagination="%7$s"]',
+				'[yatravanta_list posts_per_page="%1$d" columns="%2$d" orderby="%3$s" order="%4$s" show_excerpt="%5$s" show_price="%6$s" pagination="%7$s"]',
 				intval( $settings['posts_per_page'] ),
 				intval( $settings['columns'] ),
 				sanitize_key( $settings['orderby'] ),

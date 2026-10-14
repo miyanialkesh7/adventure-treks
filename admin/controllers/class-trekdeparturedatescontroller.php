@@ -2,12 +2,12 @@
 /**
  * Controller for managing Departure Dates, Seats, and Date-Specific Pricing.
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Admin/Controllers
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Admin/Controllers
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Admin\Controllers;
+namespace YatraVanta\Admin\Controllers;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -23,9 +23,9 @@ class TrekDepartureDatesController {
 	 */
 	public function __construct() {
 		// Register AJAX endpoints.
-		add_action( 'wp_ajax_trekpilot_get_departure_dates', array( $this, 'ajax_get_dates' ) );
-		add_action( 'wp_ajax_trekpilot_save_departure_date', array( $this, 'ajax_save_date' ) );
-		add_action( 'wp_ajax_trekpilot_delete_departure_date', array( $this, 'ajax_delete_date' ) );
+		add_action( 'wp_ajax_yatravanta_get_departure_dates', array( $this, 'ajax_get_dates' ) );
+		add_action( 'wp_ajax_yatravanta_save_departure_date', array( $this, 'ajax_save_date' ) );
+		add_action( 'wp_ajax_yatravanta_delete_departure_date', array( $this, 'ajax_delete_date' ) );
 
 		// Load assets hook.
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
@@ -39,24 +39,24 @@ class TrekDepartureDatesController {
 	public function enqueue_assets() {
 		global $post_type;
 
-		if ( 'trekpilot_trek' !== $post_type ) {
+		if ( 'yatravanta_trek' !== $post_type ) {
 			return;
 		}
 
 		wp_enqueue_script(
-			'trekpilot-admin-dates-js',
-			TREKPILOT_URL . 'assets/admin/js/admin-dates.js',
+			'yatravanta-admin-dates-js',
+			YATRAVANTA_URL . 'assets/admin/js/admin-dates.js',
 			array(),
-			\TrekPilot\Includes\Plugin::asset_version( 'assets/admin/js/admin-dates.js' ),
+			\YatraVanta\Includes\Plugin::asset_version( 'assets/admin/js/admin-dates.js' ),
 			true
 		);
 
 		wp_localize_script(
-			'trekpilot-admin-dates-js',
-			'trekpilot_dates_obj',
+			'yatravanta-admin-dates-js',
+			'yatravanta_dates_obj',
 			array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( 'trekpilot_dates_nonce_action' ),
+				'nonce'    => wp_create_nonce( 'yatravanta_dates_nonce_action' ),
 			)
 		);
 	}
@@ -71,7 +71,7 @@ class TrekDepartureDatesController {
 		global $wpdb;
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery
 		$trek_id = $wpdb->get_var(
-			$wpdb->prepare( "SELECT trek_id FROM {$wpdb->prefix}trekpilot_departure_dates WHERE id = %d", $date_id )
+			$wpdb->prepare( "SELECT trek_id FROM {$wpdb->prefix}yatravanta_departure_dates WHERE id = %d", $date_id )
 		);
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery
 		return (int) $trek_id;
@@ -81,20 +81,20 @@ class TrekDepartureDatesController {
 	 * AJAX: Get dates, availability, and pricing overrides for a city.
 	 */
 	public function ajax_get_dates() {
-		check_ajax_referer( 'trekpilot_dates_nonce_action', 'nonce' );
+		check_ajax_referer( 'yatravanta_dates_nonce_action', 'nonce' );
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		$city_id = isset( $_GET['city_id'] ) ? intval( $_GET['city_id'] ) : 0;
 		if ( ! $city_id ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid City ID', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Invalid City ID', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		global $wpdb;
-		$table_dates = $wpdb->prefix . 'trekpilot_departure_dates';
-		$table_avail = $wpdb->prefix . 'trekpilot_availability';
-		$table_price = $wpdb->prefix . 'trekpilot_pricing';
+		$table_dates = $wpdb->prefix . 'yatravanta_departure_dates';
+		$table_avail = $wpdb->prefix . 'yatravanta_availability';
+		$table_price = $wpdb->prefix . 'yatravanta_pricing';
 
 		// Get all dates.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
@@ -150,7 +150,7 @@ class TrekDepartureDatesController {
 	 * AJAX: Save a departure date (insert or update).
 	 */
 	public function ajax_save_date() {
-		check_ajax_referer( 'trekpilot_dates_nonce_action', 'nonce' );
+		check_ajax_referer( 'yatravanta_dates_nonce_action', 'nonce' );
 
 		$id      = isset( $_POST['id'] ) ? intval( wp_unslash( $_POST['id'] ) ) : 0;
 		$city_id = isset( $_POST['city_id'] ) ? intval( wp_unslash( $_POST['city_id'] ) ) : 0;
@@ -158,7 +158,7 @@ class TrekDepartureDatesController {
 
 		$owner_trek_id = $id ? $this->get_date_trek_id( $id ) : $trek_id;
 		if ( ! $owner_trek_id || ! current_user_can( 'edit_post', $owner_trek_id ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		$departure_date = isset( $_POST['departure_date'] ) ? sanitize_text_field( wp_unslash( $_POST['departure_date'] ) ) : '';
@@ -176,33 +176,33 @@ class TrekDepartureDatesController {
 		$offer_price = isset( $_POST['offer_price'] ) ? floatval( wp_unslash( $_POST['offer_price'] ) ) : 0.00;
 
 		if ( empty( $departure_date ) || ! $city_id || ! $trek_id ) {
-			wp_send_json_error( array( 'message' => __( 'Departure date is required', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Departure date is required', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		if ( $adult_price < 0 || $child_price < 0 || $offer_price < 0 ) {
-			wp_send_json_error( array( 'message' => __( 'Prices cannot be negative.', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Prices cannot be negative.', 'yatravanta-trek-booking-manager' ) ) );
 		}
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- nonce verified at the top of this handler.
 		foreach ( array( 'total_seats', 'booked_seats' ) as $seat_field ) {
 			if ( isset( $_POST[ $seat_field ] ) && ! preg_match( '/^\d+$/', trim( sanitize_text_field( wp_unslash( $_POST[ $seat_field ] ) ) ) ) ) {
-				wp_send_json_error( array( 'message' => __( 'Seats must be whole numbers.', 'trekpilot' ) ) );
+				wp_send_json_error( array( 'message' => __( 'Seats must be whole numbers.', 'yatravanta-trek-booking-manager' ) ) );
 			}
 		}
 		if ( $total_seats < 1 || $booked_seats < 0 || $booked_seats > $total_seats ) {
-			wp_send_json_error( array( 'message' => __( 'Seat numbers are not valid: total seats must be at least 1 and booked seats cannot be negative or more than the total.', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Seat numbers are not valid: total seats must be at least 1 and booked seats cannot be negative or more than the total.', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		global $wpdb;
-		$table_dates = $wpdb->prefix . 'trekpilot_departure_dates';
-		$table_avail = $wpdb->prefix . 'trekpilot_availability';
-		$table_price = $wpdb->prefix . 'trekpilot_pricing';
+		$table_dates = $wpdb->prefix . 'yatravanta_departure_dates';
+		$table_avail = $wpdb->prefix . 'yatravanta_availability';
+		$table_price = $wpdb->prefix . 'yatravanta_pricing';
 
 		// Past dates can't be newly set; an existing date may keep its current value when edited.
 		if ( $departure_date < current_time( 'Y-m-d' ) ) {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 			$current_date = $id ? $wpdb->get_var( $wpdb->prepare( "SELECT departure_date FROM $table_dates WHERE id = %d", $id ) ) : '';
 			if ( $current_date !== $departure_date ) {
-				wp_send_json_error( array( 'message' => __( 'Departure date cannot be in the past', 'trekpilot' ) ) );
+				wp_send_json_error( array( 'message' => __( 'Departure date cannot be in the past', 'yatravanta-trek-booking-manager' ) ) );
 			}
 		}
 
@@ -234,7 +234,7 @@ class TrekDepartureDatesController {
 				array( '%d', '%d', '%s', '%s', '%s' )
 			);
 			if ( ! $inserted ) {
-				wp_send_json_error( array( 'message' => __( 'Failed to add departure date', 'trekpilot' ) ) );
+				wp_send_json_error( array( 'message' => __( 'Failed to add departure date', 'yatravanta-trek-booking-manager' ) ) );
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 			$date_id = $wpdb->insert_id;
@@ -286,7 +286,7 @@ class TrekDepartureDatesController {
 
 		wp_send_json_success(
 			array(
-				'message' => __( 'Departure date configured successfully', 'trekpilot' ),
+				'message' => __( 'Departure date configured successfully', 'yatravanta-trek-booking-manager' ),
 				'id'      => $date_id,
 			)
 		);
@@ -296,25 +296,25 @@ class TrekDepartureDatesController {
 	 * AJAX: Delete a departure date.
 	 */
 	public function ajax_delete_date() {
-		check_ajax_referer( 'trekpilot_dates_nonce_action', 'nonce' );
+		check_ajax_referer( 'yatravanta_dates_nonce_action', 'nonce' );
 
 		$id = isset( $_POST['id'] ) ? intval( wp_unslash( $_POST['id'] ) ) : 0;
 		if ( ! $id ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid Date ID', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Invalid Date ID', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		$trek_id = $this->get_date_trek_id( $id );
 		if ( ! $trek_id || ! current_user_can( 'edit_post', $trek_id ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'trekpilot' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'yatravanta-trek-booking-manager' ) ) );
 		}
 
 		global $wpdb;
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery
-		$wpdb->delete( $wpdb->prefix . 'trekpilot_departure_dates', array( 'id' => $id ), array( '%d' ) );
-		$wpdb->delete( $wpdb->prefix . 'trekpilot_availability', array( 'date_id' => $id ), array( '%d' ) );
-		$wpdb->delete( $wpdb->prefix . 'trekpilot_pricing', array( 'date_id' => $id ), array( '%d' ) );
+		$wpdb->delete( $wpdb->prefix . 'yatravanta_departure_dates', array( 'id' => $id ), array( '%d' ) );
+		$wpdb->delete( $wpdb->prefix . 'yatravanta_availability', array( 'date_id' => $id ), array( '%d' ) );
+		$wpdb->delete( $wpdb->prefix . 'yatravanta_pricing', array( 'date_id' => $id ), array( '%d' ) );
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery
 
-		wp_send_json_success( array( 'message' => __( 'Departure date deleted successfully', 'trekpilot' ) ) );
+		wp_send_json_success( array( 'message' => __( 'Departure date deleted successfully', 'yatravanta-trek-booking-manager' ) ) );
 	}
 }

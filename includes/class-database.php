@@ -2,12 +2,12 @@
 /**
  * Custom Database Handler
  *
- * @package    TrekPilot
- * @subpackage TrekPilot/Includes
+ * @package    YatraVanta
+ * @subpackage YatraVanta/Includes
  * @author     Nilesh Vastarpara
  */
 
-namespace TrekPilot\Includes;
+namespace YatraVanta\Includes;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -32,7 +32,7 @@ class Database {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
 		// 1. Core Trek attributes (extending standard wp_posts CPT info).
-		$table_treks = $wpdb->prefix . 'trekpilot_treks';
+		$table_treks = $wpdb->prefix . 'yatravanta_treks';
 		$sql_treks   = "CREATE TABLE $table_treks (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			post_id bigint(20) unsigned NOT NULL,
@@ -58,7 +58,7 @@ class Database {
 		dbDelta( $sql_treks );
 
 		// 2. Departure Cities.
-		$table_cities = $wpdb->prefix . 'trekpilot_departure_cities';
+		$table_cities = $wpdb->prefix . 'yatravanta_departure_cities';
 		$sql_cities   = "CREATE TABLE $table_cities (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			trek_id bigint(20) unsigned NOT NULL,
@@ -77,7 +77,7 @@ class Database {
 		dbDelta( $sql_cities );
 
 		// 3. Departure Dates.
-		$table_dates = $wpdb->prefix . 'trekpilot_departure_dates';
+		$table_dates = $wpdb->prefix . 'yatravanta_departure_dates';
 		$sql_dates   = "CREATE TABLE $table_dates (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			city_id bigint(20) unsigned NOT NULL,
@@ -93,7 +93,7 @@ class Database {
 		dbDelta( $sql_dates );
 
 		// 4. Itineraries (Days).
-		$table_itineraries = $wpdb->prefix . 'trekpilot_itineraries';
+		$table_itineraries = $wpdb->prefix . 'yatravanta_itineraries';
 		$sql_itineraries   = "CREATE TABLE $table_itineraries (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			city_id bigint(20) unsigned NOT NULL,
@@ -109,7 +109,7 @@ class Database {
 		dbDelta( $sql_itineraries );
 
 		// 5. Itinerary Timeline Items.
-		$table_itinerary_items = $wpdb->prefix . 'trekpilot_itinerary_items';
+		$table_itinerary_items = $wpdb->prefix . 'yatravanta_itinerary_items';
 		$sql_itinerary_items   = "CREATE TABLE $table_itinerary_items (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			itinerary_id bigint(20) unsigned NOT NULL,
@@ -125,7 +125,7 @@ class Database {
 		dbDelta( $sql_itinerary_items );
 
 		// 6. Pickup Points.
-		$table_pickup_points = $wpdb->prefix . 'trekpilot_pickup_points';
+		$table_pickup_points = $wpdb->prefix . 'yatravanta_pickup_points';
 		$sql_pickup_points   = "CREATE TABLE $table_pickup_points (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			city_id bigint(20) unsigned NOT NULL,
@@ -142,7 +142,7 @@ class Database {
 		dbDelta( $sql_pickup_points );
 
 		// 7. Pricing Table (Adult/Child price variations, Group discounts, Extra charges & Add-ons as JSON structures).
-		$table_pricing = $wpdb->prefix . 'trekpilot_pricing';
+		$table_pricing = $wpdb->prefix . 'yatravanta_pricing';
 		$sql_pricing   = "CREATE TABLE $table_pricing (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			city_id bigint(20) unsigned NOT NULL,
@@ -163,7 +163,7 @@ class Database {
 		dbDelta( $sql_pricing );
 
 		// 8. Seat Availability.
-		$table_availability = $wpdb->prefix . 'trekpilot_availability';
+		$table_availability = $wpdb->prefix . 'yatravanta_availability';
 		$sql_availability   = "CREATE TABLE $table_availability (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			date_id bigint(20) unsigned NOT NULL,
@@ -176,7 +176,7 @@ class Database {
 		dbDelta( $sql_availability );
 
 		// 9. Bookings Table.
-		$table_bookings = $wpdb->prefix . 'trekpilot_bookings';
+		$table_bookings = $wpdb->prefix . 'yatravanta_bookings';
 		$sql_bookings   = "CREATE TABLE $table_bookings (
 			id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 			trek_id bigint(20) unsigned NOT NULL,
@@ -222,7 +222,7 @@ class Database {
 			return $grouped;
 		}
 
-		$table        = $wpdb->prefix . 'trekpilot_itinerary_items';
+		$table        = $wpdb->prefix . 'yatravanta_itinerary_items';
 		$placeholders = implode( ',', array_fill( 0, count( $day_ids ), '%d' ) );
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, PluginCheck.Security.DirectDB.UnescapedDBParameter
@@ -247,12 +247,12 @@ class Database {
 	public static function upgrade_schema() {
 		global $wpdb;
 
-		if ( (int) get_option( 'trekpilot_db_schema', 1 ) < 2 ) {
+		if ( (int) get_option( 'yatravanta_db_schema', 1 ) < 2 ) {
 			self::create_tables();
-			$table = $wpdb->prefix . 'trekpilot_bookings';
+			$table = $wpdb->prefix . 'yatravanta_bookings';
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
 			$wpdb->query( "UPDATE $table SET amount_paid = total_amount WHERE payment_status = 'paid' AND amount_paid = 0" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
-			update_option( 'trekpilot_db_schema', 2 );
+			update_option( 'yatravanta_db_schema', 2 );
 		}
 	}
 
@@ -277,15 +277,15 @@ class Database {
 		global $wpdb;
 
 		$tables = array(
-			'trekpilot_availability',
-			'trekpilot_pricing',
-			'trekpilot_pickup_points',
-			'trekpilot_itinerary_items',
-			'trekpilot_itineraries',
-			'trekpilot_departure_dates',
-			'trekpilot_departure_cities',
-			'trekpilot_treks',
-			'trekpilot_bookings',
+			'yatravanta_availability',
+			'yatravanta_pricing',
+			'yatravanta_pickup_points',
+			'yatravanta_itinerary_items',
+			'yatravanta_itineraries',
+			'yatravanta_departure_dates',
+			'yatravanta_departure_cities',
+			'yatravanta_treks',
+			'yatravanta_bookings',
 		);
 
 		foreach ( $tables as $table ) {
